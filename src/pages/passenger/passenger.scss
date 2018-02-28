@@ -1,0 +1,105 @@
+page-passenger {
+    .sum{
+            float: left;
+            width: 100%;
+            font-family: "Roboto";
+            padding: 15px 0px 15px 8px;
+            background: #fff;
+            box-shadow: 1px 2px 4px #ececec;
+            margin-bottom: 2px;
+        h2{
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #444;
+            text-transform: capitalize;
+        }
+    
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 400;
+            color: #22c4b9;
+        }
+    
+        span{
+            font-size: 12px;
+            float: left;
+            width: 100%;
+            margin-bottom: 5px;
+            sup{
+                float: left;
+                width: 100%;
+                position: static;
+                line-height: normal;
+                margin-top: 5px;
+            }
+        }
+    }
+
+    .form {
+        float: left;
+        width: 100%;
+        padding: 0px 8px;
+        background: #FBFBFB;
+
+        h3 {
+            font-size: 16px;
+            color: #444;
+            font-weight: 400;
+            margin-bottom: 0;
+            float: left;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 3px;
+            font-size: 10px;
+            color: #444;
+        }
+
+        .list{
+            .label{
+                margin-bottom: 5px;
+                float: left;
+                width: 100%;
+            }
+            .item{
+                padding: 0;
+                min-height: 30px;
+                border: 1px solid #ccc;
+                .item-inner{
+                    padding: 0;
+                    border: 0;
+                    .input{
+                        .text-input{
+                            margin: 0;
+                            width: 100%;
+                            padding: 0 8px;
+                            float: left;
+                            font-size: 14px;
+                        }
+                    }
+                }
+                .datetime{padding-left: 8px;font-size: 14px;}
+            }
+        }
+
+        .line {
+            background: #d4d4d4;
+            height: 1px;
+            width: 100%;
+            float: left;
+            margin-top: 30px;
+        }
+
+        .cont{
+            margin: 0 auto 20px;
+            width: 80%;
+            height: 36px;
+            text-transform: uppercase;
+            font-family: "Roboto";
+        }
+    }
+}

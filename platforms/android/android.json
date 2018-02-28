@@ -1,0 +1,302 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"ImagePicker\"><param name=\"android-package\" value=\"com.synconset.ImagePicker\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CordovaHttpPlugin\"><param name=\"android-package\" value=\"com.synconset.cordovahttp.CordovaHttpPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FacebookConnectPlugin\"><param name=\"android-package\" value=\"org.apache.cordova.facebook.ConnectPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://m.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://graph.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://api.facebook.com\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://*.fbcdn.net\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://*.akamaihd.net\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"android-minSdkVersion\" value=\"15\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FirebasePlugin\"><param name=\"android-package\" value=\"org.apache.cordova.firebase.FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StreamingMedia\"><param name=\"android-package\" value=\"com.hutchind.cordova.plugins.streamingmedia.StreamingMedia\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest/application": [
+                        {
+                            "xml": "<activity android:label=\"@string/multi_app_name\" android:name=\"com.synconset.MultiImageChooserActivity\" android:theme=\"@style/Theme.AppCompat.Light\"></activity>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"com.google.android.gms.measurement.AppMeasurementService\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"org.apache.cordova.firebase.FirebasePluginMessagingService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"org.apache.cordova.firebase.FirebasePluginInstanceIDService\"><intent-filter><action android:name=\"com.google.firebase.INSTANCE_ID_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:name=\"org.apache.cordova.firebase.OnNotificationOpenReceiver\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Audio Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleAudioStream\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:configChanges=\"orientation|screenSize\" android:label=\"Simple Video Stream\" android:name=\"com.hutchind.cordova.plugins.streamingmedia.SimpleVideoStream\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 2
+                        }
+                    ],
+                    "application": [
+                        {
+                            "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationId\" android:value=\"@string/fb_app_id\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<meta-data android:name=\"com.facebook.sdk.ApplicationName\" android:value=\"@string/fb_app_name\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\" android:label=\"@string/fb_app_name\" android:name=\"com.facebook.FacebookActivity\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/facebookconnect.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<string name=\"fb_app_id\">397685590673183</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"fb_app_name\">grouptravel</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/strings.xml": {
+                "parents": {
+                    "/resources": [
+                        {
+                            "xml": "<string name=\"google_app_id\">@string/google_app_id</string>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<string name=\"google_api_key\">@string/google_api_key</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.synconset.imagepicker": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-add-swift-support": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-advanced-http": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "397685590673183",
+            "APP_NAME": "grouptravel",
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "com.hutchind.cordova.plugins.streamingmedia": {
+            "PACKAGE_NAME": "com.grouptravel"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "com.synconset.imagepicker.ImagePicker",
+            "file": "plugins/com.synconset.imagepicker/www/imagepicker.js",
+            "pluginId": "com.synconset.imagepicker",
+            "clobbers": [
+                "plugins.imagePicker"
+            ]
+        },
+        {
+            "id": "cordova-plugin-advanced-http.lodash",
+            "file": "plugins/cordova-plugin-advanced-http/www/lodash.js",
+            "pluginId": "cordova-plugin-advanced-http"
+        },
+        {
+            "id": "cordova-plugin-advanced-http.tough-cookie",
+            "file": "plugins/cordova-plugin-advanced-http/www/umd-tough-cookie.js",
+            "pluginId": "cordova-plugin-advanced-http"
+        },
+        {
+            "id": "cordova-plugin-advanced-http.local-storage-store",
+            "file": "plugins/cordova-plugin-advanced-http/www/local-storage-store.js",
+            "pluginId": "cordova-plugin-advanced-http"
+        },
+        {
+            "id": "cordova-plugin-advanced-http.cookie-handler",
+            "file": "plugins/cordova-plugin-advanced-http/www/cookie-handler.js",
+            "pluginId": "cordova-plugin-advanced-http"
+        },
+        {
+            "id": "cordova-plugin-advanced-http.angular-integration",
+            "file": "plugins/cordova-plugin-advanced-http/www/angular-integration.js",
+            "pluginId": "cordova-plugin-advanced-http"
+        },
+        {
+            "id": "cordova-plugin-advanced-http.http",
+            "file": "plugins/cordova-plugin-advanced-http/www/advanced-http.js",
+            "pluginId": "cordova-plugin-advanced-http",
+            "clobbers": [
+                "cordova.plugin.http"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device.device",
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+            "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+            "pluginId": "cordova-plugin-facebook4",
+            "clobbers": [
+                "facebookConnectPlugin"
+            ]
+        },
+        {
+            "id": "cordova-plugin-file-transfer.FileTransferError",
+            "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+            "pluginId": "cordova-plugin-file-transfer",
+            "clobbers": [
+                "window.FileTransferError"
+            ]
+        },
+        {
+            "id": "cordova-plugin-file-transfer.FileTransfer",
+            "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+            "pluginId": "cordova-plugin-file-transfer",
+            "clobbers": [
+                "window.FileTransfer"
+            ]
+        },
+        {
+            "id": "cordova-plugin-firebase.FirebasePlugin",
+            "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+            "pluginId": "cordova-plugin-firebase",
+            "clobbers": [
+                "FirebasePlugin"
+            ]
+        },
+        {
+            "id": "com.hutchind.cordova.plugins.streamingmedia.StreamingMedia",
+            "file": "plugins/com.hutchind.cordova.plugins.streamingmedia/www/StreamingMedia.js",
+            "pluginId": "com.hutchind.cordova.plugins.streamingmedia",
+            "clobbers": [
+                "streamingMedia"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "com.synconset.imagepicker": "2.1.8",
+        "cordova-plugin-add-swift-support": "1.7.0",
+        "cordova-plugin-advanced-http": "1.9.1",
+        "cordova-plugin-device": "1.1.4",
+        "cordova-plugin-facebook4": "1.9.1",
+        "cordova-plugin-file-transfer": "1.7.1",
+        "cordova-plugin-firebase": "0.1.25",
+        "com.hutchind.cordova.plugins.streamingmedia": "0.1.4"
+    }
+}

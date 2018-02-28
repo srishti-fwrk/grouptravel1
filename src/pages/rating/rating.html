@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Rating</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content >
+  <div class="card-background-page" *ngIf="trip">
+      <ion-card>
+          <img src="assets/imgs/a.png"/>
+          <div class="card-title">{{trip.end_location}}</div>
+          <div class="card-subtitle">{{trip.trip_startdate | date: 'MMM d'}} - {{trip.trip_enddate | date: 'MMM d, yyyy'}}</div>
+        </ion-card>
+      <div class="descrp">
+        <h3>ITINERARY</h3>
+        <p>{{trip.trip_startdate | date: 'EEEE MMM d'}}</p>
+        <h4>Location: <span>{{trip.end_location}}</span></h4>
+      </div>
+
+      <ion-card class="waterfall">
+          
+                <ion-item (click)="hotel();">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/a.png">
+                  </ion-avatar>
+                  <h2>My Neighbor Totoro</h2>
+                  <p>Hayao Miyazaki • 1988</p>
+                  <ul>
+                      <li><ion-icon name="star"></ion-icon></li>
+                      <li><ion-icon name="star"></ion-icon></li>
+                      <li><ion-icon name="star"></ion-icon></li>
+                      <li><ion-icon name="star"></ion-icon></li>
+                      <li> <ion-icon name="star-outline"></ion-icon></li>
+                    </ul>
+                </ion-item>
+          
+          
+                </ion-card>
+
+  </div>
+</ion-content>

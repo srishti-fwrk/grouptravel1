@@ -1,0 +1,102 @@
+<!--<ion-header>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Hotel detail</ion-title>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="header_title" color="text">Hotel detail</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <!--<div class="plane">
+    
+      <div class="fst">
+      <h2>Bankok</h2>
+    </div>
+    
+    <div class="icon1">
+      <ion-icon ios="ios-plane" md="ios-plane"></ion-icon>
+    </div>
+    
+    <div class="last">
+        <h2>{{city}}</h2>
+      </div>
+      
+    </div>-->
+    
+      <span class="date">{{to | date: 'MMM d, yyyy'}} -> {{from | date: 'MMM d, yyyy'}}</span>
+
+      <div class="river">
+      <h3>{{name}}</h3>
+      <ul>
+            <li>
+            <rating [(ngModel)]="ratingg" 
+              #ht.starCategory="ngModel"
+              readOnly="true" 
+              max="5" 
+              emptyStarIconName="star-outline" 
+              halfStarIconName="star-half" 
+              starIconName="star" 
+              nullable="false"></rating> 
+              
+              </li>
+            
+        <li><button ion-button clear color="theme">View All Reviews</button></li>
+      </ul>
+      <span>{{name}}, {{city}}, {{n3}}</span>
+    </div>
+
+    <div class="slide">
+      <!--<ion-slides pager >
+          <ion-slide style="background:url(assets/imgs/a.png) center center / cover no-repeat;">
+          </ion-slide>
+        
+          <ion-slide style="background:url(assets/imgs/b.jpg) center center / cover no-repeat;">
+          </ion-slide>
+        
+          <ion-slide style="background:url(assets/imgs/getstartback.jpeg) center center / cover no-repeat;">
+          </ion-slide>
+      </ion-slides>-->
+      <h3>HOTEL DETAILS</h3>
+      <h3>{{description}}</h3>
+      <!--<div *ngFor="let room of rooms">-->
+        <ul>
+          <li>Hotel - {{price}}</li>
+          <li>GST - {{gst}}</li>
+          <li></li>
+        </ul>
+      <h2>{{symbol}}{{total}}</h2>
+     <!-- </div>-->
+      <h3>ROOM TYPE</h3>
+
+      <ion-card class="waterfall">
+          
+                <ion-item *ngFor="let room of rooms">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/abc.jpg">
+                  </ion-avatar>
+                  <h3>{{room.rooms[0].room_type}} {{room.rooms[0].bed_types[0].type}}</h3>
+                  <p>Non-Refundable</p>
+                  <!--<button ion-button clear>View room details</button>-->        
+                  <ion-note item-end="" class="note note-ios"> {{symbol}}{{room.convertedPrice}}
+                  <button ion-button color="theme" small (click)="select(room)">Select</button>
+                  </ion-note>
+                </ion-item>
+          
+          
+                </ion-card>
+
+    </div>
+
+</ion-content>

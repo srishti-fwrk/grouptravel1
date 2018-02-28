@@ -1,0 +1,64 @@
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Gallery</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+      </ion-buttons>
+  
+	</ion-toolbar>
+  </ion-header>
+
+
+<!--<ion-content>
+  <div class="full">
+    <img src="assets/imgs/a.png" />
+  </div>
+  <div class="full">
+      <img src="assets/imgs/b.jpg" />
+  </div>
+  <div class="middle">
+    <div class="half"><img src="assets/imgs/b.jpg" /></div>
+    <div class="half"><img src="assets/imgs/a.png" /></div>
+    <div class="half"><img src="assets/imgs/b.jpg" /></div>
+    <div class="half"><img src="assets/imgs/a.png" /></div>
+    <div class="half"><img src="assets/imgs/b.jpg" /></div>
+    <div class="half"><img src="assets/imgs/a.png" /></div>
+  </div>
+  <ion-fab bottom right edge>
+			<button ion-fab mini color="theme"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
+</ion-content>-->
+
+<ion-content>
+  <!--<ion-slides class="image-slider" loop="true" slidesPerView="2">-->
+    <!--<ion-slide *ngFor="let img of images">-->
+        <div class="middle">
+        <div class="half">
+      
+            <ul>
+                <li *ngFor="let img of images">
+                    <img src="{{img.Gallery.image}}" (click)="imagedetail(img)" class="thumb-img"/>
+                </li>
+            </ul>
+    </div>
+  </div>
+   <!-- </ion-slide>-->
+  <!--</ion-slides>-->
+  <ion-fab bottom right edge>
+			<button ion-fab mini color="theme" (click)="openPage()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+ 
+</ion-content>
+
+<ion-footer>
+  <a href="#" (click)="itinerary()"><ion-icon ios="ios-paper-outline" md="md-paper"></ion-icon><span>Itinerary</span></a>
+  <a href="#" (click)="chat()"><ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles"></ion-icon><span>Chat</span></a>
+  <a href="#" (click)="payments()"><ion-icon ios="ios-cash-outline" md="md-cash"></ion-icon><span>Payments</span></a>
+  <a href="#" (click)="gallery()" class="active"><ion-icon ios="ios-camera-outline" md="md-camera"></ion-icon><span>Gallery</span></a>    
+</ion-footer>

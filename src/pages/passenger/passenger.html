@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Passenger</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content>
+    <div class="sum">
+        <h2>Your trip summary</h2>
+        <h1>$367</h1>
+        <span>price for all passengers</span>
+        <span>price and tax information<sup>*include taxes and carrier imposed fees</sup></span>
+      </div>
+
+      <div class="form">
+        <h3>Passenger details</h3>
+        <p>Please enter all passenger names as they appear on the passenger's government-issued photo identification.</p>
+          <ion-list>
+
+              <ion-label>First Name</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Middle Name</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Last Name</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+
+                <ion-label>Date of birth</ion-label>
+                <ion-item>
+                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="eventz.month" placeholder="Date of birth"></ion-datetime>
+                </ion-item>
+             
+
+                <ion-label>Gender</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Frequent Flyer Program</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Redress Number</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Known Traveler Number</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Country of residence</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              
+                <div class="line"></div>
+
+                <h3>Trip Contact</h3>
+
+                <ion-label>Primary Email</ion-label>
+                <ion-item>
+                  <ion-input type="mail"></ion-input>
+                </ion-item>
+
+                <ion-label>Confirm Primary Email</ion-label>
+                <ion-item>
+                  <ion-input type="mail"></ion-input>
+                </ion-item>
+
+                <ion-label>Primary Phone Type</ion-label>
+                <ion-item>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+
+                <ion-label>Primary Phone</ion-label>
+                <ion-item class="plus">
+                  <ion-input type="number" placeholder="+1"></ion-input>
+                  <ion-input type="number"></ion-input>
+                </ion-item>
+              </ion-list>
+              <button ion-button block color="theme" class="cont" (click)="thankyou();">Continue</button>
+      </div>
+
+</ion-content>

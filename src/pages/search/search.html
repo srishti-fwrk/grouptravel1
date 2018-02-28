@@ -1,0 +1,79 @@
+<ion-header>
+    
+    <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title class="header_title" color="text">Search</ion-title>
+  </ion-toolbar>    
+  </ion-header>
+
+<ion-content>
+
+<!--<div class="plane">
+
+  <div class="fst">
+  <h2>Bankok</h2>
+</div>
+
+<div class="icon1">
+  <ion-icon ios="ios-plane" md="ios-plane"></ion-icon>
+</div>
+
+<div class="last">
+    <h2>{{city}}</h2>
+  </div>
+  
+</div>-->
+
+  <span class="date">{{from | date: 'MMM d, yyyy'}} -> {{to | date: 'MMM d, yyyy'}}</span>
+
+    <ion-item class="filter" no-padding>
+        <ion-label><span>Filter</span></ion-label>
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
+          <ion-option value="n64">Highest Price</ion-option>
+        </ion-select>
+      </ion-item>
+    
+    
+    
+    <ion-card class="waterfall" *ngFor="let ht of hotels">
+    
+          <ion-item (click)="hotel(ht)">
+            <ion-thumbnail item-start>
+                <img src="assets/imgs/abc.jpg">
+            </ion-thumbnail>
+            <h2>{{ht.fullName}}</h2>
+            <p>{{city}}</p> 
+            <ul>
+            <li>
+            <rating [(ngModel)]="ht.starCategory" 
+              #ht.starCategory="ngModel"
+              readOnly="true"
+              max="5" 
+              emptyStarIconName="star-outline" 
+              halfStarIconName="star-half" 
+              starIconName="star" 
+              nullable="false"></rating> 
+              
+              </li>
+            </ul>
+                       
+            <!--<ul>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li> <ion-icon name="star-outline"></ion-icon></li>
+                <li><span>3,789</span></li>
+              </ul>-->
+    
+              <ion-note item-end="" class="note note-ios">{{ht.minprice}}</ion-note>
+          </ion-item>
+    
+    
+          </ion-card>
+</ion-content>

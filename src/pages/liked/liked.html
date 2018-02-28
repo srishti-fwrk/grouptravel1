@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="theme">
+      <ion-title class="header_title" color="text">Liked Photos</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only menuToggle>
+          <div class="app_usr">
+              <img *ngIf="image" src="{{image}}">
+						
+              <img *ngIf="!image" src="assets/imgs/user.png">
+          </div>
+        </button>
+        </ion-buttons>
+    </ion-toolbar>
+    </ion-header>
+
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      >
+    </ion-refresher-content>
+  </ion-refresher>
+    <div class="middle">
+        <div class="half" *ngFor="let img of images">
+            <img src="{{img.Gallery.image}}" />
+            <ion-icon ios="ios-heart" md="ios-heart" style="color:#f00;" (click)="unlikeImage(img.Gallery.id)"></ion-icon>
+        </div>
+      </div>
+</ion-content>

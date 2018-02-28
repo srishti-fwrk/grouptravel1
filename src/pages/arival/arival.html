@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Arrival</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+      
+      <div class="plane">
+      
+        <div class="fst">
+        <h2>Bankok</h2>
+      </div>
+      
+      <div class="icon1">
+        <ion-icon ios="ios-plane" md="ios-plane"></ion-icon>
+      </div>
+      
+      <div class="last">
+          <h2>Bankok</h2>
+        </div>
+        
+      </div>
+      
+        <span class="date">18/7/2017-20/7/2017 <ion-icon ios="md-calendar" md="md-calendar"></ion-icon></span>
+      
+          <ion-item class="filter" no-padding>
+              <ion-label><span>Filter</span></ion-label>
+              <ion-select [(ngModel)]="gaming">
+                <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
+                <ion-option value="n64">Highest Price</ion-option>
+              </ion-select>
+            </ion-item>
+          
+          
+          <h3 class="head">Departing Flight</h3>
+          <ion-card class="waterfall">
+          
+                <ion-item (click)="arival();">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/a.png">
+                  </ion-avatar>
+                  <h2>My Neighbor Totoro</h2>
+                  <div class="us">
+                    <p>IAD &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; bKK</p>
+                    <span>United Airlines</span>
+                  </div>
+                  <div class="rt">
+                    <ul>
+                      <li>27h 55m</li>
+                      <li>1 stop in IST</li>
+                    </ul>
+                  </div>
+                 
+                    <ion-note item-end="" class="note note-ios">$35<span>roundtrip</span></ion-note>
+                </ion-item>
+
+                </ion-card>
+
+                <h3 class="head">arrival</h3>
+                <ion-card class="waterfall">
+                
+                      <ion-item (click)="review();">
+                        <ion-avatar item-start>
+                            <img src="assets/imgs/a.png">
+                        </ion-avatar>
+                        <h2>My Neighbor Totoro</h2>
+                        <div class="us">
+                          <p>IAD &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; bKK</p>
+                          <span>United Airlines</span>
+                        </div>
+                        <div class="rt">
+                          <ul>
+                            <li>27h 55m</li>
+                            <li>1 stop in IST</li>
+                          </ul>
+                        </div>
+                       
+                          <ion-note item-end="" class="note note-ios" style="padding: 0 6px;">+ $0</ion-note>
+                      </ion-item>
+      
+                      </ion-card>
+
+
+
+      </ion-content>

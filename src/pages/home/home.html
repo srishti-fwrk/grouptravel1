@@ -1,0 +1,108 @@
+<ion-header>
+	<ion-toolbar color="theme">
+	  <ion-title class="header_title" color="text">my trips</ion-title>
+	  <ion-buttons end>
+		<button ion-button icon-only menuToggle>
+			<div class="app_usr">
+				
+				<img *ngIf="image" src="{{image}}">
+						
+				<img *ngIf="!image" src="assets/imgs/user.png">
+			</div>
+		  </button>
+	  </ion-buttons>
+  
+	</ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      >
+    </ion-refresher-content>
+  </ion-refresher>
+    
+	<div class="page_wrapper">
+		<!-- Ion Segment Button Start Here -->
+		<div class="top_segment-sec" padding>
+			<ion-segment [(ngModel)]="trip">
+				<ion-segment-button  class="segment-button segment-activated" value="upcoming" (click)="viewTrip()">
+					Upcoming
+				</ion-segment-button>
+				<ion-segment-button value="past" (click)="pastTrips()">
+					Past
+				</ion-segment-button>
+			</ion-segment>
+		</div>
+		<!-- Ion Segment Button End Here Here -->
+		<div class="bottom_sec" [ngSwitch]="trip">
+		
+			<ion-list *ngSwitchCase="'upcoming'">
+				<ion-item>
+					<div class="top_sec" *ngIf="!show">
+						<h1>Let's get away!</h1>
+						<p>You have no upcoming trips.</p>
+						<button ion-button clear (click)="opentripPage()">Plan your next vacation.</button>
+						<figure>
+							<img src="assets/imgs/my_trip.jpg">
+						</figure>
+					</div>
+					<div *ngIf="show">
+					<div class="card_sec" *ngFor = "let tr of trips">
+							<ion-card (click)="cLick(tr.trip.id)">
+									<!--<img src="assets/imgs/getstartback.jpeg"/>-->                                                                        
+                                                                        <img *ngIf="tr.trip.image" src="{{tr.trip.image}}">
+                                                                        <img *ngIf="!tr.trip.image" src="assets/imgs/getstartback.jpeg">
+                                                                     
+									<ion-card-content>
+										<ion-card-title>
+											{{tr.trip.end_location}}
+										</ion-card-title>
+										<p>{{tr.trip.trip_startdate | date: 'MMM d'}} - {{tr.trip.trip_enddate | date: 'MMM d, yyyy'}}</p>
+										<!--<p>Mar 16 - Mar 25, 2017</p>-->
+									</ion-card-content>
+								</ion-card>
+					</div>
+					</div>
+<!-- 					<div class="add_button">
+						<button ion-button color="theme">
+							<ion-icon ios="ios-add" md="md-add"></ion-icon>
+						</button>
+					</div> -->
+				</ion-item>
+			</ion-list><!-- First Case End Here -->
+			
+			<ion-list *ngSwitchCase="'past'">
+				<ion-item>
+					<div class="card_sec" *ngFor="let past of pasttrips">
+						<ion-card (click)="openFeedback(past.Trip)">
+							<img *ngIf="past.Trip.image" src="{{past.Trip.image}}">
+                                                        <img *ngIf="!past.Trip.image" src="assets/imgs/getstartback.jpeg">
+                                                                     
+							<ion-card-content>
+								<ion-card-title>
+								{{past.Trip.end_location}}
+								</ion-card-title>
+								<p>{{past.Trip.trip_startdate | date: 'MMM d'}} - {{past.Trip.trip_enddate | date: 'MMM d, yyyy'}}</p>
+										
+							</ion-card-content>
+						</ion-card>
+						
+					</div>
+				</ion-item>
+				
+			</ion-list><!-- Second Case End Here -->
+			
+		</div>
+	</div>
+
+	
+	<ion-fab bottom right edge>
+			<button ion-fab color="theme" (click)="opentripPage()"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>	
+
+</ion-content>

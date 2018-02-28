@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">My Booking</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+      </ion-buttons>
+    
+ </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="page_wrapper">
+        <!-- Ion Segment Button Start Here -->
+        <div class="top_segment-sec" padding>
+          <ion-segment [(ngModel)]="trip">
+            <ion-segment-button  class="segment-button segment-activated" value="upcoming">
+              Upcoming
+            </ion-segment-button>
+            <ion-segment-button value="past">
+              Past
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <!-- Ion Segment Button End Here Here -->
+        <div class="bottom_sec" [ngSwitch]="trip">
+        
+          <ion-list *ngSwitchCase="'upcoming'">
+            <ion-card>
+                <ion-item class="bw">
+                    <ion-icon item-start><img src="assets/imgs/plane.png" /></ion-icon>
+                    <div>
+                      <h3>BWI <sub>Baltimore</sub></h3>
+                      <h3>BKK <sub>Bangkok</sub></h3>
+                    </div>
+                    <h2>8/28/18 - 9/02/18</h2>
+                    <p>Confirmation #:12345678</p>
+                  </ion-item>
+            </ion-card>
+
+            <ion-card>
+                <ion-item class="bw city">
+                    <ion-icon item-start><img src="assets/imgs/hotel.png" /></ion-icon>
+                      <h3>Room Mate Boutique Hotel</h3>
+                      <span>New York City</span>
+                    <h2>8/28/18 - 9/02/18</h2>
+                    <p>Confirmation #:12345678</p>
+                  </ion-item>
+            </ion-card>
+
+            <ion-card>
+             <ion-item class="bw bwb">
+                <div class="plane">
+                <ion-icon item-start style="margin-bottom: 7px;"><img src="assets/imgs/plane.png" /></ion-icon>
+                 <ion-icon item-start><img src="assets/imgs/hotel.png" /></ion-icon>
+                </div>
+                 <div class="hotel">
+                    <h3>BWI <sub>Baltimore</sub></h3>
+                    <h3>BKK <sub>Bangkok</sub></h3>
+                  <h2>8/28/18 - 9/02/18</h2>
+                  <p>Confirmation #:12345678</p>
+                </div>
+              </ion-item>
+            </ion-card>
+
+
+          </ion-list><!-- First Case End Here -->
+          
+          <ion-list *ngSwitchCase="'past'">
+            <ion-card>
+              
+            </ion-card>
+            
+          </ion-list><!-- Second Case End Here -->
+          
+        </div>
+      </div>
+</ion-content>

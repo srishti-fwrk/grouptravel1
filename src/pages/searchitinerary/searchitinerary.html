@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">travel community</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+
+
+<ion-content padding>
+    <div class="location_sec">
+	<h5>Search</h5>
+				<!--<ion-list>
+					<ion-item>
+						<ion-label fixed>  <ion-icon ios="ios-locate" md="md-locate"></ion-icon></ion-label>
+						<ion-input type="text" value=""></ion-input>
+					</ion-item>
+				</ion-list>-->
+                                <div *ngIf="chose == 'location'">
+                                   <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" 
+                                        (ionCancel)="dismiss()" placeholder="Start typing and select ..."></ion-searchbar>
+                                            <ion-list>
+                                                <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+                                                    {{item.description}}
+                                                </ion-item>
+                                            </ion-list>   
+                                </div>   
+                                <div *ngIf="chose == 'people'">
+                                    <ion-searchbar [(ngModel)]="data.people" [showCancelButton]="true" (ionInput)="userSearch()" 
+                                        (ionCancel)="dismiss()" placeholder="Start typing and select ..."></ion-searchbar>
+                                            <ion-list>
+                                                <!--<ion-item *ngFor="let us of users" (click)="">
+                                                    
+                                                </ion-item>-->
+                                            </ion-list>                                     
+                                </div> 
+            
+      </div>
+      
+      <div class="loc">
+          <ion-segment name="searchh" id="searchh" [(ngModel)]="data.searchh" (ionChange)="choose($event)">
+            <ion-segment-button value="location">
+              Location
+            </ion-segment-button>
+            <ion-segment-button value="people">
+              People
+            </ion-segment-button>
+          </ion-segment>
+       
+        <div [ngSwitch]="pet">
+          <ion-list *ngSwitchCase="'location'">
+            <ion-item>
+              <ion-avatar item-start>
+                <img src="assets/imgs/getstartback.jpeg">
+              </ion-avatar>
+              <h2>Cher</h2>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+              <span>Traveled to sao paulo: Feb 2017</span>
+            </ion-item>
+         
+          </ion-list>
+        
+          <ion-list *ngSwitchCase="'people'">
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="assets/imgs/getstartback.jpeg">
+                  </ion-avatar>
+              <h2>Cher</h2>
+              <p>Lorem Ipsum is simply dummy text</p>
+            </ion-item>
+      
+          </ion-list>
+        </div>
+
+      </div>
+
+</ion-content>

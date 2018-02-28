@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Detail</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="gallery">
+    <ion-card>
+        
+          <div class="opt">
+            <h2 *ngIf="location">{{location}}</h2>
+            <h2 *ngIf="!location">{{location}}</h2>
+            <button  (click)="presentActionSheet();" ion-button color="dark" clear><ion-icon ios="ios-more" md="ios-more"></ion-icon></button>
+          </div>
+        
+          <div class="pc"><img src="{{image}}"></div>
+      
+         <div class="like">
+              <button *ngIf="bit == '0'" (click)="likeImage()" ion-button icon-left clear small>
+                  <ion-icon ios="ios-heart" md="ios-heart" style="color:#ccc;"></ion-icon>
+                 </button> 
+                <button *ngIf="bit == '1'" (click)="likeImage()" ion-button icon-left clear small>
+                  <ion-icon ios="ios-heart" md="ios-heart" style="color:#f00;"></ion-icon>
+             </button>   
+            
+              <button ion-button icon-left clear small (click)="postComment()">
+                  <ion-icon ios="ios-chatbubbles-outline" md="ios-chatbubbles-outline" style="color: #333;"></ion-icon>
+              </button>
+             
+             <div class="post">
+                <p>Posted by<span> @{{username}}</span></p>
+               <span>{{tym | date: 'MMM d, yyyy'}}</span>
+              </div> 
+        </div>
+          
+         
+        </ion-card>
+    
+    
+     <ion-list class="coment">
+         <h2 *ngIf="len != '0'">Comments:</h2>
+                <ion-item *ngFor="let com of comments">
+                  <ion-avatar item-start *ngIf="!com.User.image">
+                    <img src="assets/imgs/user.png">
+                  </ion-avatar>
+                    <ion-avatar item-start *ngIf="com.User.image">
+                    <img src="{{com.User.image}}">
+                  </ion-avatar>
+                  <h2>{{com.User.name}}</h2>
+                  <p>{{com.Comment.comment}}</p>
+                </ion-item>
+              </ion-list>
+</ion-content>
+
+ <ion-footer *ngIf="buttonClicked" style="background: #fff;border-top: 1px solid #ccc;">              
+             
+              
+                 <form #commentForm="ngForm">
+                    <ion-input type="text" name="commentt" [(ngModel)]="data.commentt" id="commentt" #commentt="ngModel" placeholder="Type comment" required></ion-input>
+                        <ion-buttons end>
+                            <button ion-button small no-margin color="theme" (click)="comment(commentForm)" [disabled]="!commentForm.form.valid">Comment</button>
+                        </ion-buttons>
+                 </form>
+                 </ion-footer>

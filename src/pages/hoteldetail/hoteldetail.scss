@@ -1,0 +1,248 @@
+page-hoteldetail {
+    .plane {
+        width: 100%;
+        float: left;
+        margin: 15px 0;
+   
+    
+    .fst {
+        width: 30%;
+        float: left;
+    }
+    
+    .last {
+        width: 30%;
+        float: left;
+    }
+ 
+    
+    .fst h2,.last h2 {
+        width: 100%;
+        float: left;
+        margin: 0;
+        font-size: 12px;
+        text-align: center;
+        padding: 5px 0;
+    }
+    
+
+    .icon1 {
+        width: 40%;
+        float: left;
+        text-align: center;
+        position: relative;
+    
+      &::before {
+            content: '';
+            border-bottom: 1px solid #eee;
+            height: 0;
+            width: 40px;
+            position: absolute;
+            left: 0px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        &::after {
+            content: '';
+            border-bottom: 1px solid #eee;
+            height: 0;
+            width: 40px;
+            position: absolute;
+            right: 0px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .icon-ios.ion-ios-plane {
+            font-size: 25px;
+        }
+
+ .icon {
+        color: #fbb57f;
+    }
+
+    
+  
+}
+
+}
+
+
+.date {
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin: 0px 0 40px;
+    font-size: 12px;
+    font-family: "Roboto";
+.icon {
+    color: #22c4b9;
+}
+
+}
+
+.river {
+    float:  left;
+    width: 100%;
+    font-family: "Roboto";
+    padding: 0 8px;
+
+ h3 {
+    font-size:  14px;
+    font-weight:  500;
+    white-space:  normal;
+    margin: 0;
+}
+
+ul {
+    padding:  0;
+    margin: 5px 0;
+    list-style:  none;
+
+
+ li {
+    display:  inline-block !important;
+    color: #22c4b9;
+    padding: 1px !important;
+    
+    &:nth-child(6) {
+        color: #444 !important;
+        padding: 0 12px 0 6px;
+    }
+
+   button {
+    padding: 0;
+    margin: 0;
+    height: 17px;
+    vertical-align: top;
+    }
+
+}
+
+}
+
+
+ span {
+    color: #22c4b9;
+    font-size: 12px;
+}
+
+}
+
+.slide{
+    margin-top: 10px;
+    float: left;
+    width: 100%;
+    font-family: "Roboto";
+        ion-slides{
+        height: 200px;
+        overflow: hidden;
+        }
+      h3{
+        margin: 15px 0 5px 0;
+        font-weight: 600;
+        font-size: 12px;
+        padding-left: 8px;
+        width: 100%;
+        float: left;
+    }
+    ul{
+        padding: 0 0 0 8px;
+        margin: 0;
+        list-style: none;
+        font-weight: 300;
+        font-size: 12px;
+        float: left;
+        width: 100%;
+
+        li {
+            padding: 0 0 2px 0;
+            float: left;
+            width:100%;
+            &:last-child(){
+                border-bottom: 1px solid #ccc;
+                width: 35%;
+                padding-bottom: 5px;
+            }
+        }
+    }
+    h2 {
+        width: 100%;
+        float: left;
+        margin: 3px 0 3px 8px;
+        font-size: 20px;
+        color: skyblue;
+
+    }
+}
+
+.waterfall {
+    box-shadow: 0px 2px 6px #ccc;
+    margin: 8px;
+    width: calc(100% - 16px);
+    float: left;
+    .item{
+        align-items: start;
+        padding: 0;
+    ion-avatar {
+        margin: 8px 6px !important;}
+    .item-inner {
+        padding: 0 !important;
+        .label{
+            font-family: "Roboto";
+            border-right: 1px dotted #565656;
+            h3{
+                font-size: 14px;
+                font-weight: 500;
+                white-space: normal;
+                width: 100%;
+                float: none;
+                border: 0px;
+                margin: 0;
+                padding: 0;
+            }
+            p{
+                font-size: 12px;
+                font-weight: 400;
+                color: #7d7d7d;
+                margin: 1px 0;
+            }
+
+            button{
+                @extend p;
+                padding: 0px;
+                height: 14px;
+                color: #22c4b9;
+                vertical-align: top;
+            }
+
+        }
+        .note {
+            align-self: center;
+            align-self: center;
+            text-align: center;
+            font-weight: 600;
+            color: #000;
+            font-family: "Roboto";
+            font-size: 18px;
+            margin: 0px;
+            span{
+                font-weight: 400;
+                font-size: 12px;
+                float: left;
+                width: 100%;
+                margin-bottom: 3px;
+            }
+           button{ display: block;
+            margin: auto;
+            height: 20px;}
+        }
+    }
+}
+}
+        
+
+}

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Discover</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="viewall">
+  
+
+  <ion-item class="filter" no-padding>
+    <ion-label><span>Filter</span></ion-label>
+    <ion-select [(ngModel)]="gaming">
+      <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
+      <ion-option value="n64">Highest Price</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+
+<ion-card class="waterfall">
+
+      <ion-item>
+        <ion-avatar item-start>
+            <img src="assets/imgs/a.png">
+        </ion-avatar>
+        <h2>My Neighbor Totoro</h2>
+        <p>Hayao Miyazaki • 1988</p>
+        <span>Waterfall</span>
+        <ul>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li> <ion-icon name="star-outline"></ion-icon></li>
+            <li><span>3,789</span></li>
+          </ul>
+
+          <ion-note item-end="" class="note note-ios">$35<span>and up</span></ion-note>
+      </ion-item>
+
+
+      </ion-card>
+
+</ion-content>

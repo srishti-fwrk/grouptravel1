@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Invite</ion-title>
+    </ion-navbar>
+</ion-header>
+  
+
+
+<ion-content padding class="invite">
+  <h3>Who's coming to {{destination}}</h3>
+  <div class="subhead">Recent Travel Friends</div>
+  <ion-scroll scrollX="true" padding>
+			<ion-card>
+				<div class="product-img">
+					<img src="assets/imgs/getstartback.jpeg">
+			
+				</div>
+        <span>Name</span>
+			</ion-card>
+			<ion-card>
+				<div class="product-img">
+            <img src="assets/imgs/getstartback.jpeg">
+      
+				</div>
+        <span>Name</span>
+			</ion-card>
+			<ion-card>
+				<div class="product-img">
+            <img src="assets/imgs/getstartback.jpeg">
+            
+				</div>
+        <span>Name</span>
+			</ion-card>
+			<ion-card>
+				<div class="product-img">
+            <img src="assets/imgs/getstartback.jpeg">
+          
+				</div>
+        <span>Name</span>
+			</ion-card>
+			<ion-card>
+				<div class="product-img">
+            <img src="assets/imgs/getstartback.jpeg">
+           
+				</div>
+        <span>Name</span>
+			</ion-card>
+		
+    </ion-scroll>
+    <div class="subhead" style="margin: 30px 0 15px;">Search Grouptrip</div>
+    <form #searchu="ngForm">
+    <ion-list class="list-bottom">
+<!--        <ion-label fixed>  <ion-icon name="person"></ion-icon></ion-label>-->
+          <ion-item style="border: 1px solid #ccc;border-radius: 3px;padding: 0 5px;">
+            <ion-input type="text" name="userr" id="userr" [(ngModel)]="data.userr" (input)="search(data.userr)" #userr="ngModel" required></ion-input>            
+          </ion-item>
+                
+        <ion-item *ngFor="let us of user" (click)="chooseItem(us.User.name,us.User.id)">{{ us.User.name }} </ion-item>
+        
+          <button ion-button small no-margin color="theme" (click)="sendInvite(searchu)" [disabled]="!searchu.form.valid">Send Invite</button>
+          
+         
+    </ion-list>
+    </form>
+<span class="or">or send link via</span>
+    <div class="social">
+        <button class="a" (click)="fb()"><ion-icon>f</ion-icon></button>
+        <button class="a" (click)="twitter()"><ion-icon name="logo-twitter"></ion-icon></button>
+        <button class="a" (click)="msging()"> <ion-icon ios="ios-chatbubbles" ios="ios-chatbubbles"></ion-icon></button>
+      </div>
+    
+
+</ion-content>

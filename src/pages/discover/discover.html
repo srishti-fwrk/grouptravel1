@@ -1,0 +1,486 @@
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Discover</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="discover">
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="hotels">
+        Flights & Hotels
+      </ion-segment-button>
+      <ion-segment-button value="activities">
+        Activities
+      </ion-segment-button>
+      <ion-segment-button value="deals">
+        Deals
+      </ion-segment-button>
+      <ion-segment-button value="travel">
+        community
+      </ion-segment-button>
+    </ion-segment>
+
+
+    <div [ngSwitch]="pet">
+      <form #heroForm="ngForm">
+        <ion-list *ngSwitchCase="'hotels'">
+          <div class="card-background-page">
+            <ion-card>
+              <img src="assets/imgs/a.png" />
+
+              <div class="check">
+                <ion-list radio-group name="ch" [(ngModel)]="data.relationship">
+                  <ion-item item-left>
+                     <ion-label>Flights</ion-label>
+                    <ion-radio item-left value="flights" checked="{{bool}}" (ionSelect)="flights_hotels('flights')"></ion-radio>                   
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Hotels</ion-label>
+                    <ion-radio item-left value="hotels" (ionSelect)="flights_hotels('hotels')"></ion-radio>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <div *ngIf="bit == '1'" class="rad" radio-group>
+                <ion-item>
+                  <ion-label>Roundtrip</ion-label>
+                  <ion-radio name="rtrip"  checked="true" value="round" (ionSelect)="roundtrip()"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>One Way</ion-label>
+                  <ion-radio name="owtrip" value="way" (ionSelect)="oneway()"></ion-radio>
+                </ion-item>
+
+                <!--<ion-item>
+                          <ion-label>Multi-city</ion-label>
+                          <ion-radio value="city"></ion-radio>
+                        </ion-item>-->
+              </div>
+              <div class="dest" *ngIf="bit == '1'">
+                <h1>Start</h1>
+
+                <ion-list>
+                  <ion-item>
+                    <ion-input type="text" name="query" [(ngModel)]="data.query" (input)="updateSearch(data.query)" #query="ngModel" placeholder="Enter City" required></ion-input>
+                    
+                    <ion-select name="scountry" placeholder="Select Country" [(ngModel)]="data.scountry" (ionChange)="scountrySelect($event)">
+                    <ion-option *ngFor="let cn of countries" value="{{cn.Country.name}}">{{cn.Country.name}}</ion-option>                    
+                  </ion-select>
+                  </ion-item>
+                 
+                    <!--<ion-item>
+                  
+                </ion-item>  -->                
+                    
+                </ion-list>
+
+                <h1>Destination</h1>
+
+                <ion-list>
+                  <ion-item>
+                    <ion-input type="text" name="queryy" [(ngModel)]="data.queryy" (input)="updateeSearch(data.queryy)" #query="ngModel" placeholder="Enter City" required></ion-input>
+                    
+                    <ion-select name="dcountry" placeholder="Select Country" [(ngModel)]="data.dcountry" (ionChange)="dcountrySelect($event)">
+                    <ion-option *ngFor="let cn of countries" value="{{cn.Country.name}}">{{cn.Country.name}}</ion-option>                    
+                  </ion-select>
+                  </ion-item>                 
+                    
+                </ion-list>
+
+              </div>
+              <div *ngIf="bit == '2'" class="dest dest_b">
+                <h1>Destination City</h1>
+                <ion-input type="text" name="city" [(ngModel)]="data.city" id="city" #city="ngModel" required></ion-input>
+
+
+
+                <h1>Destination Country</h1>
+                <ion-input type="text" name="country" (input)="getData(data.country)" [(ngModel)]="data.country" id="country" #country="ngModel" required></ion-input>
+              </div>
+            </ion-card>
+
+
+
+            <ion-card class="time-date">
+              <ion-row>
+                <ion-col col-6>
+                  <div *ngIf="trip == '1' || trip == '2'" class="depart" style="border-right: 1px solid #ccc;">
+                    <h5>ARRIVAL</h5>                    
+
+                    <ion-datetime name="dmonth"  displayFormat="MM/DD/YYYY" max="2050-31-12" min="{{minDate}}" [(ngModel)]="eventt.dmonth" placeholder="Change Date"
+                      id="dmonth" #dmonth="ngModel" required></ion-datetime>
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div *ngIf="trip == '1'" class="depart arrival">
+                    <h5>DEPARTURE</h5>
+                    <ion-datetime name="amonth" pickerFormat="MM/DD/YYYY" displayFormat="MM/DD/YYYY" max="2050-31-12" min="{{minDate}}" [(ngModel)]="eventt.amonth" placeholder="Change Date"
+                      id="amonth" #amonth="ngModel" required></ion-datetime>
+                  </div>
+                </ion-col>
+              </ion-row>
+
+              <div *ngIf="bit == '2'" class="room">
+               
+                <h5>ROOMS & GUESTS</h5>
+                <h6>Rooms</h6>
+                <ion-item>
+                  <ion-select name="rooom" [(ngModel)]="data.rooom" (ionChange)="roomSelect($event)">
+                    <ion-option value="1" selected="true">1</ion-option>
+                    <ion-option value="2">2</ion-option>
+                  </ion-select>
+                </ion-item> 
+                <div class="count" *ngFor="let rooms of roomselected; let i=index">
+                    
+                     <h6>Room {{i+1}}</h6>
+                <div class="count_lft" float-left>
+                    <h6>Adults</h6>
+  
+                    <ion-icon name="add" item-start (click)="add_a(i)"></ion-icon>
+                        <!--<ion-input type="text" name="adults" [(ngModel)]="data.adults" id="adults" #adults="ngModel" max=4 required></ion-input>-->
+                        <span>{{rooms.NoOfAdults}}</span>
+                    <ion-icon name="remove" item-end (click)="minus_a(i)"></ion-icon>
+                  
+                </div>
+            
+                <div class="count_lft" float-right>
+                    <h6>Children</h6>
+                  
+                    <ion-icon name="add" item-start (click)="add_c(i)"></ion-icon>
+                        <!--<ion-input type="text" name="children" [(ngModel)]="data.children" id="children" #children="ngModel" max=2 required></ion-input>-->
+                        <span>{{rooms.child}}</span>
+                    <ion-icon name="remove" item-end (click)="minus_c(i)"></ion-icon>
+                    
+                </div>
+                
+                </div>
+
+              </div>
+                
+            </ion-card>
+              
+            <button *ngIf="bit == '1'" color="theme" ion-button class="search" (click)="flightView(heroForm)" [disabled]="!heroForm.form.valid">Search</button>
+            <button *ngIf="bit == '2'" color="theme" ion-button class="search" (click)="hotelView(heroForm)">Search</button>
+          </div>
+        </ion-list>
+      </form>
+
+      <ion-list *ngSwitchCase="'activities'">
+        <div padding class="location_sec">
+          <h5>Search</h5>
+          <ion-item>
+              <ion-input type="text" name="activityl" [(ngModel)]="data.activityl" (input)="activitySearch(data.activityl)" #activityl="ngModel" placeholder="Enter City"></ion-input>
+                <ion-select name="acountry" placeholder="Select Country" [(ngModel)]="data.acountry" (ionChange)="dcountrySelect($event)">
+                 <ion-option *ngFor="let cn of countries" value="{{cn.Country.name}}">{{cn.Country.name}}</ion-option>                    
+               </ion-select>
+              <ion-icon ios="ios-search" md="md-search" class="sr" (click)="activitiesListing()" item-end></ion-icon>
+          </ion-item>
+         
+
+          
+        </div>
+
+        <div class="things">
+          <div class="top">
+            <h3>Top things to do</h3>
+            <button (click)="view()">View all activities</button>
+          </div>
+          <ion-scroll scrollX="true" padding>
+            <ion-card>
+              <div class="product-img">
+                <img src="assets/imgs/getstartback.jpeg" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>Product One</ion-title>
+                <p class="price">$130.00</p>
+                <ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                  <li><span>3,789</span></li>
+                </ul>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <div class="product-img">
+                <img src="assets/imgs/getstartback.jpeg" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>Product One</ion-title>
+                <p class="price">$130.00</p>
+                <ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                </ul>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <div class="product-img">
+                <img src="assets/imgs/getstartback.jpeg" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>Product One</ion-title>
+                <p class="price">$130.00</p>
+                <ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                </ul>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <div class="product-img">
+                <img src="assets/imgs/getstartback.jpeg" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>Product One</ion-title>
+                <p class="price">$130.00</p>
+                <ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                </ul>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <div class="product-img">
+                <img src="assets/imgs/getstartback.jpeg" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>Product One</ion-title>
+                <p class="price">$130.00</p>
+                <ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                </ul>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <div class="product-img">
+                <img src="assets/imgs/getstartback.jpeg" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>Product One</ion-title>
+                <p class="price">$130.00</p>
+                <ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                </ul>
+              </ion-card-content>
+            </ion-card>
+
+          </ion-scroll>
+        </div>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'deals'">
+        <div padding class="location_sec">
+          <h5>Flights & vacation packages leaving from</h5>
+          <ion-item>
+            <ion-label fixed>
+              <ion-icon ios="ios-locate" md="md-locate"></ion-icon>
+            </ion-label>
+            <ion-input type="text" value=""></ion-input>
+          </ion-item>
+        </div>
+
+
+        <ion-item class="filter" no-padding>
+          <ion-label><span>Filter</span></ion-label>
+          <ion-select [(ngModel)]="gaming">
+            <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
+            <ion-option value="n64">Highest Price</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item class="disc">
+          <div class="card_sec">
+            <ion-card>
+              <img src="assets/imgs/getstartback.jpeg" />
+              <span>999</span>
+              <ion-card-content>
+                <ion-card-title>
+                  Nine Inch Nails Live
+                </ion-card-title>
+                <p>Mar 16 - Mar 25, 2017</p>
+              </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <img src="assets/imgs/getstartback.jpeg" />
+              <span>999</span>
+              <ion-card-content>
+                <ion-card-title>
+                  Nine Inch Nails Live
+                </ion-card-title>
+                <p>Mar 16 - Mar 25, 2017</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'travel'" no-margin>
+        <h3 class="sub">Search</h3>
+        <div class="trav">
+          <ion-card (click)="openItinerary()">
+            <img src="assets/imgs/getstartback.jpeg" />
+            <div class="overlay"></div>
+            <div class="card-title">Itineraries</div>
+          </ion-card>
+
+          <ion-card>
+            <img src="assets/imgs/getstartback.jpeg" />
+            <div class="overlay"></div>
+            <div class="card-title">Galleries</div>
+          </ion-card>
+        </div>
+        <h3 class="sub">news feed</h3>
+        <ion-item no-padding class="nam">
+          <ion-avatar item-start>
+            <img src="assets/imgs/getstartback.jpeg" />
+          </ion-avatar>
+          <h2 (click)="mytrip();">Name</h2>
+          <p>Place</p>
+        </ion-item>
+
+
+        <ion-row>
+          <ion-col col-6 style="padding-right: 1px;" no-padding>
+            <div class="news" (click)="galdetail();"><img src="assets/imgs/getstartback.jpeg" /></div>
+          </ion-col>
+          <ion-col col-6 no-padding>
+            <div class="newsa"><img src="assets/imgs/getstartback.jpeg" /></div>
+            <div class="newsb">
+              <div class="a"><img src="assets/imgs/a.png" /></div>
+              <div class="a"><img src="assets/imgs/b.jpg" />
+                <div class="overlay"></div>
+                <button>+10 more photos</button>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-item no-padding class="nam">
+          <ion-avatar item-start>
+            <img src="assets/imgs/getstartback.jpeg" />
+          </ion-avatar>
+          <h2>Name</h2>
+          <p>Place</p>
+        </ion-item>
+
+        <div class="opens">
+          <ion-row>
+            <ion-col col-4 no-padding>
+              <div class="news opn"><img src="assets/imgs/getstartback.jpeg" /></div>
+            </ion-col>
+            <ion-col col-4 no-padding>
+              <div class="news opn"><img src="assets/imgs/a.png" /></div>
+            </ion-col>
+            <ion-col col-4 no-padding>
+              <div class="news opn"><img src="assets/imgs/b.jpg" /></div>
+            </ion-col>
+          </ion-row>
+          <div class="overlay"></div>
+          <button>Open Itinerary</button>
+        </div>
+
+      </ion-list>
+    </div>
+
+  </div>
+</ion-content>

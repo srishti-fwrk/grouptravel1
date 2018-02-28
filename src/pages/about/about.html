@@ -1,0 +1,78 @@
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Chat</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+      </ion-buttons>
+  
+	</ion-toolbar>
+  </ion-header>
+<ion-content>
+  <div class="friday">
+<!--      <h4>Friday</h4>-->
+  </div>
+
+  <div class="main green" *ngFor="let msg of msgs">
+      <span>{{msg.User.name}}</span>      
+      
+      <div *ngIf="msg.Groupchat.type == 'text'">          
+          <p *ngIf="msg.User.id == id" class="user" no-margin>{{msg.Groupchat.message}}</p>
+          <p *ngIf="msg.User.id != id" no-margin>{{msg.Groupchat.message}}</p>
+      </div>
+      <div *ngIf="msg.Groupchat.type == 'image'">
+          <p *ngIf="msg.User.id == id" class="user" no-margin><img src="{{msg.Groupchat.message}}"/></p>
+          <p *ngIf="msg.User.id != id" no-margin><img src="{{msg.Groupchat.message}}"/></p>
+      </div>
+      
+      <div class="outer">
+          <div class="pic" *ngIf="!msg.User.image">
+              <img src="assets/imgs/user.png" />
+          </div>
+          <div class="pic" *ngIf="msg.User.image">
+              <img src="{{msg.User.image}}" />
+          </div>  
+      </div>
+      
+      <ion-icon name="heart" *ngIf="msg.Groupchat.status == 0" style="color:#ccc;" (click)="favorite(msg.Groupchat.id,msg.Groupchat.sender_id)"></ion-icon>
+      
+      <ion-icon name="heart" *ngIf="msg.Groupchat.status == 1" style="color:#f00;" (click)="favorite(msg.Groupchat.id,msg.Groupchat.sender_id)"></ion-icon>
+      
+    </div>
+
+  <!--<div class="main">
+    <span>Meliane</span>
+    <p no-margin>Yes,me too!Ready for a vacay</p>
+    <div class="outer"><div class="pic"><img src="assets/imgs/a.png" /></div></div>
+    <ion-icon name="heart-outline"></ion-icon>
+  </div>-->
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="demo" style="padding-top:  0;padding-bottom: 0;">
+<form #chatForm="ngForm">  
+    <ion-buttons start>
+        <button (click)="sendImg()">
+            <ion-icon ios="ios-add" md="md-add"></ion-icon>
+        </button>
+    </ion-buttons>
+      <ion-input type="text" name="msg" [(ngModel)]="data.msg" id="msg" #msg="ngModel" placeholder="Type message" required></ion-input>
+      <ion-buttons end>
+          <button ion-button small no-margin color="theme" (click)="sendMsg(chatForm)" [disabled]="!chatForm.form.valid">Send</button>
+      </ion-buttons>
+       </form>
+    </ion-toolbar>
+    <ion-toolbar style="padding-top:  0;padding-bottom: 0;">
+  <a href="#" (click)="itinerary()"><ion-icon ios="ios-paper-outline" md="md-paper"></ion-icon><span>Itinerary</span></a>
+  <a href="#" (click)="chat()" class="active"><ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles"></ion-icon><span>Chat</span></a>
+  <a href="#" (click)="payments()"><ion-icon ios="ios-cash-outline" md="md-cash"></ion-icon><span>Payments</span></a>
+  <a href="#" (click)="gallery()"><ion-icon ios="ios-camera-outline" md="md-camera"></ion-icon><span>Gallery</span></a>
+</ion-toolbar>  
+</ion-footer>
+<!--<ion-footer>
+      
+</ion-footer>-->

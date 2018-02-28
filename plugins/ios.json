@@ -1,0 +1,79 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-advanced-http": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "397685590673183",
+            "APP_NAME": "grouptravel",
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-ionic-webview": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-nativegeocoder": {
+            "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service",
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "com.synconset.imagepicker": {
+            "PHOTO_LIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-calendar": {
+            "CALENDAR_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-googleplus": {
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.419942336620-oii81m8tto75e601bvnfkhffhhf0jlfn",
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "com.hutchind.cordova.plugins.streamingmedia": {
+            "PACKAGE_NAME": "com.grouptravel"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-add-swift-support": {
+            "PACKAGE_NAME": "io.ionic.grouptravel"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.grouptravel"
+        }
+    }
+}

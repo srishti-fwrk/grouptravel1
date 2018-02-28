@@ -1,0 +1,62 @@
+<ion-menu [content]="content" side="right">
+    <ion-content>
+
+    <ion-list class="mnu">
+
+    <ion-item>
+      <ion-avatar item-start>
+
+          <img *ngIf="image" src="{{image}}">
+						
+					<img *ngIf="!image" src="assets/imgs/user.png">
+          
+      </ion-avatar>
+      <button ion-button clear color="dark" (click)="dismiss();" item-end class="cls"><ion-icon name="close"></ion-icon></button>
+      <h2>150</h2>
+      <p>Miles Travelled</p>
+   </ion-item>
+
+   <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" >
+      {{p.title}}
+    </button> 
+
+     <h3 class="menu_heading">SETTINGS</h3>
+     <button ion-item menuClose (click)="profile()">
+       Account Information
+     </button>
+      <button ion-item menuClose (click)="termsnc()">
+       Terms and Conditions
+     </button>
+      <button ion-item menuClose (click)="ppolicy()">
+       Privacy Policy
+     </button>
+
+    <h3 class="menu_heading">BOOKINGS</h3>
+     <button ion-item menuClose (click)="book()" >
+      My Booking
+     </button>
+
+     <h3 class="menu_heading">ACTIVITY</h3>
+      <button ion-item menuClose (click)="upload()">
+        My Uploaded Photos
+      </button> 
+
+      <button ion-item menuClose (click)="liked()">
+          Pics I've liked
+      </button>
+
+      <h3 class="menu_heading">INVITE</h3>
+      <button ion-item menuClose (click)="friend()">
+          Invite Friends
+      </button>
+
+      <!--<h3 class="menu_heading">LOGOUT</h3>-->
+      <button ion-item menuClose (click)="logOut()">
+          <h3 class="menu_heading logout">LOGOUT</h3>
+      </button> 
+
+    </ion-list>
+ </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

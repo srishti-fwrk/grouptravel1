@@ -1,0 +1,86 @@
+<!--<ion-header>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Add Trips</ion-title>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Trip Detail</ion-title>
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+      </ion-buttons>
+  
+	</ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+    <!--<openweathermap [options]="options"></openweathermap>-->
+  <div class="card-background-page">
+    <ion-card no-margin>
+    <button ion-button color="light" clear (click)="editImage()" style="z-index: 9;"><ion-icon ios="ios-camera" md="md-camera"></ion-icon></button>
+    
+    <img *ngIf="tripcover" src="{{tripcover}}">
+    <img *ngIf="!tripcover" src="assets/imgs/getstartback.jpeg">
+    
+    <!--<img src="assets/imgs/getstartback.jpeg"/>-->
+    <div class="card-subtitleb">Vacation starts in</div>
+    <div class="card-title">{{destination}}</div>
+    <div class="card-subtitle">{{startdate | date: 'MMM d'}} - {{enddate | date: 'MMM d, yyyy'}}</div>
+    <button ion-button color="light" clear (click)="edit()"><ion-icon ios="md-create" md="md-create"></ion-icon> Edit</button>
+  </ion-card>
+  </div>
+
+  <div padding class="attend">
+    <ion-list>
+
+      <h6 no-margin class="subhead">ATTENDEES</h6>
+      <div *ngIf="status == '0'">
+      <ion-item no-padding>
+        <ion-avatar item-start *ngFor="let att of attendees">          
+          <img *ngIf="att.User.image" src="{{att.User.image}}">
+          <img *ngIf="!att.User.image" src="assets/imgs/user.png">
+        </ion-avatar>
+      </ion-item>
+      </div>
+      <div *ngIf="status == '1'">
+      <ion-item no-padding>
+        <p>No Attendees Yet</p>
+      </ion-item>
+      </div>
+      <button ion-button small no-margin color="theme" (click)="invite()">Invite</button>
+   
+
+    <h6 class="subhead">ITINERARY</h6>
+    <ion-item no-padding class="itin">
+          <span>{{startdate | date: 'EEEE MMM d'}}</span>          
+        <ion-icon ios="ios-cloudy-night-outline" md="ios-cloudy-night-outline" item-end><span>{{day}}<sup>&#9675;</sup></span></ion-icon>
+        <ion-icon ios="ios-partly-sunny-outline" md="ios-partly-sunny-outline" item-end><span>{{night}}<sup>&#9675;</sup></span></ion-icon>
+      </ion-item>
+      <h5>Location:<button color="theme" (click)="location();">{{destination}}</button></h5>
+      <p>Who's ready for some fun? Click the teal button to add to your Itinerary</p>
+  </ion-list>
+
+  </div>
+  <ion-fab bottom right edge>
+    <button ion-fab mini color="theme" (click)="openNext()"><ion-icon name="add"></ion-icon></button>
+</ion-fab>
+</ion-content>
+<ion-footer>
+  <a href="#" (click)="itinerary()" class="active"><ion-icon ios="ios-paper-outline" md="md-paper"></ion-icon><span>Itinerary</span></a>
+  <a href="#" (click)="chat()"><ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles"></ion-icon><span>Chat</span></a>
+  <a href="#" (click)="payments()"><ion-icon ios="ios-cash-outline" md="md-cash"></ion-icon><span>Payments</span></a>
+  <a href="#" (click)="gallery()"><ion-icon ios="ios-camera-outline" md="md-camera"></ion-icon><span>Gallery</span></a>  
+</ion-footer>

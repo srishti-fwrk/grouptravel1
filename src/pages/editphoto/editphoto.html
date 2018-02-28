@@ -1,0 +1,71 @@
+<!--<ion-header>
+    <ion-toolbar color="theme">
+      <ion-title class="header_title" color="text">Edit Photo</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only menuToggle>
+          <div class="app_usr"><img src="assets/imgs/a.png"></div>
+        </button>
+        </ion-buttons>
+    
+    </ion-toolbar>
+    </ion-header>-->
+
+<ion-header>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">Edit Photo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <div class="edit_main">
+    <div class="pic">
+        <img src="{{showimg}}">
+    </div>
+	
+	<div style="padding:8px;">
+    <h4>TAG LOCATION</h4>
+    <div *ngIf="bit == '0'">
+    <button ion-button clear color="theme" (click)="addLocation()">+ Add Location</button>
+    </div>
+    
+    <div *ngIf="bit == '1'">
+        <p>{{location}}</p>
+    </div>
+    
+	 <ion-row class="edit_outer">
+		<!-- <ion-col col-5 style="padding-left:0px;">
+			<ion-label>SELECT LAYOUT</ion-label>
+			<ion-list class="aud">
+			  <ion-item>
+				<ion-select [(ngModel)]="gaming">
+				  <ion-option value="nes" selected="true">NES</ion-option>
+				  <ion-option value="n64">Nintendo64</ion-option>
+				</ion-select>
+			  </ion-item>
+			</ion-list>
+		 </ion-col>-->
+		 <ion-col col-10 style="padding-right:0px;">
+			<ion-label>CHOOSE AUDIENCE</ion-label>
+			<ion-row class="pub">
+				<ion-col col-2 style="padding: 5px 0px;"> <span>Public</span></ion-col>
+                                
+				<ion-col col-3 style="padding: 0px 5px;">
+                                               
+                          <ion-toggle name="audience" id="audience" [(ngModel)]="data.audience" (ionChange)="notify()" [checked]="data.audience"></ion-toggle>
+                        
+                              </ion-col>
+                                
+				<ion-col col-5 style="padding: 5px 0px;"> <span>Group Only</span></ion-col>
+			</ion-row>
+                        
+		 </ion-col>
+	 </ion-row>
+	</div>
+   
+  </div>
+</ion-content>

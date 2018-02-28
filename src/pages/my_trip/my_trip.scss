@@ -1,0 +1,138 @@
+page-my_trip {
+	ion-content{
+		.page_wrapper{
+			.top_sec{
+				margin-bottom:55px;
+				h1{
+					    text-align: center;
+						font-weight: bold;
+						letter-spacing: 1px;
+						color: #4d4c5e;
+						margin-bottom: 15px;
+						font-size:19px;
+				}
+				p{
+					font-size: 16px;
+					text-align: center;
+					margin-bottom: 0px;
+				}
+			}
+			.form_sec{
+				.location_sec{
+					h5{
+						font-size:16px;
+						font-weight:bold;
+						color:#4d4c5e;
+						text-align:center;
+						margin-bottom:15px;
+					}
+					ion-list{
+						ion-item{
+							border:1px solid #c8c7cc;
+							.item-inner{
+								.input-wrapper{
+									ion-label{
+										width:auto;
+										min-width:auto;
+										max-width:40px;
+										margin-right:0px;
+									}
+									ion-input{
+										input{
+											margin-right:0px;
+											margin-left:0px;
+											width: 100%;
+										}
+									}
+								}
+							}
+						}
+						.dropdown{
+							ion-item{
+								.item-inner{
+									.input-wrapper{
+									ion-label{
+										max-width: 100%;
+									}										
+									}
+								}
+							}
+						}
+					}
+				}
+				.date_sec{
+					h5{
+						font-size:16px;
+						font-weight:bold;
+						color:#4d4c5e;
+						text-align:center;
+						margin-bottom:15px;
+					}
+					ion-list{
+						ion-item{
+							width:49%;
+							float:left;
+							&:last-child{
+								float:right;
+							}
+							&:first-child{
+								border:none;
+							}
+							.item-inner{
+								.input-wrapper{
+									ion-label{
+										width:auto;
+										min-width:auto;
+										max-width:30px;
+										margin-right:0px;
+										ion-icon{
+											color:#22c4b9;
+										}
+									}
+									ion-datetime{
+										width:calc(100% - 30px);
+										padding-right:0px;
+										padding-left:0px;
+										color:#22c4b9;
+                                                                                
+                                                                                .datetime-text{
+                                                                                    font-size: 14px;
+                                                                                }
+									}
+								}
+							}
+						}
+					}
+					.btn-sec{
+						margin:30px 0px;
+						button{
+							float: none;
+							display: table;
+							margin: auto;
+							color: #22c4b9;
+							font-size:14px;
+							text-transform: capitalize;
+						}
+					}
+				}
+				button{
+					float:none;
+					margin:auto;
+					display:table;
+				}
+			}
+		}
+	}
+        
+::-webkit-input-placeholder {color: #000 !important;opacity: 1!important;}
+::-moz-placeholder {color: #000 !important;opacity: 1!important;}
+:-ms-input-placeholder {color: #000 !important;opacity: 1!important;}
+:-moz-placeholder {color: #000 !important;opacity: 1!important;}
+input::placeholder{color: #000 !important;opacity: 1!important;}
+
+.datetime-ios .datetime-placeholder {
+    color: #000;
+    font-size: 14px;
+}
+
+}

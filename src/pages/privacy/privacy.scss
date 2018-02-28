@@ -1,0 +1,25 @@
+page-privacy {
+    .privacy_outer{
+        float:left;
+        width:100%;
+        padding: 8px;
+        .privacy_inner{
+           @extend .privacy_outer;
+           margin-bottom: 8px;
+           padding: 0px !important;
+
+           h3{
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0;
+            }
+            p{
+                font-size: 14px;
+                margin: 0;
+            }
+            .color{
+                color:#22c4b9;
+            }
+        }
+    }
+}

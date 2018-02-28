@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">My Trips</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="page_wrapper">
+		<div class="top_sec">
+			<h1>Give us what you've got.</h1>
+			<p>Whether you're already booked or still deciding, let us help you plan!</p>
+		</div>
+		<div class="form_sec">
+			<div class="location_sec">
+				<h5>Location</h5>
+				<ion-list>
+					<ion-item>
+						<ion-label fixed>  <ion-icon ios="ios-locate" md="md-locate"></ion-icon></ion-label>
+						<ion-input type="text" value=""></ion-input>
+					</ion-item>
+				</ion-list>
+			</div>
+			<div class="date_sec">
+				<h5>Dates</h5>
+				<ion-list>
+					<ion-item>
+						<ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+						<ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" [(ngModel)]="event.dateStarts"></ion-datetime>
+					</ion-item>
+					<ion-item>
+						<ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+						<ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" [(ngModel)]="event.dateEnds"></ion-datetime>
+					</ion-item>
+				</ion-list>
+				<div class="btn-sec">
+					<button ion-button clear>add another location for this trip</button>
+				</div>
+			</div>
+			<button ion-button color="theme">Add Trip</button>
+		</div>
+	</div>
+</ion-content>

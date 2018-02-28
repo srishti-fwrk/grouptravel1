@@ -1,0 +1,131 @@
+page-comments {
+    .group{
+        margin: 8px;
+        width: calc(100% - 16px);
+        .item{
+            padding-left: 8px;
+            align-items: start;
+            ion-avatar {
+                min-width: 45px;
+                min-height: 45px;
+                margin-right: 8px;
+                img{
+                    min-width: 45px;
+                    min-height: 45px;
+                }
+            }
+            .label{
+                font-family: "Roboto";
+                h6{
+                    font-size: 10px;
+                }
+                span{
+                    vertical-align: top;
+                    font-size: 11px;
+                }
+                h2{
+                    font-size: 13px;
+                    font-weight: 600;
+                    span{
+                        color:#7EA0E4;
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            .note{
+                margin: 0;
+                align-self: center;
+                button{
+                    display: block;
+                    margin: 0;
+                    color:#444;
+                    height: 20px;
+                    font-weight: 600;
+                    font-family: "Roboto";
+                    .icon{
+                        margin-left: 3px;
+                    }
+                }
+            }
+        }
+    }
+
+    .main {
+        position: relative;
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 50px;
+        margin-bottom: 30px;
+
+        span{
+            font-size: 12px;
+        }
+
+       p {
+        border: 1px solid #EAEAEA;
+        border-radius: 5px;
+        padding: 6px;
+        position: relative;
+        background: #EAEAEA;
+        }
+
+        .outer {
+            position: absolute;
+            left: 8px;
+            top: 14px;
+            margin: auto;
+            bottom: 0;
+            .pic {
+                position: relative;
+                width: 33px;
+                height: 33px;
+                overflow: hidden;
+                border-radius: 50%;
+               img {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                margin: auto;
+                height: 100%;
+                width: 100%;
+                }
+            }
+        }
+        .icon{
+            position: absolute;
+            top: 0;
+            right: 8px;
+            margin: auto;
+            bottom: 0;
+            height: 0px;
+        }
+    }
+
+    .heart {
+        width: 100%;
+        display: block;
+        padding-left: 8px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    .icon {
+        color: #f00;
+        vertical-align:  middle;
+        padding-right: 2px;
+    }
+
+}
+
+.footer{
+    button {
+        background: #22c4b9;
+        color: #fff;
+        font-size: 13px;
+        padding: 0 13px;
+        height: 23px;
+    }
+}
+
+}

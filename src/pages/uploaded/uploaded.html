@@ -1,0 +1,41 @@
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Uploaded Photos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+      </ion-buttons>
+  
+	</ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      >
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="middle">
+
+    <!--<h3 class="city_name">Bankok</h3>-->
+
+    <div class="half" *ngFor="let img of images">
+        <img src="{{img.Gallery.image}}" />
+    </div>
+    <!--<div class="half"><img src="assets/imgs/a.png" /></div>
+    <div class="half"><img src="assets/imgs/b.jpg" /></div>
+    <div class="half"><img src="assets/imgs/a.png" /></div>
+    <div class="half"><img src="assets/imgs/b.jpg" /></div>
+    <div class="half"><img src="assets/imgs/a.png" /></div>-->
+  </div>
+</ion-content>

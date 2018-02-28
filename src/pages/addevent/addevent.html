@@ -1,0 +1,82 @@
+
+<ion-header>
+
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">add event</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="add_event">
+
+  <ion-list class="slt">
+    <ion-item no-padding>
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="nes" selected="true">Transport</ion-option>
+        <ion-option value="hot">Hotel</ion-option>
+        <ion-option value="n64">Activity</ion-option>
+        <ion-option value="ps">Room</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="inpt">
+      <ion-item no-padding>
+        <ion-label stacked>Title</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    
+      <ion-item no-padding>
+        <ion-label stacked>Departure Address</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item no-padding>
+          <ion-label stacked>Arrival Address</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+  </ion-list>
+
+  <div class="date_sec">
+      <ion-list>
+        <ion-item no-padding>
+            <ion-label stacked>Departure Time</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.dateStarts"></ion-datetime>
+        </ion-item>
+
+        
+        <ion-item no-padding>
+            <ion-label stacked>Arrival Time</ion-label>
+            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.dateEnds"></ion-datetime>
+        </ion-item>
+
+        <ion-item no-padding>
+            <ion-label stacked>Notes</ion-label>
+            <ion-textarea elastic placeholder="United Airlines"></ion-textarea>
+        </ion-item>
+
+        <ion-item no-padding>
+            <input type="file" (change)="fileUpload($event)" id="file-input" #fileInp>
+            <button ion-button (click)="onClick()">Add Attachments</button>
+          </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="gallery">
+        <ul>
+          <li>
+              <img src="assets/imgs/getstartback.jpeg">
+              <ion-icon ios="ios-close-circle" md="ios-close-circle"></ion-icon>
+          </li>
+
+          <li>
+                <img src="assets/imgs/getstartback.jpeg">
+                <ion-icon ios="ios-close-circle" md="ios-close-circle"></ion-icon>
+            </li>
+
+        </ul>
+      </div>
+    <button ion-button small no-margin color="theme">Add Event</button>
+
+</ion-content>

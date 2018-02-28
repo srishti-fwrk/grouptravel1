@@ -1,0 +1,163 @@
+page-location {
+.card-background-page{
+    .card{
+        width: 100%;
+        height: 140px;
+        overflow: hidden;
+        position: relative;
+
+        img{position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;}
+}
+}
+
+.things {
+    float: left;
+    width: 100%;
+}
+
+.top {
+    float: left;
+    width: 100%;
+    padding: 0 6px;
+    margin: 10px 0;
+    font-family: "Roboto";
+
+    h3 {
+        float: left;
+        width: 43%;
+        margin: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    button {
+        color: #22c4b9;
+        text-align: right;
+        float: left;
+        width: 57%;
+        font-size: 11px;
+        font-weight: 300;
+        background: transparent;
+        padding: 0px;
+    }
+}
+
+ion-scroll{
+    height:160px;
+    white-space: nowrap;
+    padding-top:0px !important;
+    margin-top: 32px;
+    margin-bottom: 5px;
+    .scroll-content{
+        padding-top:0px !important;
+        padding-left: 0px !important;
+        .scroll-zoom-wrapper{
+            .card.card-md,
+            .card.card-ios{
+                height:auto;
+                width:90px;
+                display:inline-block;
+                box-shadow:none;
+                margin: 0px;
+                .product-img{
+                    position:relative;
+                    height: 90px;
+                   img{
+                       height: 100%;
+                   }
+                }
+                .card-content.card-content-md,
+                .card-content.card-content-ios{
+                    text-align: center;
+                    padding: 5px 0 0 0;
+
+                    ul{
+                        padding: 0;
+                        margin: 0;
+                        list-style: none;
+                        line-height: 10px;
+
+                        li {
+                            display: inline-block;
+                            font-size:8.5px;
+                            color: #22c4b9;
+                        }
+                    }
+                    .title.title-md,
+                    .title.title-ios{
+                        .toolbar-title.toolbar-title-md,
+                        .toolbar-title.toolbar-title-ios{
+                            padding:0px;
+                            font-size:10px;
+                            letter-spacing:1px;
+                            text-align:center;
+                            color: #22c4b9;
+                        }
+                    }
+                        p.price{
+                            font-size:10px;
+                            color:#949393;
+                            margin:0px;
+                        }
+                }
+            }
+            .card:last-child{
+                margin:0px;
+            }
+        }
+    }
+}
+
+.scrl{
+    height:103px;
+    margin-top: 36px;
+    .scroll-content{
+
+        .scroll-zoom-wrapper{
+            .card.card-md,
+            .card.card-ios{
+                    height: 92px;
+                    width: 60px;
+                    margin: 0px 2px 0 0;
+                .product-img{
+                    height: 58px;
+                    width: 60px;
+                    border-radius: 50%;
+                    display: inline-block;
+                    overflow: hidden;
+                    border: 2px solid rgba(0, 0, 0, 0.2);
+                    img{
+                        height: 100%;}
+                }
+                span{
+                        display: block;
+                        overflow: hidden;
+                        width: 100%;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        font-size: 12px;
+                        color:#22c4b9;
+                        text-align: center;
+                }
+            }
+
+        }
+    }
+}
+
+.gallery {
+    width: 100%;
+    float: left;
+.a {
+    width: 49%;
+    float: left;
+
+    &:first-child{margin-right: 6px;}
+
+}
+
+}
+}

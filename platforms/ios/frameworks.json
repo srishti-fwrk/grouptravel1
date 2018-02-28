@@ -1,0 +1,21 @@
+{
+    "Security.framework": 3,
+    "SystemConfiguration.framework": 3,
+    "WebKit.framework": 1,
+    "libz.tbd": 2,
+    "ImageIO.framework": 1,
+    "CoreLocation.framework": 3,
+    "AVFoundation.framework": 1,
+    "Accelerate.framework": 1,
+    "Photos.framework": 1,
+    "QuartzCore.framework": 1,
+    "EventKit.framework": 1,
+    "EventKitUI.framework": 1,
+    "AddressBook.framework": 1,
+    "CoreText.framework": 1,
+    "SafariServices.framework": 1,
+    "libz.dylib": 1,
+    "Social.framework": 1,
+    "MessageUI.framework": 1,
+    "MediaPlayer.framework": 1
+}

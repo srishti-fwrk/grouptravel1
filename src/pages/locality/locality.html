@@ -1,0 +1,37 @@
+
+<ion-header>
+    <ion-toolbar color="theme">
+      <ion-title class="header_title" color="text">Locality</ion-title>
+     <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-buttons end (click)="backData()">
+      <button ion-button clear>
+        Save
+      </button>
+    </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+	<ion-searchbar 
+    [(ngModel)]="autocomplete.query" 
+    [showCancelButton]="true" 
+    (ionInput)="updateSearch()" 
+    (ionCancel)="dismiss()"
+    placeholder="Start typing and select ...">
+    </ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of autocompleteItems" 
+      (click)="chooseItem(item)">
+      {{item.description}}
+      </ion-item>
+      </ion-list>
+    
+</ion-content>
+
+
+                                          

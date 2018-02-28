@@ -1,0 +1,110 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+    color: #22c4b9;
+}
+
+.tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected=true] {
+    color: #22c4b9;
+}
+
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.app_usr {
+    width: 33px;
+    height: 33px;
+    overflow:  hidden;
+    border-radius: 50%;
+    position: relative;
+        img {
+            position:  absolute;
+            top: 0;
+            right:  0;
+            left:  0;
+            bottom:  0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+        }
+}
+
+.cls{
+    margin: 0px !important;
+    border: 1px solid;
+    border-radius: 50%;
+    .icon{
+        font-size: 30px;
+    }
+}
+
+/*menu css*/
+
+.mnu{
+    ion-item{margin-bottom: 20px;}
+    .item{
+        border: 0 !important;
+        font-size: 14px;
+        min-height: 25px;
+        ion-avatar{
+            border: 2px solid #22c4b9;
+            border-radius: 50%;
+        img{
+            width: 40px;
+            height: 40px;
+        }
+        }
+        .item-inner{
+            border: 0;
+            background-image: none !important;
+            .label{margin: 0px 8px 0px 0;
+            h2{
+                font-weight: 600;
+                font-size: 20px;
+            }
+            p{
+                color: #444;
+                font-size: 12px;
+            }
+            }
+        }
+    }
+
+    .menu_heading{
+        font-size: 12px;
+        color: #22c4b9;
+        font-weight: 600;
+        font-family: "Roboto";
+        padding-left: 16px;
+        margin-bottom: 0px;
+    }
+
+    .logout {
+        padding-left: 0 !important;
+        margin-top: 1.6rem !important;
+    }
+
+}
+
+/**/
+ion-fab[bottom][edge] {
+    bottom: -6px;
+}

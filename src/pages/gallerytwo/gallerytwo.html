@@ -1,0 +1,112 @@
+<!--<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Gallery</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr"><img src="assets/imgs/a.png"></div>
+      </button>
+      </ion-buttons>
+  
+	</ion-toolbar>
+  </ion-header>-->
+
+<ion-header>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">Gallery</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+	<div>
+	  <ion-segment [(ngModel)]="pet">
+		<ion-segment-button value="library" (click)="viewallImages()">
+		  Library
+		</ion-segment-button>
+		<ion-segment-button value="camera" (click)="viewallImages()">
+		  Camera
+		</ion-segment-button>
+		<ion-segment-button value="video" (click)="videoListing()">
+		  Video
+		</ion-segment-button>
+	  </ion-segment>
+	</div>
+	
+	<div [ngSwitch]="pet">
+	  <div *ngSwitchCase="'library'">	  
+		  <div class="full">
+			
+			<span class="icon-sc"><ion-icon (click)="openImagePicker()" ios="ios-image" md="md-image"></ion-icon></span>
+		  </div>
+		  <h3 class="title">Select Photos</h3>
+                  
+                  <div class="middle">
+                       <div class="half" *ngFor="let img of images">
+                          <img src="{{img.Gallery.image}}" (click)="opensingleImage(img)"/>
+                      </div>
+                  </div>
+		  <!--<div class="middle">
+			<div class="half"><img src="assets/imgs/b.jpg" /> <span class="count select">1</span></div>
+			<div class="half"><img src="assets/imgs/a.png" /> <span class="count select">2</span></div>
+			<div class="half"><img src="assets/imgs/b.jpg" /> <span class="count">3</span></div>			
+		  </div>-->
+	  </div>
+	  <div *ngSwitchCase="'camera'">	  
+		  <div class="full">
+			
+			<span class="icon-sc"><ion-icon (click)="openCamera()" ios="ios-image" md="md-image"></ion-icon></span>
+		  </div>
+		  <h3 class="title">Select Photos</h3>
+                  
+                   <div class="middle">
+                       <div class="half" *ngFor="let img of images">
+                          <img src="{{img.Gallery.image}}" (click)="opensingleImage(img)"/>
+                      </div>
+                  </div>
+		 <!-- <div class="middle">
+			<div class="half"><img src="assets/imgs/b.jpg" /> <span class="count select">1</span></div>
+			<div class="half"><img src="assets/imgs/a.png" /> <span class="count select">2</span></div>
+			<div class="half"><img src="assets/imgs/b.jpg" /> <span class="count">3</span></div>			
+		  </div>-->
+	  </div>
+	  <div *ngSwitchCase="'video'">	  
+		  <div class="full">
+			
+			<span class="icon-sc"><ion-icon ios="ios-image" md="md-image" (click)="selectVideo()"></ion-icon></span>
+		  </div>
+		  <h3 class="title">Select Videos</h3>
+		  <div class="middle">
+			<div class="half" *ngFor="let vi of videos">
+                           
+<!--                            <video src="{{vi.Video.video}}" controls="controls" (click)="videoPlayy(vi.Video.video)">
+                               
+                            </video>-->
+                             <ion-thumbnail (click)="videoPlayy(vi.Video.video)">
+                            <video>
+                              <source [src]="vi.Video.video" type="video/quicktime">
+                            </video>
+                          </ion-thumbnail>
+                        </div>
+                      <!--                            <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+                            <source src="{{vi.Video.video}}" type="video/mov" />
+                           </video>-->
+                      
+                      
+<!--                      <ion-content overflow-scroll="true">
+  
+</ion-content>-->
+			<!--<div class="half"><img src="assets/imgs/a.png" /> <span class="count select">2</span></div>-->
+			<!--<div class="half"><img src="assets/imgs/b.jpg" /> <span class="count">3</span></div>-->
+			
+		  </div>
+	  </div>
+	</div>
+  <!--<ion-fab bottom right edge>
+			<button ion-fab mini color="theme"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>-->
+</ion-content>

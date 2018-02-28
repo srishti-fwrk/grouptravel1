@@ -1,0 +1,122 @@
+page-invite {
+
+    ion-scroll{
+        height:125px;
+        white-space: nowrap;
+        padding-top:0px;
+        .scroll-content{
+            padding-top:0px;
+            padding-left: 0px;
+            .scroll-zoom-wrapper{
+                .card.card-md,
+                .card.card-ios{
+                        height: 92px;
+                        width: 60px;
+                        display: inline-block;
+                        margin: 0px 2px 0 0;
+                        position: relative;
+                        box-shadow: none;
+                        text-align: center;
+                    .product-img{
+                        height: 58px;
+                        width: 60px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        overflow: hidden;
+                        border: 2px solid rgba(0, 0, 0, 0.2);
+                        img{
+                            height: 100%;}
+                    }
+                    span{
+                            white-space: normal;
+                            font-size: 12px;
+                    }
+                }
+                .card:last-child{
+                    margin:0px;
+                }
+            }
+        }
+    }
+
+.invite{
+    text-align: center;
+    font-family: "Roboto";
+    h3{
+        font-size:14px;font-weight: 400;margin-bottom: 30px;
+    }
+    .subhead{
+        font-size:14px;font-weight: 600;
+    }
+    .list{
+            position: relative;
+        .item{
+                color: #333;
+                border: 0px;
+                font-size: 14px;
+                padding: 0;
+                min-height: 35px;
+                margin-bottom: 20px;
+            .item-inner{border: 0px;padding: 0px;
+                        .label{
+                            margin: 0px;
+                        }
+            }
+            .input{
+
+                input{margin: 0px;}
+            }
+        }
+        .icon{
+            position: absolute;
+            top: 0;
+            left: 8px;
+            font-size: 22px;
+            margin: auto;
+            height: 37px;
+            line-height: 37px;
+        }
+    }
+
+    .social {
+        display: table;
+        width: 100%;
+        .a {
+            width: 33.3%;
+            display: table-cell;
+            background: #3B5999;
+            height: 30px;
+            vertical-align: middle;
+            color: #fff;
+            font-size:14px;
+
+            &:nth-child(1) .icon{font-family: "Roboto";}
+
+            &:nth-child(2){
+                background: #00ACEE;
+            }
+            &:nth-child(3){
+                background: #98EA6F;
+            }
+        }
+    }
+    .or{
+        font-style: italic;
+        margin-bottom: 10px;
+        float: left;
+        width: 100%;
+    }
+
+}
+ion-list{
+    &.list-bottom{
+        ion-item{
+            margin-bottom: 0px !important;
+        }
+        button{
+            margin-top:16px;
+        }
+    }
+}
+
+}

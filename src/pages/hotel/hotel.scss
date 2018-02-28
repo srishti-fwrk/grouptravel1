@@ -1,0 +1,106 @@
+page-hotel {
+    .hotel_detail{
+        .list{
+               float: left;
+               width: 100%;
+            ion-item-divider{
+                background-color: #f7f7f7 !important;
+                    .item-inner{
+                        ion-label{
+                            color: #22c4b9 !important;
+                        }
+                    }
+                }
+            .item{
+                padding: 0px;
+                .item-inner{
+                    padding: 0px;
+                    .note {
+                        word-wrap: break-word;
+                        width: 50%;
+                        text-align: right;
+                        font-size: 14px;
+                    }
+                    ion-label{
+                        margin-left:8px;
+                        font-size: 14px;
+                    }
+
+                    .text-input-ios {
+                        margin-left:8px;
+                        width: calc(100% - 16px);
+                        font-size: 14px;
+                    }
+                }
+            }
+            form{
+               float: left;
+                width: 100%;
+                
+                .search{
+                    display: block;
+                    margin: 15px auto 0;
+                    height: 34px;
+                    padding: 0 20px;
+                    border-radius: 0px;
+                }
+             }
+             .alert{
+                font-size: 12px;
+                margin-left: 8px;
+             }
+        }
+        
+        .list{
+                ion-item.input-has-value{
+                    .item-inner{
+                        ion-label.alert{
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+            
+            .extras{
+                 margin-bottom: 20px;
+                .item{
+                    border-top: 0 !important;
+                    float:left;
+                    width: 50%;
+                    height: 44px;
+                    &:last-child{
+                        border-bottom: 1px solid #c8c7cc;
+                    }
+                    ion-label.alert{
+                            margin: 0;
+                            position: absolute;
+                            top: 0;
+                            left: 8px;
+                            font-size: 12px !important;
+                        }
+                    .select{
+                        max-width: 100%;
+                        width: 100%;
+                        font-size: 14px;
+
+                    }
+                }
+                &.item-input-has-value{
+                    .item-inner{
+                        ion-label{
+                            display: none;
+                        }
+                    }
+                }
+
+            }
+            
+        .green{
+            color: #22c4b9;
+            padding-left: 8px;
+            padding-top: 8px;
+            float: left;
+            width: 100%;
+        }
+   }        
+}

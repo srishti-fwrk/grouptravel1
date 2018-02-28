@@ -1,0 +1,204 @@
+page-flight {
+    
+        .plane {
+            width: 100%;
+            float: left;
+            margin: 15px 0;
+       
+        
+        .fst {
+            width: 30%;
+            float: left;
+        }
+        
+        .last {
+            width: 30%;
+            float: left;
+        }
+     
+        
+        .fst h2,.last h2 {
+            width: 100%;
+            float: left;
+            margin: 0;
+            font-size: 12px;
+            text-align: center;
+            padding: 5px 0;
+        }
+        
+    
+        .icon1 {
+            width: 40%;
+            float: left;
+            text-align: center;
+            position: relative;
+        
+          &::before {
+                content: '';
+                border-bottom: 1px solid #eee;
+                height: 0;
+                width: 40px;
+                position: absolute;
+                left: 0px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+    
+            &::after {
+                content: '';
+                border-bottom: 1px solid #eee;
+                height: 0;
+                width: 40px;
+                position: absolute;
+                right: 0px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+    
+            .icon-ios.ion-ios-plane {
+                font-size: 25px;
+            }
+    
+     .icon {
+            color: #fbb57f;
+        }
+    
+        
+      
+    }
+    
+    }
+    
+    
+    .date {
+        width: 100%;
+        float: left;
+        text-align: center;
+        margin: 10px 0 20px;
+        font-size: 12px;
+        font-family: "Roboto";
+    .icon {
+        color: #22c4b9;
+    }
+    
+    }
+    
+        .filter{
+            float: left;
+            width: 100%;
+            padding: 0 16px;
+            margin-bottom: 10px;
+            .item-inner{
+                padding: 0 !important;
+                border: 0px !important;
+                .label{
+                    span{
+                        background: #22c4b9;
+                        color: #fff;
+                        padding: 3px 13px;
+                        font-size: 14px;
+                        display: inline-block;
+                    }
+                }
+                button{padding: 0 ;}
+                .select {
+                    font-size: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 3px 6px 0;
+              
+               .select-icon {
+                   .select-icon-inner {margin-top: -4px;}
+                 }
+            }
+        
+            }
+        }
+    
+    .waterfall {
+        box-shadow: 0px 2px 6px #ccc;
+        margin: 8px;
+        width: calc(100% - 16px);
+        .item{
+            align-items: start;
+            padding: 0;
+        ion-avatar {
+            margin: 8px 6px !important;
+        img{border-radius: 0%;}
+        }
+        .item-inner {
+            padding: 0 !important;
+            .label{
+                font-family: "Roboto";
+                border-right: 1px dotted #ccc;
+                margin:6px 0px;
+                h2{
+                    font-size: 14px;
+                    font-weight: 500;
+                    white-space: normal;
+                }
+
+                .us {
+                    float: left;
+                    width: 60%;
+                    p{
+                        font-size: 11px;
+                        font-weight: 400;
+                        margin: 0;
+                        color: #444;
+                    }
+                    span{
+                        @extend p;
+                        font-style: normal;
+                        vertical-align: top;
+                    } 
+            }
+
+            .rt {
+                float: left;
+                width: 40%;
+                text-align: right;
+                padding-right: 5px;
+            
+                ul {
+                    margin:  0;
+                    padding:  0;
+                    list-style:  none;
+                    font-size: 11px;
+                }
+            }
+    
+            }
+            .note {
+                align-self: center;
+                align-self: center;
+                text-align: center;
+                font-weight: 600;
+                color: #000;
+                font-family: "Roboto";
+                font-size: 18px;
+                margin: 0px;
+                span{
+                    font-weight: 400;
+                    font-size: 10px;
+                    float: left;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    }
+    
+    .head{
+        width: 100%;
+        float: left;
+        padding-left: 8px;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    }

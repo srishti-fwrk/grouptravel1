@@ -1,0 +1,153 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Flight</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+      
+      <div class="plane">
+      
+        <div class="fst">
+        <h2>{{source}}</h2>
+      </div>
+      
+      <div class="icon1">
+        <ion-icon ios="ios-plane" md="ios-plane"></ion-icon>
+      </div>
+      
+      <div class="last">
+          <h2>{{destination}}</h2>
+        </div>
+        
+      </div>
+      
+        <!--<span class="date">18/7/2017-20/7/2017 <ion-icon ios="md-calendar" md="md-calendar"></ion-icon></span>-->
+      
+          <ion-item class="filter" no-padding>
+              <ion-label><span>Filter</span></ion-label>
+              <ion-select [(ngModel)]="gaming">
+                <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
+                <ion-option value="n64">Highest Price</ion-option>
+              </ion-select>
+            </ion-item>
+          
+          
+          <h3 class="head">Departure</h3>
+          <!--<div *ngFor="let flight of flights">
+          <!--<ion-card class="waterfall" *ngFor="let fl of flight.FlightDetails">-->
+          <!--<ion-card class="waterfall" *ngFor="let fl of flights">
+                <ion-item (click)="arival()">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/a.png">
+                  </ion-avatar>
+                  <!--<h2>My Neighbor Totoro</h2>
+                 
+                  <div>
+                      <p>{{fl.ArrivalDateTime}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.DepartureDateTime}}</p>
+                  </div>
+                  <div class="us">
+                      
+                    <p>{{fl.Origin}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.Destination}}</p>
+                    <span>{{fl.AirlineName}}</span>
+                  </div>
+                  <div class="rt">
+                    <ul>
+                      <li>{{fl.Duration}}</li>
+                      <!--<li>{{flight.Connection.Onward.NoOfStops}} stop in IST</li>
+                    </ul>
+                  </div>
+                 
+                    <!--<ion-note item-end="" class="note note-ios">{{flight.FareDescription.PaxFareDetails[0].OtherInfo.GrossAmount}}</ion-note>
+                </ion-item>
+          
+          
+                </ion-card>-->
+          
+          
+          
+          <ion-card class="waterfall" *ngFor="let fl of info">
+                <ion-item (click)="arival(fl.flights,fl.dates)">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/a.png">
+                  </ion-avatar>
+                  <!--<h2>My Neighbor Totoro</h2>
+                  -->
+                  <div>
+                      <p>{{fl.s_date}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.d_date}}</p>
+                  </div>
+                  <div class="us">
+                      
+                    <p>{{fl.s}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.d}}</p>
+                    <span>{{fl.airline}}</span>
+                  </div>
+                  <div class="rt">
+                    <ul>
+                      <!--<li>{{fl.Duration}}</li>-->
+                     <li>{{fl.n}} stops</li>
+                    </ul>
+                  </div>
+                 
+                    <ion-note item-end="" class="note note-ios">{{fl.price}}</ion-note>
+                </ion-item>
+          
+          
+                </ion-card>
+                    
+                    <!--<ion-card class="waterfall" *ngFor="let fli of info1">
+                <ion-item (click)="arival(fli.flights,fli.dates)">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/a.png">
+                  </ion-avatar>
+                  <!--<h2>My Neighbor Totoro</h2>
+                  
+                  <div>
+                      <p>{{fli.s_date}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fli.d_date2}}</p>
+                  </div>
+                  <div class="us">
+                      
+                    <p>{{fli.s}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fli.d}}</p>
+                    <span>{{fli.airline}}</span>
+                  </div>
+                  <div class="rt">
+                    <ul>
+                      <!--<li>{{fli.Duration}}</li>
+                     <li>{{fli.n}} stop in {{fli.stop}}</li>
+                    </ul>
+                  </div>
+                 
+                    <ion-note item-end="" class="note note-ios">{{fli.price}}</ion-note>
+                </ion-item>
+          
+          
+                </ion-card>
+                    
+                    <ion-card class="waterfall" *ngFor="let flig of info2">
+                <ion-item (click)="arival(flig.flights)">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/a.png">
+                  </ion-avatar>
+                  <!--<h2>My Neighbor Totoro</h2>
+                  
+                  <div>
+                      <p>{{flig.s_date}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{flig.d_date2}}</p>
+                  </div>
+                  <div class="us">
+                      
+                    <p>{{flig.s}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{flig.d}}</p>
+                    <span>{{flig.airline}}</span>
+                  </div>
+                  <div class="rt">
+                    <ul>
+                      <!--<li>{{flig.Duration}}</li>
+                     <li>{{flig.n}} stop in {{flig.stop1}}, {{flig.stop2}}</li>
+                    </ul>
+                  </div>
+                 
+                    <ion-note item-end="" class="note note-ios">{{flig.price}}</ion-note>
+                </ion-item>
+          
+          
+                </ion-card>-->
+          <!--</div>-->
+      </ion-content>

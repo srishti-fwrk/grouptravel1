@@ -1,0 +1,40 @@
+<ion-header hidden>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Get Started</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="page_wrapper">
+		<div class="logo_sec">
+			<img src="assets/imgs/logo.png" >
+		</div>
+		<div class="form_sec">
+			<form #forgot="ngForm">
+				<ion-list>
+					<ion-item>
+						<ion-label fixed><ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon></ion-label>
+						<ion-input type="email" name="email" [(ngModel)]="data.email" id="email" #email="ngModel" pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$' placeholder="Enter Your Email" required></ion-input>
+					</ion-item>
+					<ion-label class="alert alert-danger" color="danger">
+						<div *ngIf="email.errors && (email.dirty || email.touched)">
+							
+							<div [hidden]="!email.errors.required">
+								Email is required
+							</div>
+							<div [hidden]="!email.errors.pattern">
+								In-valid email
+							</div>
+						</div>
+						<!--<div *ngIf="!email.errors && (!email.dirty || !email.touched)">
+							<img class="tick" item-right src="assets/imgs/tickryt.png">
+						</div>-->
+				</ion-label>
+				</ion-list>
+				<div class="btn_sec">
+					<button ion-button color="theme" round (click)="forgotPass(forgot)" [disabled]="!forgot.form.valid">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Invite Friends</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <div class="app_usr">
+            <img *ngIf="image" src="{{image}}">
+						
+            <img *ngIf="!image" src="assets/imgs/user.png">
+        </div>
+      </button>
+      </ion-buttons>
+  
+  </ion-toolbar>
+  </ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/b.jpg">
+      </ion-thumbnail>
+      <h2>My Neighbor Totoro</h2>
+      <button ion-button small item-end color="theme">Invite</button>
+    </ion-item>
+
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/a.png">
+      </ion-thumbnail>
+      <h2>My Neighbor Totoro</h2>
+      <button ion-button small item-end color="light">Invited</button>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

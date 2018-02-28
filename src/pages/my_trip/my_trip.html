@@ -1,0 +1,93 @@
+<ion-header>
+  
+  <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+		<ion-title class="header_title" color="text">my trips</ion-title>
+		<ion-buttons end>
+		  <button ion-button icon-only menuToggle>
+			  <div class="app_usr">
+				  
+				  <img *ngIf="image" src="{{image}}">
+						  
+				  <img *ngIf="!image" src="assets/imgs/user.png">
+			  </div>
+			</button>
+		</ion-buttons>
+	
+	  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="page_wrapper">
+		<div class="top_sec">
+			<h1>Give us what you've got.</h1>
+			<p>Whether you're already booked or still deciding, let us help you plan!</p>
+		</div>
+		<form #heroForm="ngForm">
+		<div class="form_sec">
+			<div class="location_sec">
+				<h5>Source Location</h5>
+				<ion-list>
+					<ion-item *ngIf="bit == '1'">
+						<ion-label fixed>  <ion-icon ios="ios-locate" md="md-locate"></ion-icon></ion-label>                                                
+                                                  <ion-input type="text" name="query" [(ngModel)]="autocomplete.query" (input)="updateSearch()" #query="ngModel" placeholder="{{so}}" required></ion-input>                                                 
+					</ion-item>
+                                        <ion-item *ngIf="bit != '1'">
+                                            <ion-label fixed>  <ion-icon ios="ios-locate" md="md-locate"></ion-icon></ion-label>
+                                            <ion-input type="text" name="query" [(ngModel)]="autocomplete.query" (input)="updateSearch()" #query="ngModel" required></ion-input>
+                                        </ion-item>
+					<div class="dropdown">
+						<ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">{{ item.description }} </ion-item>
+					</div>
+				</ion-list>
+
+				<h5>Destination Location</h5>
+				<ion-list>
+                                    <ion-item *ngIf="bit == '1'">
+                                        <ion-label fixed>  <ion-icon ios="ios-locate" md="md-locate"></ion-icon></ion-label>
+                                        <ion-input  type="text" name="queryy" [(ngModel)]="autocompletee.queryy" (input)="updateeSearch()" #queryy="ngModel" placeholder="{{de}}" required></ion-input>
+                                    </ion-item>
+                                    <ion-item *ngIf="bit != '1'">
+                                        <ion-label fixed>  <ion-icon ios="ios-locate" md="md-locate"></ion-icon></ion-label>
+                                        <ion-input  type="text" name="queryy" [(ngModel)]="autocompletee.queryy" (input)="updateeSearch()" #queryy="ngModel" required></ion-input>
+                                    </ion-item>	
+					<div class="dropdown">
+						<ion-item *ngFor="let itemm of autocompleteItemss" (click)="chooseeItem(itemm)">{{ itemm.description }} </ion-item>
+					</div>
+				</ion-list>
+			</div>
+			<div class="date_sec">
+				<h5>Dates</h5>
+				<ion-list>
+                                    <ion-item *ngIf="bit == '1'">
+                                        <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+                                        <ion-datetime  name="dateStarts" displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" max="2050-12-31" min="{{minDate}}" [(ngModel)]="event.dateStarts" id="dateStarts" #dateStarts="ngModel" required placeholder="{{sd}}"></ion-datetime>
+                                    </ion-item>
+                                    <ion-item *ngIf="bit != '1'">
+                                        <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+                                        <ion-datetime  name="dateStarts" displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" max="2050-12-31" min="{{minDate}}" [(ngModel)]="event.dateStarts" id="dateStarts" #dateStarts="ngModel" required placeholder="Select date"></ion-datetime>
+                                    </ion-item>
+					<ion-item *ngIf="bit == '1'">
+                                            <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+                                            <ion-datetime name="dateEnds" displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" max="2050-12-31" min="{{minDate}}" [(ngModel)]="event.dateEnds" id="dateEnds" #dateEnds="ngModel" required placeholder="{{dd}}"></ion-datetime>
+                                        </ion-item>
+                                    <ion-item *ngIf="bit != '1'">
+                                        <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+                                        <ion-datetime name="dateEnds" displayFormat="MM/DD/YYYY" pickerFormat="MM DD YYYY" max="2050-12-31" min="{{minDate}}" [(ngModel)]="event.dateEnds" id="dateEnds" #dateEnds="ngModel" required placeholder="Select date"></ion-datetime>
+                                    </ion-item>
+				</ion-list>
+				<div class="btn-sec">
+					<button ion-button clear>add another location for this trip</button>
+				</div>
+			</div>
+			<button ion-button *ngIf="bit == '1'" color="theme" type="submit" [disabled]="!heroForm.form.valid" (click)="edit(heroForm)">Submit</button>
+			<button ion-button *ngIf="bit != '1'" color="theme" type="submit" [disabled]="!heroForm.form.valid" (click)="search(heroForm)">Add Trip</button>
+		</div>
+		</form>
+	</div>
+</ion-content>
+

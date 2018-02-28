@@ -1,0 +1,76 @@
+page-profile {
+	ion-content{
+		.page_wrapper{
+			.top_sec{
+				padding: 50px 0px;
+				background: #22c4b9;
+				.avatar_sec{
+					height: 105px;
+					width: 105px;
+					float: none;
+					margin: auto;
+					border-radius: 50%;
+					overflow: hidden;
+					background-color: #fff;
+					border: 2px solid #fff;
+					figure{
+						margin: 0px;
+						height: 100%;
+						width: 100%;
+						overflow: hidden;
+						img{
+							height: 100%;
+							width: auto;
+						}
+					}
+				}
+				.detail_sec{
+					margin-top:10px;
+					h5{
+						margin: 0px;
+						text-align: center;
+						text-transform: uppercase;
+						font-weight: bold;
+						font-size: 16px;
+						color: #fff;
+					}
+					.contact_details{
+						margin-top: 10px;
+						p{
+							margin: 0px;
+							text-align: center;
+							font-size: 15px;
+							color: #fff;
+							span{
+								margin-right:7px;
+							}
+						}
+					}
+				}
+			}
+			.bottom_sec{
+				ion-list{
+					ion-item{
+						padding:0px;
+						.item-inner{
+							padding:8px 8px 8px 8px;
+							.input-wrapper{
+								ion-label{
+									font-size:16px;
+									letter-spacing:1px;
+									color:rgba(0, 0, 0, 0.75);
+									ion-icon{
+										margin-right:8px;
+									}
+								}
+							}
+						}
+						&:first-child{
+							border:none;
+						}
+					}
+				}
+			}
+		}
+	}
+}

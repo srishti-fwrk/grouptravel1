@@ -1,0 +1,81 @@
+<ion-header hidden>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Get Started</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="page_wrapper">
+		<div class="logo_sec">
+			<img src="assets/imgs/logo.png" >
+			<p class="page_head">Create Account</p>
+		</div>
+		<div class="form_sec">
+			<form #signup="ngForm">
+				<ion-list>
+					<ion-item>
+						<ion-label fixed><ion-icon ios="ios-person-outline" md="md-person"></ion-icon></ion-label>
+						<ion-input type="text" name="fullname" pattern="[a-zA-Z ]+" [(ngModel)]="data.fullname" id="fullname" #fullname="ngModel" placeholder="Full Name" required></ion-input>
+					</ion-item>
+                                        <ion-label class="alert alert-danger" color="danger">
+                                            <div *ngIf="fullname.errors && (fullname.dirty || fullname.touched)">
+                                              <div [hidden]="!fullname.errors.required">
+                                                Full Name is required
+                                              </div>
+                                              <div [hidden]="!fullname.errors.pattern">
+                                                Only alphabets are allowed
+                                              </div>
+                                            </div>
+                                          </ion-label>
+					<ion-item>
+						<ion-label fixed><ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon></ion-label>
+						<ion-input type="email" name="email" [(ngModel)]="data.email" id="email" #email="ngModel" pattern='^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$' placeholder="Email" required></ion-input>
+					</ion-item>
+                                        <ion-label class="alert alert-danger" color="danger">
+                                            <div *ngIf="email.errors && (email.dirty || email.touched)">
+                                              
+                                              <div [hidden]="!email.errors.required">
+                                                Email is required
+                                              </div>
+                                              <div [hidden]="!email.errors.pattern">
+                                                In-valid email
+                                              </div>
+                                            </div>
+                                            <!--<div *ngIf="!email.errors && (!email.dirty || !email.touched)">
+                                              <img class="tick" item-right src="assets/imgs/tickryt.png">
+                                            </div>-->
+                                        </ion-label>
+					<ion-item>
+						<ion-label fixed> <ion-icon ios="ios-key-outline" md="md-key"></ion-icon></ion-label>
+						<ion-input type="{{type}}" name="password" [(ngModel)]="data.password" id="password" #password="ngModel" minlength="8" placeholder="Password" required></ion-input>
+            <button *ngIf="!showPass" ion-button clear color="light" type="button" item-right (click)="showPassword()"> 
+							<ion-icon name="eye" name="eye"></ion-icon>
+							</button>
+				<button *ngIf="showPass" ion-button clear color="light" type="button" item-right (click)="showPassword()"> 
+					<ion-icon name="eye-off"></ion-icon>
+					</button>	
+          </ion-item>
+                                        <ion-label class="alert alert-danger" color="danger">
+                                            <div *ngIf="password.errors && (password.dirty || password.touched)">
+                                              
+                                              <div [hidden]="!password.errors.required">
+                                                Password is required
+                                              </div>
+                                              <div [hidden]="!password.errors.minlength">
+                                                <h6 style="font-size : 12px;"> Password Minlength 8 Character </h6>
+                                              </div>
+                                            </div>
+                                            
+                                          </ion-label>
+					
+				</ion-list>
+				<div class="btn_sec">
+					<button ion-button color="theme" (click)="signUp(signup)" [disabled]="!signup.form.valid" round>Sign Up</button>
+        </div>
+       </form>
+       <div class="btn-sec">
+         <p>Already registered? <button ion-button clear (click)="signIn()"> Sign In</button></p>
+       </div>
+		</div>
+	</div>
+</ion-content>

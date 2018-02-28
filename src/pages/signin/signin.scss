@@ -1,0 +1,139 @@
+page-signin {
+	ion-content{
+		background-image:url('../assets/imgs/getstartback.jpeg');
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		.page_wrapper{
+			.logo_sec{
+				margin: 60px 0px;
+				margin: 60px auto;
+				display: block;
+				text-align: center;
+				img{width:210px;}
+			}
+			
+			// Form Sec Css Include Here 
+			
+			.form_sec{
+				form{
+					ion-list{
+						ion-item{
+							border:none !important;
+							margin-bottom:7px;
+							background:none;
+							background-color:rgba(255, 255, 255, 0.3);
+							.item-inner{
+								border:none !important;
+								.input-wrapper{
+									ion-label{
+										min-width:auto;
+										max-width:30px;
+										width:auto;
+										margin-right:0px;
+										ion-icon{
+											font-size:23px;
+											color:#22c4b9;
+										}
+									}
+									ion-input{
+										input{
+											margin-left:0px;
+											font-size:16px;
+											color:#fff;
+
+											&::-webkit-input-placeholder{
+												color:#fff;
+											}
+											&::-moz-input-placeholder{
+												color:#fff;
+											}
+											&:-ms-input-placeholder{
+												color:#fff;
+											}
+											&:-moz-input-placeholder{
+												color:#fff;
+											}
+										}
+
+
+									}
+								}
+							}
+						}
+					}
+					.btn_sec{
+						text-align:center;
+						button{
+							text-transform:uppercase;
+							letter-spacing:1px;
+						}
+					}
+				}
+			}
+			
+			// Social Button Css Include Here
+			
+			.social_sec{
+				margin-top:50px;
+				button.fb-btn{
+					background-color:#3b5998;
+					text-transform:capitalize;
+					ion-icon{
+						margin-right:7px;
+					}
+				}
+				button.gm-btn{
+					background-color:#d34836;
+					text-transform:capitalize;
+					ion-icon{
+						margin-right:7px;
+					}
+				}
+			}
+			.forgot{
+				text-align:center;
+				button{
+					color:#fff;
+					letter-spacing:1px;
+					font-size:14px;
+				}
+				 p{
+					margin:0px;
+					color: #fff;
+					button{
+						text-transform:uppercase;
+							letter-spacing:1px;
+							margin: 0px;
+							padding: 0px;
+							height: auto;
+							margin-top: -10px;
+							color: #fff;
+							margin-top: -10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/*stop transform*/
+input[type="text"]:focus::-webkit-input-placeholder{
+	transform:none !important;
+}
+
+input[type="text"]:focus::-moz-input-placeholder{
+	transform:none !important;
+}
+
+input[type="text"]:focus:-moz-input-placeholder{
+	transform:none !important;
+}
+
+input[type="text"]:focus:-ms-input-placeholder{
+	transform:none !important;
+}
+
+input[type="text"]:focus:-o-input-placeholder{
+	transform:none !important;
+}

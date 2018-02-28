@@ -1,0 +1,76 @@
+<ion-header>
+		<ion-toolbar color="theme">
+			<ion-title class="header_title" color="text">My Account</ion-title>
+			<ion-buttons end>
+				<button ion-button icon-only menuToggle>
+					<div class="app_usr">
+							<img *ngIf="image" src="{{image}}">
+						
+							<img *ngIf="!image" src="assets/imgs/user.png">
+					</div>
+				</button>
+				</ion-buttons>
+	  
+		</ion-toolbar>
+	  </ion-header>
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      >
+    </ion-refresher-content>
+  </ion-refresher>
+    
+	<div class="page_wrapper">
+		<div class="top_sec" *ngIf = "user">
+			<div class="avatar_sec">
+				<figure>
+					<!--<img src="{{user.image}}">-->
+					
+					<img *ngIf="user.image" src="{{user.image}}">
+						
+					<img *ngIf="!user.image" src="assets/imgs/user.png">
+				
+				</figure>
+			</div>
+			<div class="detail_sec">
+				<h5>{{user.name}}</h5>
+				<div class="contact_details">
+					<p><span><ion-icon ios="ios-call" md="md-call"></ion-icon></span>{{user.phone}}</p>
+					<p><span><ion-icon ios="ios-mail" md="md-mail"></ion-icon></span>{{user.email}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="bottom_sec">
+		<ion-list>
+            <div *ngIf = "status == 0">        
+			<ion-item (click)="change();">
+				<ion-icon ios="ios-lock" md="ios-lock"></ion-icon>
+				Change Password
+				<ion-icon name="arrow-forward" item-end></ion-icon>
+			</ion-item>
+                   
+			<ion-item (click)="edit();">
+				<ion-icon ios="ios-create" md="ios-create"></ion-icon>
+				Edit Profile
+				<ion-icon name="arrow-forward" item-end ></ion-icon>
+			</ion-item>
+
+			
+			</div>
+			<div *ngIf = "status == 1">
+					<ion-item (click)="edit();">
+							<ion-icon ios="ios-create" md="ios-create"></ion-icon>
+							Edit Profile
+							<ion-icon name="arrow-forward" item-end ></ion-icon>
+						</ion-item>
+
+						
+				</div>
+		</ion-list>
+		</div>
+	</div>
+</ion-content>

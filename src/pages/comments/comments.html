@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Comments</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content>
+    <ion-card class="group">
+        <ion-item (click)="comments();">
+          <ion-avatar item-start>
+             <img src="assets/imgs/user.png">
+          </ion-avatar>
+          <h6>12/12/2017</h6>
+          <h2>You Paid</h2>
+          <h2>Melanie <span>$45.00</span></h2>
+          <span>Money for ATVing</span>
+          <ion-note item-end="" class="note note-ios">
+              <button ion-button clear small>2 <ion-icon ios="ios-heart-outline" md="ios-heart-outline"></ion-icon></button>
+              <button ion-button clear small>3 <ion-icon ios="ios-chatbubbles-outline" md="ios-chatbubbles-outline"></ion-icon></button>
+          </ion-note>
+        </ion-item>
+        </ion-card>
+
+        <span class="heart"><ion-icon name="heart"></ion-icon> by melanie and naddia</span>
+
+        <div class="main">
+          <span>Meliane</span>
+          <p no-margin>Thanks for money gift</p>
+          <div class="outer"><div class="pic"><img src="assets/imgs/a.png" /></div></div>
+          <ion-icon name="heart-outline"></ion-icon>
+          
+        </div>
+
+      <ion-footer>
+        <ion-toolbar>
+            <ion-input type="text" placeholder="Username"></ion-input>
+            <ion-buttons end>
+                <button ion-button>Send</button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+
+</ion-content>
