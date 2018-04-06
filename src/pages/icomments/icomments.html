@@ -1,0 +1,85 @@
+<!--
+  Generated template for the IcommentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Itinerary</ion-title>
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+	</ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    
+          <ion-card class="group">
+              
+          <ion-item>
+            <ion-avatar item-start>
+               <img src="assets/imgs/a.png">
+            </ion-avatar>
+            <h2>{{event_title}}</h2>
+            <span>{{location}}</span>
+            <ion-note item-end="" class="note note-ios">
+<!--                <button ion-button clear small>2 <ion-icon ios="ios-heart-outline" md="ios-heart-outline"></ion-icon></button>
+                -->
+            
+            <button *ngIf="likecount == '0'" (click)="likeEvent()" ion-button clear small>
+                <span *ngIf="likecount != 0">{{likecount}}</span> 
+                  <ion-icon ios="ios-heart-outline" md="ios-heart-outline"></ion-icon>
+                 </button> 
+                <button *ngIf="likecount != '0'" (click)="likeEvent()" ion-button clear small>
+                    <span *ngIf="likecount != 0">{{likecount}}</span>
+                  <ion-icon ios="ios-heart-outline" md="ios-heart-outline" style="color:#f00;"></ion-icon>
+             </button>
+                
+             <button ion-button clear small>
+                 <span *ngIf="comment_count != 0">{{comment_count}}</span> 
+                 <ion-icon ios="ios-chatbubbles-outline" md="ios-chatbubbles-outline"></ion-icon>
+             </button>
+            </ion-note>
+          </ion-item>
+
+          </ion-card>
+      
+        <ion-list class="coment">
+         <h2 *ngIf="len != '0'">Comments:</h2>
+<!--                <ion-item>
+                  <ion-avatar item-start>
+                    <img src="assets/imgs/user.png">
+                  </ion-avatar>
+                   <h2>Joseph</h2>
+                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                </ion-item>-->
+         
+                <ion-item *ngFor="let com of comments">
+                  <ion-avatar item-start *ngIf="!com.User.image">
+                    <img src="assets/imgs/user.png">
+                  </ion-avatar>
+                    <ion-avatar item-start *ngIf="com.User.image">
+                    <img src="{{com.User.image}}">
+                  </ion-avatar>
+                  <h2>{{com.User.name}}</h2>
+                  <p>{{com.Event_comment.comment}}</p>
+                </ion-item>
+              </ion-list>
+    
+</ion-content>
+
+<ion-footer>
+    <form #commentForm="ngForm">
+        <ion-toolbar>
+                    <ion-input type="text" name="ccomment" [(ngModel)]="data.ccomment" id="ccomment" #ccomment="ngModel" placeholder="Type comment" required></ion-input>
+                        <ion-buttons end>
+                            <button ion-button small no-margin color="theme" (click)="comMent(commentForm)" [disabled]="!commentForm.form.valid">Comment</button>
+                        </ion-buttons>
+                    </ion-toolbar>
+                 </form>
+</ion-footer>

@@ -29,10 +29,25 @@
         },
         "com.hutchind.cordova.plugins.streamingmedia": {
             "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.grouptravel"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-add-swift-support": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.grouptravel"
         }
     }

@@ -58,9 +58,6 @@
     <feature name="ImagePicker">
         <param name="ios-package" value="SOSPicker" />
     </feature>
-    <feature name="Calendar">
-        <param name="ios-package" value="Calendar" />
-    </feature>
     <feature name="GooglePlus">
         <param name="ios-package" value="GooglePlus" />
         <param name="onload" value="true" />
@@ -79,6 +76,18 @@
     </feature>
     <feature name="StreamingMedia">
         <param name="ios-package" value="StreamingMedia" />
+    </feature>
+    <feature name="Calendar">
+        <param name="ios-package" value="Calendar" />
+    </feature>
+    <feature name="DatePicker">
+        <param name="ios-package" value="DatePicker" />
+    </feature>
+    <feature name="Capture">
+        <param name="ios-package" value="CDVCapture" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
     <name>GroupTrip</name>
     <description>An awesome Ionic/Cordova app.</description>
@@ -149,6 +158,6 @@
     <preference name="SplashScreenDelay" value="10000" />
     <preference name="FadeSplashScreen" value="true" />
     <preference name="AutoHideSplashScreen" value="false" />
-    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="ShowSplashScreen" value="true" />
 </widget>

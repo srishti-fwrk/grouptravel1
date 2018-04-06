@@ -1,7 +1,12 @@
 <ion-header>
-    <ion-navbar color="theme">
-      <ion-title class="header_title" color="text">travel community</ion-title>
-    </ion-navbar>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">Travel Community</ion-title>
+    </ion-toolbar>
   </ion-header>
   
 
@@ -24,13 +29,17 @@
                                                 </ion-item>
                                             </ion-list>   
                                 </div>   
-                                <div *ngIf="chose == 'people'">
-                                    <ion-searchbar [(ngModel)]="data.people" [showCancelButton]="true" (ionInput)="userSearch()" 
+                                <div *ngIf="chose == 'acc'">
+                                    <ion-searchbar [(ngModel)]="data.people" [showCancelButton]="true" (ionInput)="userListing(data.people)" 
                                         (ionCancel)="dismiss()" placeholder="Start typing and select ..."></ion-searchbar>
                                             <ion-list>
-                                                <!--<ion-item *ngFor="let us of users" (click)="">
-                                                    
-                                                </ion-item>-->
+                                                <ion-item *ngFor="let u of users" (click)="userSearch(u.User.name)">
+                                                    <ion-avatar item-start>                
+                                                        <img *ngIf="u.User.image" src="{{u.User.image}}">
+                                                        <img *ngIf="!u.User.image" src="assets/imgs/user.png">
+                                                      </ion-avatar>
+                                                    {{u.User.name}}
+                                                </ion-item>
                                             </ion-list>                                     
                                 </div> 
             
@@ -41,31 +50,50 @@
             <ion-segment-button value="location">
               Location
             </ion-segment-button>
-            <ion-segment-button value="people">
+            <ion-segment-button value="acc">
               People
             </ion-segment-button>
           </ion-segment>
        
         <div [ngSwitch]="pet">
           <ion-list *ngSwitchCase="'location'">
-            <ion-item>
+              
+            <ion-item *ngFor="let us of u_acc_loc">
+              <ion-avatar item-start>                
+                <img *ngIf="us.User.image" src="{{us.User.image}}">
+                <img *ngIf="!us.User.image" src="assets/imgs/user.png">
+              </ion-avatar>
+              <h2>{{us.User.name}}</h2>
+                <div *ngFor="let at of us.Event">
+              <p *ngIf="us.Event.length <= 1">{{at.title}} </p>
+              <p *ngIf="us.Event.length > 1">{{at.title}}, </p>
+              </div>
+              <span>Traveled to {{us.Trip.end_location}}: {{us.Trip.trip_startdate| date: 'MMM yyyy'}}</span>
+            </ion-item>
+              
+<!--              <ion-item>
               <ion-avatar item-start>
                 <img src="assets/imgs/getstartback.jpeg">
               </ion-avatar>
               <h2>Cher</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
               <span>Traveled to sao paulo: Feb 2017</span>
-            </ion-item>
+            </ion-item>-->
          
           </ion-list>
         
-          <ion-list *ngSwitchCase="'people'">
-            <ion-item>
+          <ion-list *ngSwitchCase="'acc'">              
+            <ion-item *ngFor="let usr of u_acc_name">
+                
                 <ion-avatar item-start>
-                    <img src="assets/imgs/getstartback.jpeg">
+                    <img *ngIf="usr.User.image" src="{{usr.User.image}}">
+                <img *ngIf="!usr.User.image" src="assets/imgs/user.png">
                   </ion-avatar>
-              <h2>Cher</h2>
-              <p>Lorem Ipsum is simply dummy text</p>
+              <h2>{{usr.User.name}}</h2>
+                <div *ngFor="let tr of usr.Trips">              
+              <p *ngIf="usr.Trips.length <= 1">| {{tr.end_location}} |</p>
+              <p *ngIf="usr.Trips.length > 1">{{tr.end_location}} | </p>
+              </div>
             </ion-item>
       
           </ion-list>

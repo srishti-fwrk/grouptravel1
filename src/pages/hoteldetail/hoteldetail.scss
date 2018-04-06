@@ -1,4 +1,19 @@
 page-hoteldetail {
+    
+$read-more-settings: (
+  'rows': 3,
+  'font-size': 16px,
+  'line-height': 1.4,
+  'duration': 500ms,
+  'easing': ease,
+  'text-color': #34495e,
+  'trigger-color': #2980b9,
+  'bg-color': white,
+);
+
+// Optimal height based on your font size and line-height
+$read-more-height: map-get($read-more-settings, 'font-size') * map-get($read-more-settings, 'line-height') * (map-get($read-more-settings, 'rows') + 1); // + 1 for read-more
+    
     .plane {
         width: 100%;
         float: left;
@@ -75,7 +90,7 @@ page-hoteldetail {
     width: 100%;
     float: left;
     text-align: center;
-    margin: 0px 0 40px;
+    margin: 20px 0;
     font-size: 12px;
     font-family: "Roboto";
 .icon {
@@ -85,10 +100,11 @@ page-hoteldetail {
 }
 
 .river {
-    float:  left;
+    float: left;
     width: 100%;
     font-family: "Roboto";
-    padding: 0 8px;
+    padding: 0 8px 0 70px;
+    position: relative;
 
  h3 {
     font-size:  14px;
@@ -99,7 +115,7 @@ page-hoteldetail {
 
 ul {
     padding:  0;
-    margin: 5px 0;
+    margin: 3px 0;
     list-style:  none;
 
 
@@ -124,11 +140,19 @@ ul {
 
 }
 
-
  span {
     color: #22c4b9;
     font-size: 12px;
 }
+
+    img{
+        position: absolute;
+        top: 0;
+        margin: auto;
+        left: 0;
+        width: 70px;
+        height: 65px;
+    }
 
 }
 
@@ -243,6 +267,66 @@ ul {
     }
 }
 }
-        
+   
+
+
+
+.read-more {
+  position: relative;
+  color: map-get($read-more-settings, 'text-color');
+  text-decoration: none;
+  cursor: text;
+  margin-bottom: 10px;
+  .trigger {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    color: #86cfeb;
+    font-weight: bold;
+    left: 8px;
+    &::before {
+      content: attr(data-read-more);
+    } 
+  }
+  .content {
+    position: relative;
+    overflow: hidden;
+    max-height: $read-more-height;
+    -webkit-transition: max-height map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+    transition: max-height map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+    width:100%;
+    &::before {
+      content: '';
+      -webkit-transition: opactiy map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing'), visibility map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+      transition: opactiy map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing'), visibility map-get($read-more-settings, 'duration') map-get($read-more-settings, 'easing');
+      background-image: -webkit-linear-gradient(rgba(0,0,0,0), map-get($read-more-settings, 'bg-color'), map-get($read-more-settings, 'bg-color'));
+      background-image: linear-gradient(rgba(0,0,0,0), map-get($read-more-settings, 'bg-color'), map-get($read-more-settings, 'bg-color'));
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $read-more-height / 2;
+    }
+    h3{
+        margin: 8px 0;
+    }
+  }
+  &.expanded {
+    .content {
+      max-height: 600px; // great value for height animation
+    }
+    .content::before {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .trigger {
+      position: relative;
+      &::before {
+        content: attr(data-read-less);
+      } 
+    }
+  }
+}
+
 
 }

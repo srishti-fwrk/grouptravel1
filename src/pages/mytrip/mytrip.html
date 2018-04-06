@@ -1,14 +1,39 @@
-<ion-header>
+<!--<ion-header>
     <ion-navbar color="theme">
       <ion-title class="header_title" color="text">My trip</ion-title>
     </ion-navbar>
+  </ion-header>-->
+
+<ion-header>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">My trip</ion-title>
+    </ion-toolbar>
   </ion-header>
 
 
 <ion-content>
     <ion-list class="card_sec">
 				<ion-item>
-						<ion-card (click)="rating();">
+                                    
+                                    <div *ngFor = "let tr of trips">
+							<ion-card>                                                                       
+                                                            <img *ngIf="tr.Trip.image" src="{{tr.Trip.image}}">
+                                                            <img *ngIf="!tr.Trip.image" src="assets/imgs/getstartback.jpeg">
+                                                                     
+								<ion-card-content>
+									<ion-card-title>
+										{{tr.Trip.end_location}}
+									</ion-card-title>
+                                                                    <p>{{tr.Trip.trip_startdate | date: 'MMM d'}} - {{tr.Trip.trip_enddate | date: 'MMM d, yyyy'}}</p>
+								</ion-card-content>
+							</ion-card>
+					</div>
+<!--						<ion-card>
 							<img src="assets/imgs/getstartback.jpeg"/>
 							<ion-card-content>
 								<ion-card-title>
@@ -16,8 +41,8 @@
 								</ion-card-title>
 								<p>Mar 16 - Mar 25, 2017</p>
 							</ion-card-content>
-						</ion-card>
-						<ion-card>
+						</ion-card>-->
+<!--						<ion-card (click)="rating();">
 							<img src="assets/imgs/getstartback.jpeg"/>
 							<ion-card-content>
 								<ion-card-title>
@@ -25,7 +50,7 @@
 								</ion-card-title>
 								<p>Mar 16 - Mar 25, 2017</p>
 							</ion-card-content>
-						</ion-card>
+						</ion-card>-->
 				</ion-item>
 				
 			</ion-list><!-- Second Case End Here -->

@@ -1,0 +1,100 @@
+page-icomments {
+    .group{
+        .item{
+            padding-left: 8px;
+            align-items: start;
+            ion-avatar {
+                min-width: 80px;
+                min-height: 55px;
+                margin-right: 8px;
+                img{
+                    min-width: 80px;
+                    min-height: 55px;
+                    border-radius: 0px;
+                }
+            }
+            .label{
+                font-family: "Roboto";
+                span{
+                    vertical-align: top;
+                    font-size: 11px;
+                }
+                h2{
+                    font-size: 13px;
+                    font-weight: 600;
+                    color:#22c4b9;
+                    span{
+                        color:#7EA0E4;
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            .note{
+                margin: 0;
+                align-self: center;
+                button{
+                    display: block;
+                    margin: 0;
+                    color:#444;
+                    height: 20px;
+                    font-weight: 600;
+                    font-family: "Roboto";
+                    .icon{
+                        margin-left: 3px;
+                    }
+                }
+            }
+        }
+    }
+    
+    .coment{
+    h2{
+        padding: 0 16px;
+        font-size: 18px;
+      }
+    .item{
+        align-items:start;
+        border: 0px !important;
+        padding-right: 16px;
+        ion-avatar {
+            min-width: 30px;
+            min-height: 30px;
+                img {
+                    border-radius: 50%;
+                    overflow: hidden;
+                    width: 30px;
+                    height: 30px;
+                }
+        }
+        .item-inner{
+            border-bottom:1px solid #ccc !important;
+            .label{
+                h2{
+                    font-size: 14px;
+                    color: #3ac5b9;
+                    padding: 0px;
+                }
+                p{
+                    font-size: 14px;
+                    color: #616060;
+                    white-space: normal;
+                }
+            }
+            
+        }
+    }
+}
+
+
+.footer{
+    button {
+        background: #22c4b9;
+        color: #fff;
+        font-size: 13px;
+        padding: 0 13px;
+        height: 23px;
+    }
+}
+
+}

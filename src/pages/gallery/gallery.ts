@@ -57,18 +57,18 @@ export class GalleryPage {
   
   imagedetail(img){
       
-      this.navCtrl.push(GaldetailPage,{
-          send: img
-      });
+//      this.navCtrl.push(GaldetailPage,{
+//          send: img
+//      });
   }
 
   gallery() {
     this.navCtrl.push(GalleryPage);
   }
 
-  payments() {
-    this.navCtrl.push(ContactPage);
-  }
+//  payments() {
+//    this.navCtrl.push(ContactPage);
+//  }
 
   chat() {
     this.navCtrl.push(AboutPage);

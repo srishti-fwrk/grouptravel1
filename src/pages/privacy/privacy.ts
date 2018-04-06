@@ -20,6 +20,7 @@ import 'rxjs/add/operator/map';
 export class PrivacyPage {
     
     showdata: any;
+    title: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public common: CommonProvider,public http: Http,
@@ -62,7 +63,7 @@ export class PrivacyPage {
           console.log(data);
           
         if (data.status == 0) {
-            
+            this.title = data.data.Staticpage.title;
             this.showdata = data.data.Staticpage.detail; 
             
         }else {

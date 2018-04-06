@@ -1,0 +1,117 @@
+<!--<ion-header>
+    <ion-navbar color="theme">
+      <ion-title class="header_title" color="text">Flight</ion-title>
+    </ion-navbar>
+  </ion-header>-->
+
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="header_title" color="text">Flight</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <h3 class="subhead">Please Enter Your Detais Below:</h3>
+  <form #detailForm="ngForm">
+    <ion-list class="frm">
+
+<!--          <ion-item class="space" style="border-right: 1px solid #f1f1f1 !important;">
+              <ion-input type="number" name="ccode" [(ngModel)]="data.ccode" id="ccode" #ccode="ngModel" placeholder="Country Code" required></ion-input>
+          </ion-item>-->
+        
+        <ion-item class="space" style="border-right: 1px solid #f1f1f1 !important;">
+        <!--<ion-input type="text" placeholder="Country code" name="countrycode" [(ngModel)]="data.countrycode" id="countrycode" #countrycode="ngModel" required></ion-input>-->
+        <ion-select name="ccode" placeholder="Country code" [(ngModel)]="data.ccode" (ionChange)="codeSelect($event)" required>
+                <ion-option *ngFor="let cd of codes" value="{{cd.Phonecode.phonecode}}">{{cd.Phonecode.phonecode}} ({{cd.Phonecode.nicename}})</ion-option>                    
+        </ion-select>
+    </ion-item>
+        
+<!--            <ion-label class="alert alert-danger" color="danger">
+                <div *ngIf="ccode.errors && (ccode.dirty || ccode.touched)">
+                    <div [hidden]="!ccode.errors.required">
+                          Country Code is required
+                    </div>                 
+                  </div>
+            </ion-label>-->
+        
+          <ion-item class="space">
+              <ion-input type="number" name="phone" [(ngModel)]="data.phone" id="phone" #phone="ngModel" placeholder="Phone Number" required></ion-input>            
+          </ion-item>
+
+
+          <ion-item>
+              <ion-input type="email" name="mail" [(ngModel)]="data.mail" id="mail" #mail="ngModel" placeholder="Enter Your Email" required></ion-input>        
+          </ion-item>
+        
+        <ion-item>
+            <ion-select name="ptype" [(ngModel)]="data.ptype" id="ptype" #ptype="ngModel" placeholder="Passenger Type" required>
+                    <ion-option value="ADT" selected="true">Adult</ion-option>
+                    <ion-option value="CNN">Child</ion-option>
+                    <ion-option value="INF">Infant</ion-option>                    
+              </ion-select>
+        </ion-item>
+
+          <ion-item class="in" style="border-right: 1px solid #f1f1f1 !important;">
+              <ion-select name="title" [(ngModel)]="data.title" id="title" #title="ngModel" placeholder="Title" required>
+                    <ion-option value="Mr" selected="true">Mr.</ion-option>
+                    <ion-option value="Mrs">Mrs.</ion-option>
+                    <ion-option value="Miss">Miss.</ion-option>
+                    <ion-option value="Mstr">Mstr.</ion-option>
+                    <ion-option value="Ms">Ms.</ion-option>                    
+              </ion-select>
+          </ion-item>
+
+          <ion-item class="in" style="border-right: 1px solid #f1f1f1 !important;">
+              <ion-input type="text" name="fname" [(ngModel)]="data.fname" id="fname" #fname="ngModel" placeholder="First Name" required></ion-input>        
+          </ion-item>
+
+          <ion-item class="in">
+              <ion-input type="text" name="lname" [(ngModel)]="data.lname" id="lname" #lname="ngModel" placeholder="Last Name" required></ion-input>        
+          </ion-item>
+
+<!--          <ion-item>
+            <ion-input type="mail" placeholder="Enter Your Email"></ion-input>
+          </ion-item>-->
+          
+          <ion-item>
+            <ion-select name="scountry" placeholder="Nationality" [(ngModel)]="data.scountry" (ionChange)="dcountrySelect('Nationality',$event)" required>
+                <ion-option *ngFor="let cn of countries" value="{{cn.Country.name}}">{{cn.Country.name}}</ion-option>                    
+            </ion-select>
+          </ion-item>
+
+<!--           <ion-item>
+          <ion-datetime name="dob"  displayFormat="MM/DD/YYYY" max="{{minDate}}" [(ngModel)]="data.dob" placeholder="Change Date"
+                      id="dob" #dob="ngModel" required></ion-datetime> 
+                 </ion-item>-->
+              <ion-item (click)="openCalendar('dob')">
+                        <ion-label style="color: #a3a3a3;" *ngIf="data.dob == ''">Date Of Birth</ion-label>
+                        <ion-label style="color: #000;" *ngIf="data.dob != ''">{{data.dob}}</ion-label>
+              </ion-item>
+          
+
+          <ion-item>
+              <ion-input type="text" name="pno" [(ngModel)]="data.pno" id="pno" #pno="ngModel" placeholder="Passport Number" required></ion-input>   
+          </ion-item>
+
+          <ion-item>
+              <ion-select name="pcountry" placeholder="Passport Issuing Country" [(ngModel)]="data.pcountry" (ionChange)="dcountrySelect('passissuecountry',$event)" required>
+                <ion-option *ngFor="let cn of countries" value="{{cn.Country.name}}">{{cn.Country.name}}</ion-option>                    
+            </ion-select>            
+          </ion-item>
+                     
+            <ion-item (click)="openCalendar('passdob')">
+                        <ion-label style="color: #a3a3a3;" *ngIf="data.passdob == ''">Passport Expiry</ion-label>
+                        <ion-label style="color: #000;" *ngIf="data.passdob != ''">{{data.passdob}}</ion-label>
+            </ion-item>       
+        <button color="theme" ion-button class="search" (click)="arival(detailForm)" [disabled]="!detailForm.form.valid">Submit</button>
+        </ion-list>
+  </form>
+</ion-content>

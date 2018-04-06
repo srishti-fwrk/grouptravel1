@@ -1,0 +1,72 @@
+page-flightform {
+
+    .subhead{
+        width: 100%;
+        float: left;
+        text-align: center;
+        font-size: 14px;
+        color: #22c4b9;
+        margin: 16px 0 8px;
+    }
+
+    .space{
+        width: 50%;
+        float:left;
+    }
+    .in{
+        width: 33.3%;
+        float:left;
+    }
+
+    .frm{
+        float: left;
+        margin: 8px;
+        width: calc(100% - 16px);
+        box-shadow: 0 0 4px #dedede;
+        .item{
+            padding:0px;
+            border: 0px !important;
+            font-size: 14px;
+            .item-inner{
+                padding:0px;
+                border-bottom: 0.55px solid #ececec;
+                .input{
+                    .text-input{
+                        margin: 8px;
+                        width: calc(100% - 16px);
+                    }
+                }
+                .slct{
+                    max-width: 100%;
+                    width: 100%;
+                    padding: 8px;
+                    color: #a2a2a2;
+                    button{
+                        width:auto;
+                    }
+                }
+                
+                ion-select{
+                        padding-left: 8px;
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                    
+                    .label{
+                        margin: 11px 8px 11px 8px;
+                    }
+            }
+        }
+
+        .in{
+            width:33.3%;
+            float:left;
+        }
+        
+        button{
+            display: block;
+            margin: 10px auto;
+            width: 60%;
+           }
+    }
+}

@@ -21,6 +21,10 @@ import { DiscoverPage } from '../discover/discover';
   templateUrl: 'search.html',
 })
 export class SearchPage {
+    
+  data: any = {
+      filter: ''
+  };
   to: any;
   from: any;
   city: any;
@@ -30,6 +34,10 @@ export class SearchPage {
   optionss: RequestOptions;
   detail: any;
   occupancies: any;
+  tasks = [1,2,3,3,4,7];
+  filterbit: any = 0;
+  dcity: any;
+  dcountry: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public common: CommonProvider,public http: Http,
@@ -39,11 +47,15 @@ export class SearchPage {
     this.detail = navParams.get('detail');
     console.log(this.detail);
     
-    this.occupancies = this.detail.occupancies;
+    if(this.detail){
+       this.occupancies = this.detail.occupancies;
     console.log(this.occupancies);
     
     this.hotels= this.detail.hotels;
     console.log(this.hotels);
+    
+//    let curren = this.hotels.price.price_details.net[0].currency;
+//    console.log(curren);
 
     this.city= this.detail.city;
     console.log(this.city);
@@ -56,8 +68,11 @@ export class SearchPage {
 
     this.from = this.detail.from;
     this.to = this.detail.to; 
-    console.log(this.from+'-'+this.to);
+    console.log(this.from+'-'+this.to); 
     
+    this.dcity = this.detail.dcity;
+    this.dcountry = this.detail.dcountry;
+    }
   }
   
   back(){
@@ -66,6 +81,25 @@ export class SearchPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+  }
+  
+  filterSelect(chose){
+      var Loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      showBackdrop: false,
+      cssClass: 'loader'
+    });
+    
+    Loading.present().then(() => {
+      if(chose == 'lowest'){
+          Loading.dismiss();
+          this.filterbit = 0;
+      }else if(chose == 'highest'){
+          Loading.dismiss();
+          this.filterbit = 1;
+      }
+     
+     }); 
   }
 
  hotel(ht){
@@ -124,7 +158,9 @@ export class SearchPage {
               hotel: this.hotel,
               to: this.to,
               from: this.from,
-              search_id: data.search_id              
+              search_id: data.search_id,
+              dcity: this.dcity,
+              dcountry: this.dcountry              
            }
            console.log(detailed);
 

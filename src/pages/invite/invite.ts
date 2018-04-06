@@ -29,6 +29,7 @@ export class InvitePage {
     fid: any;
     trip_id: any;
     destination: any;
+    recentfrnds: any;
         
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private socialSharing: SocialSharing, public http: Http,
@@ -37,6 +38,7 @@ export class InvitePage {
       this.destination = localStorage.getItem('destination');
       this.id = localStorage.getItem('ID');
       this.trip_id = localStorage.getItem('TripID');
+      this.recentTravel();
   }
 
   ionViewDidLoad() {
@@ -46,6 +48,38 @@ export class InvitePage {
   dismiss() {
     let data = { 'foo': 'bar' };
     this.viewCtrl.dismiss(data);
+  }
+  
+  recentTravel(){
+      console.log('recent');    
+      
+    var options = this.common.options;
+    
+    var data_form = {        
+        user_id: this.id 
+    }
+    console.log(data_form);
+
+    var Serialized = this.common.serializeObj(data_form);
+    console.log(Serialized);
+    
+    this.http.post(this.common.base_url + 'trips/recenttravelfrd', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        
+        console.log(data);
+        if (data.status == 0) {
+        this.recentfrnds = data.data;
+        
+        console.log(this.recentfrnds);
+          
+        }else {        
+          
+        }
+      }, error => {
+        
+      });   
+        
   }
   
   search(keys){

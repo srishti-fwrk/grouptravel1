@@ -23,15 +23,23 @@
 
 
 <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      >
+    </ion-refresher-content>
+  </ion-refresher>
 	<div>
 	  <ion-segment [(ngModel)]="pet">
-		<ion-segment-button value="library" (click)="viewallImages()">
+		<ion-segment-button value="library" (click)="openImagePicker()">
 		  Library
 		</ion-segment-button>
-		<ion-segment-button value="camera" (click)="viewallImages()">
+		<ion-segment-button value="camera" (click)="openCamera()">
 		  Camera
 		</ion-segment-button>
-		<ion-segment-button value="video" (click)="videoListing()">
+		<ion-segment-button value="video" (click)="videoCapture()">
 		  Video
 		</ion-segment-button>
 	  </ion-segment>
@@ -83,14 +91,14 @@
 		  <div class="middle">
 			<div class="half" *ngFor="let vi of videos">
                            
-<!--                            <video src="{{vi.Video.video}}" controls="controls" (click)="videoPlayy(vi.Video.video)">
+                            <video src="{{vi.Video.video}}" controls (click)="videoPlayy(vi.Video.video)">
                                
-                            </video>-->
-                             <ion-thumbnail (click)="videoPlayy(vi.Video.video)">
+                            </video>
+<!--                             <ion-thumbnail (click)="videoPlayy(vi.Video.video)">
                             <video>
                               <source [src]="vi.Video.video" type="video/quicktime">
                             </video>
-                          </ion-thumbnail>
+                          </ion-thumbnail>-->
                         </div>
                       <!--                            <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer">
                             <source src="{{vi.Video.video}}" type="video/mov" />

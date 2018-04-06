@@ -39,6 +39,8 @@ export class HoteldetailPage {
   n3: any;
   search_id: any;
   optionss: RequestOptions;
+  dcity: any;
+  dcountry: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public common: CommonProvider,public http: Http,
@@ -48,24 +50,22 @@ export class HoteldetailPage {
     this.detailed = navParams.get('detailed');
     console.log(this.detailed);
     
-    this.detail = navParams.get('detail'); ///back data
-    console.log(this.detail);
-    
+    if(this.detailed){
+        
+    this.dcity = this.detailed.dcity; 
+    this.dcountry = this.detailed.dcountry;
     this.from = this.detailed.from;
     this.to = this.detailed.to;
     this.search_id = this.detailed.search_id;
     console.log(this.search_id);
-    
     this.city = this.detailed.hotel.hotelinfo.cityname;
     this.name = this.detailed.hotel.hotelinfo.fullName;
     this.street = this.detailed.hotel.hotelinfo.hotelAddresss.street;
-    
     this.ratingg = this.detailed.hotel.hotelinfo.starCategory;
     this.description = this.detailed.hotel.hotelinfo.hotelDescription[0].description;
     this.symbol = this.detailed.hotel.ratetype.bundledRates[0].currsymbol;
     this.total = this.detailed.hotel.ratetype.bundledRates[0].convertedPrice;
-    //this.gst = this.detailed.hotel.ratetype.bundledRates[0].price_details.GST[0].amount;
-    //this.gst = this.detailed.hotel.ratetype.bundledRates[0].price_details.Netprice[1].amount;
+    
     if(this.detailed.hotel.ratetype.bundledRates[0].price_details.GST.length > 0){
         console.log('gst');
         this.gst = this.detailed.hotel.ratetype.bundledRates[0].price_details.GST[0].amount;
@@ -73,12 +73,15 @@ export class HoteldetailPage {
     console.log('0');
       this.gst = this.detailed.hotel.ratetype.bundledRates[0].price_details.Netprice[1].amount;  
     }
-    
     this.price = this.detailed.hotel.ratetype.bundledRates[0].price_details.Netprice[0].amount;
     this.rooms = this.detailed.hotel.ratetype.bundledRates;
     console.log(this.rooms);
     
     this.n3 = this.detailed.hotel.hotelinfo.country;
+    }
+    this.detail = navParams.get('detail'); ///back data
+    console.log(this.detail);
+    
   }
 
   ionViewDidLoad() {
@@ -137,7 +140,9 @@ export class HoteldetailPage {
                       
            let hdetail = {
               sellRequestId: data.sellRequestId,
-              detail: data.dbstay              
+              detail: data.dbstay,
+              dcity: this.dcity,
+              dcountry: this.dcountry              
            }
            console.log(hdetail);
 

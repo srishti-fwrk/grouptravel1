@@ -23,6 +23,10 @@ export class ForgotPage {
       this.id = localStorage.getItem('ID');
 
   }
+  
+  back(){
+      this.navCtrl.push(SigninPage);
+  }
 
   dismiss() {
     let data = { 'foo': 'bar' };

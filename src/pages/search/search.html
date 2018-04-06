@@ -32,14 +32,14 @@
 
     <ion-item class="filter" no-padding>
         <ion-label><span>Filter</span></ion-label>
-        <ion-select [(ngModel)]="gaming">
-          <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
-          <ion-option value="n64">Highest Price</ion-option>
+        <ion-select name="filter" id="filter" #filter="ngModel" [(ngModel)]="data.filter" (ionChange)="filterSelect($event)" placeholder="Price">
+          <ion-option value="lowest" selected="true">Lowest Price</ion-option>
+          <ion-option value="highest">Highest Price</ion-option>
         </ion-select>
       </ion-item>
     
     
-    
+    <div *ngIf="filterbit == '0'">
     <ion-card class="waterfall" *ngFor="let ht of hotels">
     
           <ion-item (click)="hotel(ht)">
@@ -76,4 +76,43 @@
     
     
           </ion-card>
+  </div>
+  <div *ngIf="filterbit == '1'">
+  <ion-card class="waterfall" *ngFor="let ht of hotels.slice().reverse()">
+    
+          <ion-item (click)="hotel(ht)">
+            <ion-thumbnail item-start>
+                <img src="assets/imgs/abc.jpg">
+            </ion-thumbnail>
+            <h2>{{ht.fullName}}</h2>
+            <p>{{city}}</p> 
+            <ul>
+            <li>
+            <rating [(ngModel)]="ht.starCategory" 
+              #ht.starCategory="ngModel"
+              readOnly="true"
+              max="5" 
+              emptyStarIconName="star-outline" 
+              halfStarIconName="star-half" 
+              starIconName="star" 
+              nullable="false"></rating> 
+              
+              </li>
+            </ul>
+                       
+            <!--<ul>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li><ion-icon name="star"></ion-icon></li>
+                <li> <ion-icon name="star-outline"></ion-icon></li>
+                <li><span>3,789</span></li>
+              </ul>-->
+    
+              <ion-note item-end="" class="note note-ios">{{ht.minprice}}</ion-note>
+          </ion-item>
+    
+    
+          </ion-card>
+      </div>
 </ion-content>

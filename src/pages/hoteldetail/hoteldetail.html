@@ -19,6 +19,9 @@
 
 
 <ion-content>
+    
+    
+    
   <!--<div class="plane">
     
       <div class="fst">
@@ -55,6 +58,7 @@
         <li><button ion-button clear color="theme">View All Reviews</button></li>
       </ul>
       <span>{{name}}, {{city}}, {{n3}}</span>
+      <img src="assets/imgs/abc.jpg" />
     </div>
 
     <div class="slide">
@@ -69,7 +73,17 @@
           </ion-slide>
       </ion-slides>-->
       <h3>HOTEL DETAILS</h3>
+      
+      <div class="wrap">
+  <div class="read-more">
+    <div class="content">
       <h3>{{description}}</h3>
+    </div>
+    <span data-read-more="+ read more" data-read-less="- show less" class="trigger" onclick="this.parentElement.classList.toggle('expanded')"></span>
+  </div>
+</div>
+      
+      
       <!--<div *ngFor="let room of rooms">-->
         <ul>
           <li>Hotel - {{price}}</li>
@@ -86,7 +100,8 @@
                   <ion-avatar item-start>
                       <img src="assets/imgs/abc.jpg">
                   </ion-avatar>
-                  <h3>{{room.rooms[0].room_type}} {{room.rooms[0].bed_types[0].type}}</h3>
+                  <!--<h3>{{room.rooms[0].room_type}} {{room.rooms[0].bed_types[0].type}}</h3>-->
+                  <h3>{{room.rooms[0].description}}</h3>
                   <p>Non-Refundable</p>
                   <!--<button ion-button clear>View room details</button>-->        
                   <ion-note item-end="" class="note note-ios"> {{symbol}}{{room.convertedPrice}}

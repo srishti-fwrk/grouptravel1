@@ -57,8 +57,7 @@ export class UploadedPage {
     var options = this.common.options;
 
     var data_form = {
-      user_id: this.id,
-      trip_id: this.trip_id      
+      user_id: this.id      
     }
     //alert(JSON.stringify(data_form));
     console.log(data_form);
@@ -78,17 +77,17 @@ export class UploadedPage {
             this.images = data.data;
             console.log(this.images);
            //alert(JSON.stringify(this.images));
-            let toast = this.toastCtrl.create({
-              message: data.msg,
-              duration: 3000,
-              position: 'middle'
-            });
-            toast.present();
+//            let toast = this.toastCtrl.create({
+//              message: "",
+//              duration: 3000,
+//              position: 'middle'
+//            });
+//            toast.present();
 
           } else {
 
             let toast = this.toastCtrl.create({
-              message: data.msg,
+              message: "No photos uploaded",
               duration: 3000,
               position: 'middle'
             });

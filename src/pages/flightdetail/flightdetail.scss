@@ -1,0 +1,164 @@
+page-flightdetail {
+    .divider {
+        margin: 0;
+        .item {
+            border: 0px !important;
+            background: #F1F1F1;
+            .item-inner{
+                label{
+                    h2 {
+                        font-size: 14px;
+                        color: #333;
+                    }
+                    p {
+                        font-size: 11px;
+                        color: #797979;
+                    }
+                }
+                .note{
+                    font-size: 12px;
+                    text-align: right;
+                    color: #333;
+                    span {
+                        float:  left;
+                        width: 100%;
+                        color: #b7b7b7;
+                    }
+                }
+            }
+            
+        }
+    }
+    
+
+    .wallet {
+        position:  relative;
+        .content {
+            padding-left: 50px;
+            position:  relative;
+            .top, .bottom{
+                margin-left: 8px;
+                position: relative;
+                h3{
+                    font-size: 14px;
+                    margin: 0 0 3px;
+                    text-transform: capitalize;
+                    color: #2f2f2f;
+                }
+                h4 {
+                    margin: 0;
+                    font-size: 12px;
+                    text-transform: capitalize;
+                    color: #8F8F8F;
+                }
+            }
+
+                        .top:before{
+                            content: "";
+                            position: absolute;
+                            left: -12px;
+                            height: 9px;
+                            top: -5px;
+                            width:9px;
+                            border-radius: 50%;
+                            background: #000;
+                        }
+
+                        .bottom:before{
+                            content: "";
+                            position: absolute;
+                            left: -12px;
+                            height: 9px;
+                            bottom: -14px;
+                            width:9px;
+                            border-radius: 50%;
+                            background: #000;
+                        }
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 98%;
+                background: #ccc;
+                top: 6px;
+            }
+
+        }
+
+        span{
+            &:nth-child(1){
+                position:  absolute;
+                top: 0;
+                left: 0; 
+            }
+
+            &:nth-child(2) {
+                position: absolute;
+                top: 0;
+                bottom:  0;
+                margin: auto;
+                left: 0;
+                height: 17px;
+            }
+
+            &:nth-child(3) {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+          
+        }
+        
+    }
+
+
+ 
+        .waterfall{
+            align-items: start;
+            padding: 0;
+            margin: 20px 0 20px 8px;
+            width: 96.5%;
+            box-shadow:0 0 5px #e2e2e2;
+        .item-inner {
+            border: 0px !important;
+            border-radius: 4px;
+            padding-left: 8px;
+            .label{
+                font-family: "Roboto";
+                border-right: 1px dotted #ccc;
+                h2{
+                    font-size: 14px;
+                    font-weight: 500;
+                    white-space: normal;
+                }
+                p{
+                    font-size: 12px;
+                    font-weight: 400;
+                    font-style: italic;
+                    color: #7d7d7d;
+                    margin: 0;
+                }
+    
+            }
+            .note {
+                align-self: center;
+                align-self: center;
+                text-align: center;
+                font-weight: 600;
+                color: #fbb57f;
+                font-family: "Roboto";
+                font-size: 18px;
+                margin: 0px;
+
+            }
+        }
+    }
+
+    .cont{
+        width: 60%;
+        display: block;
+        margin: 20px auto 0;
+    }
+    
+}

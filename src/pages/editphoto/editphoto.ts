@@ -5,6 +5,7 @@ import { LocalityPage } from '../locality/locality';
 import { Http, Headers, RequestOptions, HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CommonProvider } from "../../providers/common/common";
+import { GaldetailPage } from '../galdetail/galdetail';
 
 /**
  * Generated class for the EditphotoPage page.
@@ -31,6 +32,7 @@ export class EditphotoPage {
     aud: any;
     trip_id: any;  
     check: boolean = false; 
+    dis: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public modalCtrl: ModalController,public http: Http, 
@@ -46,10 +48,21 @@ export class EditphotoPage {
           this.location = this.imgdata.Gallery.location;
                     
           if(this.location){
+              this.data.audience = true;
               this.bit = 1;
               console.log(this.bit);
+          }else{
+             this.data.audience = false; 
           }
-      }      
+      }
+           
+  }
+  
+  edit(){
+      console.log('edit');
+      this.navCtrl.push(GaldetailPage,{
+          send: this.imgdata
+      });
   }
   
   ionViewWillEnter(){

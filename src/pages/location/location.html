@@ -1,23 +1,46 @@
-<ion-header>
+<!--<ion-header>
     <ion-navbar color="theme">
-      <ion-title class="header_title" color="text">Sao Paulo Sa</ion-title>
+      <ion-title class="header_title" color="text">{{title}}</ion-title>
     </ion-navbar>
+  </ion-header>-->
+
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">{{title}}</ion-title>
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      
+	</ion-toolbar>
   </ion-header>
 
 <ion-content>
     <div class="card-background-page">
         <ion-card no-margin>
-        <img src="assets/imgs/getstartback.jpeg"/>
+        <img *ngIf="activities" src="{{activityCover}}"/>
+        <img *ngIf="!activities" src="assets/imgs/getstartback.jpeg"/>
       </ion-card>
       </div>
 
     <div class="things">
         <div class="top">
           <h3>Top things to do</h3>
-          <button>View all activities</button>
+          <button *ngIf="activities" (click)="view()">View all activities</button>
         </div>
       <ion-scroll scrollX="true" padding>
-          <ion-card>
+          <ion-card *ngFor="let act of activities">
+              <div class="product-img">
+                <img src="{{act.content.media.images[0].urls[0].resource}}" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>{{act.name}}</ion-title>
+                <p class="price">{{act.amountsFrom[0].convertedAmount}}</p>            
+              </ion-card-content>
+            </ion-card>  
+<!--          <ion-card>
             <div class="product-img">
                 <img src="assets/imgs/getstartback.jpeg"/>
            
@@ -34,93 +57,7 @@
                 <li><span>3,789</span></li>
               </ul>
             </ion-card-content>
-          </ion-card>
-          <ion-card>
-            <div class="product-img">
-                <img src="assets/imgs/getstartback.jpeg"/>
-              
-            </div>
-            <ion-card-content>
-              <ion-title>Product One</ion-title>
-              <p class="price">$130.00</p>
-              <ul>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star-outline"></ion-icon></li>
-                  <li><ion-icon name="star-outline"></ion-icon></li>
-                </ul>
-            </ion-card-content>
-          </ion-card>
-          <ion-card>
-            <div class="product-img">
-                <img src="assets/imgs/getstartback.jpeg"/>
-             
-            </div>
-            <ion-card-content>
-              <ion-title>Product One</ion-title>
-              <p class="price">$130.00</p>
-              <ul>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star-outline"></ion-icon></li>
-                </ul>
-            </ion-card-content>
-          </ion-card>
-          <ion-card>
-            <div class="product-img">
-                <img src="assets/imgs/getstartback.jpeg"/>
-              
-            </div>
-            <ion-card-content>
-              <ion-title>Product One</ion-title>
-              <p class="price">$130.00</p>
-              <ul>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star-outline"></ion-icon></li>
-                </ul>
-            </ion-card-content>
-          </ion-card>
-          <ion-card>
-            <div class="product-img">
-                <img src="assets/imgs/getstartback.jpeg"/>
-            
-            </div>
-            <ion-card-content>
-              <ion-title>Product One</ion-title>
-              <p class="price">$130.00</p>
-              <ul>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star-outline"></ion-icon></li>
-                </ul>
-            </ion-card-content>
-          </ion-card>
-          <ion-card>
-            <div class="product-img">
-                <img src="assets/imgs/getstartback.jpeg"/>
-            
-            </div>
-            <ion-card-content>
-              <ion-title>Product One</ion-title>
-              <p class="price">$130.00</p>
-              <ul>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star"></ion-icon></li>
-                  <li><ion-icon name="star-outline"></ion-icon></li>
-                </ul>
-            </ion-card-content>
-          </ion-card>
-          
+          </ion-card>-->
         </ion-scroll>
       </div>
 

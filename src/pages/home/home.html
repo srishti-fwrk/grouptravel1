@@ -79,15 +79,15 @@
 			<ion-list *ngSwitchCase="'past'">
 				<ion-item>
 					<div class="card_sec" *ngFor="let past of pasttrips">
-						<ion-card (click)="openFeedback(past.Trip)">
-							<img *ngIf="past.Trip.image" src="{{past.Trip.image}}">
-                                                        <img *ngIf="!past.Trip.image" src="assets/imgs/getstartback.jpeg">
+						<ion-card (click)="openFeedback(past.trip)">
+							<img *ngIf="past.trip.image" src="{{past.trip.image}}">
+                                                        <img *ngIf="!past.trip.image" src="assets/imgs/getstartback.jpeg">
                                                                      
 							<ion-card-content>
 								<ion-card-title>
-								{{past.Trip.end_location}}
+								{{past.trip.end_location}}
 								</ion-card-title>
-								<p>{{past.Trip.trip_startdate | date: 'MMM d'}} - {{past.Trip.trip_enddate | date: 'MMM d, yyyy'}}</p>
+								<p>{{past.trip.trip_startdate | date: 'MMM d'}} - {{past.trip.trip_enddate | date: 'MMM d, yyyy'}}</p>
 										
 							</ion-card-content>
 						</ion-card>

@@ -36,11 +36,14 @@
     <img *ngIf="!tripcover" src="assets/imgs/getstartback.jpeg">
     
     <!--<img src="assets/imgs/getstartback.jpeg"/>-->
-    <div class="card-subtitleb">Vacation starts in</div>
-    <div class="card-title">{{destination}}</div>
-    <div class="card-subtitle">{{startdate | date: 'MMM d'}} - {{enddate | date: 'MMM d, yyyy'}}</div>
+    <div class="cardtitle">
+        <div class="card-subtitleb" *ngIf="destination2 != ''">Vacation starts in</div>
+        <div class="card-title">{{destination}}</div>
+        <div class="card-subtitle">{{startdate | date: 'MMM d'}} - {{enddate | date: 'MMM d, yyyy'}}</div>
+    </div>
     <button ion-button color="light" clear (click)="edit()"><ion-icon ios="md-create" md="md-create"></ion-icon> Edit</button>
-  </ion-card>
+    <div class="overlay"></div>
+    </ion-card>
   </div>
 
   <div padding class="attend">
@@ -69,11 +72,47 @@
         <ion-icon ios="ios-cloudy-night-outline" md="ios-cloudy-night-outline" item-end><span>{{day}}<sup>&#9675;</sup></span></ion-icon>
         <ion-icon ios="ios-partly-sunny-outline" md="ios-partly-sunny-outline" item-end><span>{{night}}<sup>&#9675;</sup></span></ion-icon>
       </ion-item>
-      <h5>Location:<button color="theme" (click)="location();">{{destination}}</button></h5>
+      <h5>Location:<button color="theme" (click)="location(destination)">{{destination}} |</button><button color="theme" (click)="location(destination2)">{{destination2}}</button></h5>
       <p>Who's ready for some fun? Click the teal button to add to your Itinerary</p>
   </ion-list>
 
   </div>
+    <ion-list>
+        <ion-card class="group" *ngFor="let et of eventss">
+            <span class="time">{{et.Event.d_time}}</span>
+          <ion-item>
+            <ion-avatar item-start>
+               <img src="assets/imgs/a.png">
+            </ion-avatar>
+            
+            <h2>{{et.Event.title}}</h2>
+           
+            <span>{{destination}}</span>
+            <ion-note item-end="" class="note note-ios">
+<!--                <button ion-button clear small (click)="likeItinerary()">2 
+                        <ion-icon ios="ios-heart-outline" md="ios-heart-outline"></ion-icon>
+                </button>-->
+                
+                <button *ngIf="et.likecount == '0'" (click)="likeItinerary(et.Event.id)" ion-button clear small>
+                    <span *ngIf="et.likecount != '0'">{{et.likecount}}</span>
+                  <ion-icon ios="ios-heart-outline" md="ios-heart-outline"></ion-icon>
+                 </button> 
+                <button *ngIf="et.likecount != '0'" (click)="likeItinerary(et.Event.id)" ion-button clear small>
+                    <span *ngIf="et.likecount != '0'">{{et.likecount}}</span>
+                  <ion-icon ios="ios-heart-outline" md="ios-heart-outline" style="color:#f00;"></ion-icon>
+             </button>
+                
+                
+                <button ion-button clear small (click)="comments(et.Event.id)">
+                        <span *ngIf="et.commentcount != 0">{{et.commentcount}}</span> 
+                    <ion-icon ios="ios-chatbubbles-outline" md="ios-chatbubbles-outline"></ion-icon>
+                </button>
+            </ion-note>
+          </ion-item>
+
+          </ion-card>
+    </ion-list>
+    
   <ion-fab bottom right edge>
     <button ion-fab mini color="theme" (click)="openNext()"><ion-icon name="add"></ion-icon></button>
 </ion-fab>
@@ -81,6 +120,6 @@
 <ion-footer>
   <a href="#" (click)="itinerary()" class="active"><ion-icon ios="ios-paper-outline" md="md-paper"></ion-icon><span>Itinerary</span></a>
   <a href="#" (click)="chat()"><ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles"></ion-icon><span>Chat</span></a>
-  <a href="#" (click)="payments()"><ion-icon ios="ios-cash-outline" md="md-cash"></ion-icon><span>Payments</span></a>
+  <!--<a href="#" (click)="payments()"><ion-icon ios="ios-cash-outline" md="md-cash"></ion-icon><span>Payments</span></a>-->
   <a href="#" (click)="gallery()"><ion-icon ios="ios-camera-outline" md="md-camera"></ion-icon><span>Gallery</span></a>  
 </ion-footer>

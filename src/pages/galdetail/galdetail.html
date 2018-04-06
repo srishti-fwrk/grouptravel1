@@ -1,8 +1,15 @@
 <ion-header>
-    <ion-navbar color="theme">
-      <ion-title class="header_title" color="text">Detail</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="header_title" color="text">Detail</ion-title>
+
+  </ion-toolbar>
+</ion-header>
 
 <ion-content class="gallery">
     <ion-card>
@@ -10,7 +17,7 @@
           <div class="opt">
             <h2 *ngIf="location">{{location}}</h2>
             <h2 *ngIf="!location">{{location}}</h2>
-            <button  (click)="presentActionSheet();" ion-button color="dark" clear><ion-icon ios="ios-more" md="ios-more"></ion-icon></button>
+            <button *ngIf="get" (click)="presentActionSheet();" ion-button color="dark" clear><ion-icon ios="ios-more" md="ios-more"></ion-icon></button>
           </div>
         
           <div class="pc"><img src="{{image}}"></div>

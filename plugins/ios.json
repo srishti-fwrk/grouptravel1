@@ -44,10 +44,6 @@
             "PHOTO_LIBRARY_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "io.ionic.grouptravel"
         },
-        "cordova-plugin-calendar": {
-            "CALENDAR_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "io.ionic.grouptravel"
-        },
         "cordova-plugin-googleplus": {
             "REVERSED_CLIENT_ID": "com.googleusercontent.apps.419942336620-oii81m8tto75e601bvnfkhffhhf0jlfn",
             "PACKAGE_NAME": "io.ionic.grouptravel"
@@ -66,6 +62,22 @@
         },
         "com.hutchind.cordova.plugins.streamingmedia": {
             "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-calendar": {
+            "CALENDAR_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-media-capture": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "MICROPHONE_USAGE_DESCRIPTION": " ",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.grouptravel"
         }
     },
     "dependent_plugins": {
@@ -73,6 +85,9 @@
             "PACKAGE_NAME": "io.ionic.grouptravel"
         },
         "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.grouptravel"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.grouptravel"
         }
     }

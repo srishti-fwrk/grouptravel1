@@ -20,13 +20,23 @@ export class BookingPage {
   image: any;
 
   id: string;
-trip: string= 'upcoming';
+  trip: string= 'upcoming';
+  uflights = [];
+  uhotels = [];
+  pflights = [];
+  photels = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public common: CommonProvider,public http: Http) {
 
       this.id = localStorage.getItem('ID');
-  this.viewProfile();
+      this.viewProfile();
+      
+      if(this.trip == 'upcoming'){
+            this.upcomingBookings();
+        }else if(this.trip == 'past'){
+            this.pastBookings();
+        }
   }
 
   ionViewDidLoad() {
@@ -60,9 +70,69 @@ trip: string= 'upcoming';
         }
       }, error => {
               
-      });
-    
+      });    
   
+  }
+  
+   upcomingBookings(){
+     
+      var options = this.common.options;
+  
+    var data_form = {
+      user_id: this.id
+    }
+    console.log(data_form);
+    
+    var Serialized = this.common.serializeObj(data_form);
+    console.log(Serialized);
+   
+      this.http.post(this.common.base_url + 'bookings/upcomingbooking', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        if (data.status == 0) {
+         
+           this.uflights = data.data.flight;
+           this.uhotels = data.data.hotel;
+          
+          
+        }else {
+                        
+        }
+      }, error => {
+              
+      });
+       
+  }
+  
+  pastBookings(){
+      
+      var options = this.common.options;
+  
+    var data_form = {
+      user_id: this.id
+    }
+    console.log(data_form);
+    
+    var Serialized = this.common.serializeObj(data_form);
+    console.log(Serialized);
+   
+      this.http.post(this.common.base_url + 'bookings/pastbooking', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        if (data.status == 0) {
+          
+          this.pflights = data.data.flight;
+          this.photels = data.data.hotel;
+          
+        }else {
+                        
+        }
+      }, error => {
+              
+      });
+      
   }
 
 }

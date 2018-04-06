@@ -12,8 +12,8 @@
           
       </ion-avatar>
       <button ion-button clear color="dark" (click)="dismiss();" item-end class="cls"><ion-icon name="close"></ion-icon></button>
-      <h2>150</h2>
-      <p>Miles Travelled</p>
+      <h2>{{count}}</h2>
+      <p>Trips</p>
    </ion-item>
 
    <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" >
@@ -33,7 +33,12 @@
 
     <h3 class="menu_heading">BOOKINGS</h3>
      <button ion-item menuClose (click)="book()" >
-      My Booking
+      My Bookings
+     </button>
+    
+    <h3 class="menu_heading">PAYMENT</h3>
+     <button ion-item menuClose (click)="payment()" >
+      Payment History
      </button>
 
      <h3 class="menu_heading">ACTIVITY</h3>

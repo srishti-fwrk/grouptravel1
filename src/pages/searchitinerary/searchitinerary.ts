@@ -6,6 +6,7 @@ import {googlemaps} from 'googlemaps';
 import { Http, Headers, RequestOptions, HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CommonProvider } from "../../providers/common/common";
+import { DiscoverPage } from '../discover/discover';
 
 /**
  * Generated class for the SearchitineraryPage page.
@@ -32,6 +33,10 @@ export class SearchitineraryPage implements OnInit{
       searchh: '',
       people: ''
   }
+  id: any;
+  u_acc_loc: any;
+  u_acc_name: any;
+  users: any;
   
    @ViewChild('map') mapElement: ElementRef;
      
@@ -40,17 +45,28 @@ export class SearchitineraryPage implements OnInit{
     private nativeGeocoder: NativeGeocoder,public common: CommonProvider,
     public toastCtrl: ToastController, public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
+    
     this.chose = 'location';
     console.log('segment'+this.chose);
+    this.id = localStorage.getItem('ID');
+    
   }
   
-  choose(val){      
+  choose(val){
+      this.pet = val.value;   
+      console.log('pet'+this.pet);   
       console.log(val.value);
       this.chose = val.value;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchitineraryPage');
+  }
+  
+  back(){
+      this.navCtrl.push(DiscoverPage,{
+          bit: 4
+      });
   }
   
   ngOnInit() {
@@ -112,24 +128,147 @@ export class SearchitineraryPage implements OnInit{
   }
   
   searchByLocation(loc){
-     console.log(loc); 
+     console.log(loc);
+     
+     var Loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      showBackdrop: false,
+      cssClass: 'loader'
+    }); 
      
      var options = this.common.options;
   
-    var data_form = {
-        location: loc 
+    var data_form = {        
+        end_location: loc          
+    }
+    console.log(data_form);
+    
+    var Serialized = this.common.serializeObj(data_form);
+    console.log(Serialized);
+    
+   Loading.present().then(() => {
+      this.http.post(this.common.base_url + 'trips/itinerary_acc_to_location', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        Loading.dismiss();
+        
+        if (data.status == true) { 
+            
+            this.u_acc_loc = data.data;
+            console.log(this.u_acc_loc);
+            
+            let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();          
+            
+        }else {
+        
+           let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();             
+        }
+      }, error => {
+      Loading.dismiss();
+         let toast = this.toastCtrl.create({
+            message: "Check your network connection",
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();     
+      }); 
+      });   
+  }
+  
+  userListing(keys){      
+      
+     console.log(keys);
+     
+     var Loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      showBackdrop: false,
+      cssClass: 'loader'
+    }); 
+      
+      var options = this.common.options;
+  
+    var data_form = {        
+        code: keys          
+    }
+    console.log(data_form);
+    
+    var Serialized = this.common.serializeObj(data_form);
+    console.log(Serialized);
+   Loading.present().then(() => {
+      this.http.post(this.common.base_url + 'trips/itinerary_acc_to_user', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        Loading.dismiss();
+        if (data.status == 0) { 
+            
+            this.users = data.data;
+            console.log(this.users);
+                        
+            let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();          
+            
+        }else {
+        
+           let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();             
+        }
+      }, error => {
+      Loading.dismiss();
+         let toast = this.toastCtrl.create({
+            message: "Check your network connection",
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();     
+      });
+      }); 
+  }
+  
+  userSearch(keys){
+      
+      this.users = [];
+      this.data.people = keys;
+      console.log(keys);
+      
+      var options = this.common.options;
+  
+    var data_form = {        
+        code: keys          
     }
     console.log(data_form);
     
     var Serialized = this.common.serializeObj(data_form);
     console.log(Serialized);
    
-      this.http.post(this.common.base_url + 'galleries/itinerary', Serialized, options)
+      this.http.post(this.common.base_url + 'trips/itinerary_acc_to_user', Serialized, options)
       .map(res => res.json())
       .subscribe(data => {
         console.log(data);
         if (data.status == 0) { 
             
+            this.u_acc_name = data.data;          
+            console.log(this.u_acc_name);
+                        
             let toast = this.toastCtrl.create({
             message: data.msg,
             duration: 3000,
@@ -154,10 +293,6 @@ export class SearchitineraryPage implements OnInit{
           });
           toast.present();     
       });    
-  }
-  
-  userSearch(){
-      
   }
 
 }

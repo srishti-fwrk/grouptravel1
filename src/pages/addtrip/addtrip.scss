@@ -14,6 +14,7 @@ page-addtrip {
                     height: 25px;
                     font-weight: 300;
                     font-size: 14px;
+                    z-index: 9;
 
                     .icon{padding-right: 5px;}
                     &:first-child{
@@ -31,35 +32,43 @@ page-addtrip {
                 height: 100%;
                 }
 
-          }
-        
-          .card-title {
-            position: absolute;
-            top: 50%;
-            font-size: 20px;
-            width: 100%;
-            font-weight: bold;
-            color: #fff;
+                .cardtitle{
+                       position:absolute;
+                       margin: auto;
+                       left: 0;
+                       right: 0;
+                       top: 35%;
+                       z-index: 9;
+                             .card-title {
+                               font-size: 20px;
+                               width: 100%;
+                               font-weight: bold;
+                               color: #fff;
+                               margin-bottom: 5px;
+                           }
+                             .card-subtitle,   .card-subtitleb {
+                               font-size: 12px;
+                               width: 100%;
+                               color: #fff;
+                               font-weight: 400;
+                           }
+                      }
+                      .overlay{
+                            position: absolute;
+                            background: rgba(0,0,0,0.2);
+                            top: 0;
+                            right: 0;
+                            left: 0;
+                            bottom: 0;
+                            margin: auto;
+                      }
         }
-        
-          .card-subtitle,   .card-subtitleb {
-            font-size: 12px;
-            position: absolute;
-            top: 63%;
-            width: 100%;
-            color: #fff;
-            font-weight: 400;
-        }
-
-          .card-subtitleb{
-            top: 43%;
-        }
-        
-        }
+    }
 
 .attend {
 
     .list{
+        margin-bottom: 0;
             .item
             {
                 ion-avatar{
@@ -103,6 +112,62 @@ page-addtrip {
         }
     }
 }
+
+.group{
+    .time{
+            font-size: 11px;
+            padding-left: 8px;
+            margin-top: 8px;
+            float: left;
+        }
+        .item{
+            padding-left: 8px;
+            align-items: start;
+            ion-avatar {
+                min-width: 80px;
+                min-height: 55px;
+                margin-right: 8px;
+                img{
+                    min-width: 80px;
+                    min-height: 55px;
+                    border-radius:0px;
+                }
+            }
+            .label{
+                font-family: "Roboto";
+                h6{
+                    font-size: 10px;
+                }
+                h2{
+                        color: #22c4b9;
+                        font-weight: bold;
+                        font-size: 14px;
+                }
+                span{
+                    vertical-align: top;
+                    font-size: 11px;
+                    font-weight: 300;
+                }
+            }
+
+            .note{
+                margin: 0;
+                align-self: center;
+                button{
+                    display: block;
+                    margin: 0;
+                    color:#444;
+                    height: 20px;
+                    font-weight: 600;
+                    font-family: "Roboto";
+                    .icon{
+                        margin-left: 3px;
+                    }
+                }
+            }
+        }
+    }
+
 ion-footer{
     display: -webkit-box;
     display: -webkit-flex;

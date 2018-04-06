@@ -7,24 +7,40 @@ page-rating {
             margin: 0px;
             width: 100%;
             border-radius: 0px;
+             .overlay{
+                            position: absolute;
+                            background: rgba(0,0,0,0.2);
+                            top: 0;
+                            right: 0;
+                            left: 0;
+                            bottom: 0;
+                            margin: auto;
+                      }
+               .cardtitle{
+              position:absolute;
+              margin: auto;
+                left: 0;
+                right: 0;
+                top: 35%;
+                z-index: 9;
+                       .card-title {
+                         font-size: 2.0em;
+                         width: 100%;
+                         font-weight: bold;
+                         color: #fff;
+                       }
+                       .card-subtitle {
+                         font-size: 1.0em;
+                         width: 100%;
+                         color: #fff;
+                       }
+              
           }
+      }
         
-          .card-title {
-            position: absolute;
-            top: 36%;
-            font-size: 2.0em;
-            width: 100%;
-            font-weight: bold;
-            color: #fff;
-          }
-        
-          .card-subtitle {
-            font-size: 1.0em;
-            position: absolute;
-            top: 52%;
-            width: 100%;
-            color: #fff;
-          }
+       
+          
+         
 
 
 .waterfall {

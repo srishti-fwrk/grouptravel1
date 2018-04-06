@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">Discover</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+	
+    
+    <div class="things">
+        <div *ngIf="bit1 == '0'">
+            <div class="top">
+            <h3>Top things to do</h3>
+            <button *ngIf="activities" (click)="view()">View all activities</button>
+          </div>
+          <ion-scroll scrollX="true" padding>
+            <ion-card *ngFor="let act of activities">
+              <div class="product-img">
+                <img src="{{act.content.media.images[0].urls[0].resource}}" />
+
+              </div>
+              <ion-card-content>
+                <ion-title>{{act.name}}</ion-title>
+                <p class="price">{{act.amountsFrom[0].convertedAmount}}</p>
+                <!--<ul>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star"></ion-icon>
+                  </li>
+                  <li>
+                    <ion-icon name="star-outline"></ion-icon>
+                  </li>
+                  <li><span>3,789</span></li>
+                </ul>-->
+              </ion-card-content>
+            </ion-card>  
+          </ion-scroll>
+        </div>
+        <div *ngIf="bit1 == '1'">
+            <div class="top">
+            <h3>Top things to do</h3>
+            <p>No Activities Found</p>
+          </div>
+        </div>
+          
+        </div> 
+
+	<div class="things second">
+              <div class="top">
+                  <h3>View Friends Itinerary</h3>
+                  <!--<button (click)="view()">Search all ocho rios</button>-->
+                </div>
+            <div *ngIf="bit2 == '0'">
+                <ion-scroll scrollX="true" padding>
+                  <ion-card *ngFor="let fr of friends">
+                    <div class="product-img">
+                        <img *ngIf="fr.User.image" src="{{fr.User.image}}">
+                        <img *ngIf="!fr.User.image" src="assets/imgs/user.png">
+                    </div>
+                    <ion-card-content>
+                      <ion-title>{{fr.User.name}}</ion-title>
+                     
+                    </ion-card-content>
+                  </ion-card>
+
+                </ion-scroll>
+            </div>
+            <div *ngIf="bit2 == '1'">
+                <p>No Friends Itinerary found for this Location</p>
+            </div>
+              
+                </div>
+				
+    
+	<div class="trav">
+		<div class="top">
+                  <h3>Recent Pictures</h3>
+                  <!--<button (click)="view()">View Gallery</button>-->
+                </div>
+            <div *ngIf="bit3 == '0'">
+                <div *ngFor="let img of images">
+                <ion-card *ngFor="let im of img.Gallery">
+                    <img src="{{im.image}}"/>
+<!--                    <div class="overlay"></div>-->
+<!--                    <div class="card-title">Itineraries</div>-->
+                  </ion-card>
+            </div> 
+            </div>
+            <div *ngIf="bit3 == '1'">
+                <p>No Recent Images found for this Location</p>
+            </div>
+               
+<!--                  <ion-card>
+                    <img src="assets/imgs/getstartback.jpeg"/>
+                    <div class="overlay"></div>
+                    <div class="card-title">Galleries</div>
+                  </ion-card>-->
+        </div>
+	
+</ion-content>

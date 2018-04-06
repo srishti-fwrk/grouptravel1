@@ -28525,6 +28525,11 @@ ion-fab[bottom][edge] {
   bottom: -6px;
 }
 
+.fab {
+  width: 40px;
+  height: 40px;
+}
+
 page-about .main {
   position: relative;
   width: 100%;
@@ -28988,26 +28993,27 @@ page-addtrip .card-background-page ion-card img {
   height: 100%;
 }
 
-page-addtrip .card-background-page .card-title {
+page-addtrip .card-background-page .cardtitle {
   position: absolute;
-  top: 50%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 35%;
+}
+
+page-addtrip .card-background-page .cardtitle .card-title {
   font-size: 20px;
   width: 100%;
   font-weight: bold;
   color: #fff;
+  margin-bottom: 5px;
 }
 
-page-addtrip .card-background-page .card-subtitle, page-addtrip .card-background-page .card-subtitleb {
+page-addtrip .card-background-page .cardtitle .card-subtitle, page-addtrip .card-background-page .cardtitle .card-subtitleb {
   font-size: 12px;
-  position: absolute;
-  top: 63%;
   width: 100%;
   color: #fff;
   font-weight: 400;
-}
-
-page-addtrip .card-background-page .card-subtitleb {
-  top: 43%;
 }
 
 page-addtrip .attend .list .item ion-avatar {
@@ -30039,31 +30045,86 @@ page-discover .discover .segment-button:hover:not(.segment-activated) {
   background-color: rgba(34, 196, 185, 0.1);
 }
 
-page-discover .location_sec h5 {
+page-discover .list {
+  width: 100%;
+  float: left;
+  margin: 0px;
+}
+
+page-discover .list .location_sec {
+  width: 100%;
+  float: left;
+  padding: 6px;
+}
+
+page-discover .list .location_sec h5 {
   font-size: 12px;
   color: #000;
   text-align: center;
   font-family: "Roboto";
 }
 
-page-discover .location_sec ion-item {
+page-discover .list .location_sec ion-item {
   border: 1px solid #c8c7cc;
+  padding: 0px 8px;
+  min-height: 24px;
+  height: 35px;
 }
 
-page-discover .location_sec ion-item .item-inner {
+page-discover .list .location_sec ion-item .item-inner {
   border-bottom: 0px !important;
+  padding: 0px !important;
 }
 
-page-discover .location_sec ion-item .item-inner .input-wrapper ion-label {
-  width: auto;
-  min-width: auto;
-  max-width: 30px;
-  margin-right: 0px;
+page-discover .list .location_sec ion-item .item-inner .input-wrapper ion-input {
+  max-width: 45.5%;
+  border-right: 1px solid #ccc;
 }
 
-page-discover .location_sec ion-item .item-inner .input-wrapper ion-input input {
-  margin-right: 0px;
-  margin-left: 0px;
+page-discover .list .location_sec ion-item .item-inner .input-wrapper ion-input input {
+  padding: 8px 8px 9px 0px;
+  font-size: 14px;
+  width: 100%;
+  margin: 0;
+}
+
+page-discover .list .location_sec ion-item .item-inner ion-select {
+  font-size: 14px;
+  padding: 8px;
+  max-width: 50%;
+}
+
+page-discover .list .location_sec ion-item .sr {
+  height: 35px;
+  padding: 0;
+  font-size: 22px;
+  line-height: 35px;
+  background: transparent;
+  color: #22c4b9;
+  margin: 0;
+}
+
+page-discover .list .location_sec ion-item:nth-child(3) {
+  width: 43%;
+  float: left;
+  border-top: 0px;
+  border-right: 0px;
+}
+
+page-discover .list .location_sec ion-item:nth-child(3) .datetime-ios {
+  padding: 8px 0px;
+  font-size: 14px;
+}
+
+page-discover .list .location_sec ion-item:nth-child(4) {
+  width: 57%;
+  float: left;
+  border-top: 0px;
+}
+
+page-discover .list .location_sec ion-item:nth-child(4) .datetime-ios {
+  padding: 8px 0px;
+  font-size: 14px;
 }
 
 page-discover .things {
@@ -30093,8 +30154,8 @@ page-discover .top button {
   text-align: right;
   float: left;
   width: 57%;
-  font-size: 11px;
-  font-weight: 300;
+  font-size: 12px;
+  font-weight: 400;
   background: transparent;
   padding: 0px;
 }
@@ -30117,11 +30178,12 @@ page-discover ion-scroll .scroll-content {
 page-discover ion-scroll .scroll-content .scroll-zoom-wrapper .card.card-md,
 page-discover ion-scroll .scroll-content .scroll-zoom-wrapper .card.card-ios {
   height: auto;
-  width: 90px;
+  width: 100px;
   display: inline-block;
   -webkit-box-shadow: none;
   box-shadow: none;
   margin: 0px;
+  padding: 0 3px;
 }
 
 page-discover ion-scroll .scroll-content .scroll-zoom-wrapper .card.card-md .product-img,
@@ -30823,7 +30885,14 @@ page-editphoto .edit_main .button {
   height: 20px;
   padding: 0;
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+page-editphoto .edit_main .button .icon {
+  margin-right: 4px;
 }
 
 page-editphoto .edit_main .pic {
@@ -31373,6 +31442,35 @@ page-galdetail .pc img {
   width: 100%;
 }
 
+page-galdetail .coment h2 {
+  padding: 0 16px;
+  font-size: 18px;
+}
+
+page-galdetail .coment .item ion-avatar {
+  min-width: 30px;
+  min-height: 30px;
+}
+
+page-galdetail .coment .item ion-avatar img {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+}
+
+page-galdetail .coment .item .item-inner .label h2 {
+  font-size: 14px;
+  color: #3ac5b9;
+  padding: 0px;
+}
+
+page-galdetail .coment .item .item-inner .label p, page-galdetail .coment page-arival .waterfall .item .item-inner .label .us span, page-arival .waterfall page-galdetail .coment .item .item-inner .label .us span, page-galdetail .coment page-flight .waterfall .item .item-inner .label .us span, page-flight .waterfall page-galdetail .coment .item .item-inner .label .us span, page-galdetail .coment page-hoteldetail .waterfall .item .item-inner .label button, page-hoteldetail .waterfall page-galdetail .coment .item .item-inner .label button, page-galdetail .coment page-search .waterfall .item .item-inner .label span, page-search .waterfall page-galdetail .coment .item .item-inner .label span, page-galdetail .coment page-viewactivities .waterfall .item .item-inner .label span, page-viewactivities .waterfall page-galdetail .coment .item .item-inner .label span {
+  font-size: 14px;
+  color: #616060;
+  white-space: normal;
+}
+
 page-galdetail ion-footer form {
   display: -webkit-box;
   display: -webkit-flex;
@@ -31664,11 +31762,38 @@ page-gallerytwo .middle .half {
   height: 100px;
   overflow: hidden;
   border: 1px solid #fff;
+  background: #000;
 }
 
 page-gallerytwo .middle .half img {
-  height: 100%;
   width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+page-gallerytwo .middle .half video {
+  width: auto;
+  height: 100px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  left: 0;
+  position: absolute;
+}
+
+page-gallerytwo .middle .half video img {
+  width: auto !important;
+}
+
+page-gallerytwo .middle .half video button.small-center {
+  height: 31px !important;
+  width: 31px !important;
 }
 
 page-gallerytwo .middle .half span.count {
@@ -33049,19 +33174,23 @@ page-rating .card-background-page ion-card {
   border-radius: 0px;
 }
 
-page-rating .card-background-page .card-title {
+page-rating .card-background-page .cardtitle {
   position: absolute;
-  top: 36%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 35%;
+}
+
+page-rating .card-background-page .cardtitle .card-title {
   font-size: 2.0em;
   width: 100%;
   font-weight: bold;
   color: #fff;
 }
 
-page-rating .card-background-page .card-subtitle {
+page-rating .card-background-page .cardtitle .card-subtitle {
   font-size: 1.0em;
-  position: absolute;
-  top: 52%;
   width: 100%;
   color: #fff;
 }

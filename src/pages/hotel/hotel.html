@@ -89,18 +89,29 @@
     </div>
      </div>                                            
     </ion-label>
+        
+        <ion-item>
+            <ion-select name="pcountry" placeholder="Select Country" [(ngModel)]="data.scountry" (ionChange)="scountrySelect($event)" required>
+                <ion-option *ngFor="let cn of countries" value="{{cn.Country.name}}">{{cn.Country.name}}</ion-option>                    
+            </ion-select>
+        </ion-item>
+        
+        
     <ion-item>
-        <ion-input type="text" placeholder="Country code" name="countrycode" [(ngModel)]="data.countrycode" id="countrycode" #countrycode="ngModel" required></ion-input>
+        <!--<ion-input type="text" placeholder="Country code" name="countrycode" [(ngModel)]="data.countrycode" id="countrycode" #countrycode="ngModel" required></ion-input>-->
+        <ion-select name="countrycode" placeholder="Select Country code" [(ngModel)]="data.countrycode" (ionChange)="codeSelect($event)" required>
+                <ion-option *ngFor="let cd of codes" value="{{cd.Phonecode.phonecode}}">{{cd.Phonecode.phonecode}} ({{cd.Phonecode.nicename}})</ion-option>                    
+        </ion-select>
     </ion-item>
         
-    <ion-label class="alert alert-danger" color="danger">
+<!--    <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="countrycode.errors && (countrycode.dirty || countrycode.touched)">
 						<div [hidden]="!countrycode.errors.required">
 							Country code is required
 						</div>						
 					</div>
-				</ion-label>
+				</ion-label>-->
         
     <ion-item>
         <ion-input type="tel" placeholder="Phone number" name="contact" [(ngModel)]="data.contact" id="contact" #contact="ngModel" pattern='[0-9]+' minlength="10" maxlength="10" required></ion-input>
@@ -135,7 +146,7 @@
                                                 
                         <ion-input type="number" placeholder="Age" name="age{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].age" id="age" #age="ngModel" required></ion-input>
                     
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="age.errors && (age.dirty || age.touched)">
 						<div [hidden]="!age.errors.required">
@@ -145,7 +156,7 @@
 							Invalid Format
 						</div>						
 					</div>
-				</ion-label>
+				</ion-label>-->
                         </ion-item>
                         <ion-item> 
                         
@@ -154,44 +165,40 @@
                         <ion-option value="Mrs.">Mrs.</ion-option>
                         </ion-select>
                         
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="title.errors && (title.dirty || title.touched)">
 						<div [hidden]="!title.errors.required">
 							Title is required
 						</div>                                            
 					</div>
-				</ion-label>
+				</ion-label>-->
                         </ion-item>
                     <ion-item> 
                         <ion-input type="text" placeholder="Name" name="name{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].name" id="name" #name="ngModel" pattern="[a-zA-Z ]+" required></ion-input>                        
                    
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="name.errors && (name.dirty || name.touched)">
-						<div [hidden]="!name.errors.required">
-							Name is required
-						</div>
+						
                                             <div [hidden]="!name.errors.pattern">
                                                 Only alphabets are allowed
                                               </div>
 					</div>
-				</ion-label>
+				</ion-label>-->
                          </ion-item>
                     <ion-item>
                         <ion-input type="text" placeholder="Surname" name="surname{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].surname" id="surname" #surname="ngModel" pattern="[a-zA-Z ]+" required></ion-input>
                        
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="surname.errors && (surname.dirty || surname.touched)">
-						<div [hidden]="!surname.errors.required">
-							Surname is required
-						</div>
+						
                                             <div [hidden]="!surname.errors.pattern">
                                                 Only alphabets are allowed
                                               </div>
 					</div>
-				</ion-label>
+				</ion-label>-->
                          </ion-item> 
                     </ion-list>
                 </div>
@@ -206,7 +213,7 @@
                         <ion-input type="number" placeholder="Age" name="age{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].age" id="age" #age="ngModel" required></ion-input>
                         <!--<ion-input type="text" placeholder="Title" name="title{{j}}" [(ngModel)]="rooms_data[i].passenger_details[j].title" id="title" #title="ngModel" required></ion-input> -->
                     
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="age.errors && (age.dirty || age.touched)">
 						<div [hidden]="!age.errors.required">
@@ -216,7 +223,7 @@
 							Invalid Format
 						</div>						
 					</div>
-				</ion-label>
+				</ion-label>-->
                         </ion-item>
                     <ion-item>          
                         <ion-select name="title{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].title" id="title" #title="ngModel" placeholder="Title" required>
@@ -224,44 +231,40 @@
                         <ion-option value="Ms.">Ms.</ion-option>
                         </ion-select>
                         
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="title.errors && (title.dirty || title.touched)">
 						<div [hidden]="!title.errors.required">
 							Title is required
 						</div>                                            
 					</div>
-				</ion-label>
+				</ion-label>-->
                         </ion-item>
                     <ion-item>
                         <ion-input type="text" placeholder="Name" name="name{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].name" id="name" #name="ngModel" required></ion-input>                        
                     
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="name.errors && (name.dirty || name.touched)">
-						<div [hidden]="!name.errors.required">
-							Name is required
-						</div>
+						
                                             <div [hidden]="!name.errors.pattern">
                                                 Only alphabets are allowed
                                               </div>
 					</div>
-				</ion-label>
+				</ion-label>-->
                         </ion-item>
                     <ion-item>
                         <ion-input type="text" placeholder="Surname" name="surname{{j}}" [(ngModel)]="rooms_data[i].passengerDetails[j].surname" id="surname" #surname="ngModel" required></ion-input>
                          
-                        <ion-label class="alert alert-danger" color="danger">
+<!--                        <ion-label class="alert alert-danger" color="danger">
 
 					<div *ngIf="surname.errors && (surname.dirty || surname.touched)">
-						<div [hidden]="!surname.errors.required">
-							Surname is required
-						</div>
+						
                                             <div [hidden]="!surname.errors.pattern">
                                                 Only alphabets are allowed
                                               </div>
 					</div>
-				</ion-label>
+				</ion-label>-->
                         </ion-item>
                     </ion-list>
                 </div>
@@ -302,7 +305,7 @@
     
     </div>
     <button color="theme" ion-button class="search" (click)="bookHotel(lastForm)" [disabled]="!lastForm.form.valid">Book</button>
-    
+    <!--<button color="theme" ion-button (click)="book()">here</button>-->
     </form>
   </ion-list>
 </ion-content>

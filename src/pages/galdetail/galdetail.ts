@@ -5,7 +5,8 @@ import { Http, HttpModule, RequestOptions, Headers} from '@angular/http';
 import { CommonProvider } from '../../providers/common/common';
 import 'rxjs/add/operator/map';
 import {GalleryPage} from '../gallery/gallery';
-
+import {DiscoverPage} from '../discover/discover';
+import {EditphotoPage} from '../editphoto/editphoto';
 
 /**
  * Generated class for the GaldetailPage page.
@@ -37,27 +38,60 @@ export class GaldetailPage {
     public buttonClicked: boolean = false;
     comments: any;
     len: any = 0;
+    dis: any;
+    community: any;
     
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController,
       public common: CommonProvider,public http: Http,
       public toastCtrl: ToastController) {
       
       this.get = this.navParams.get('send');
+            if(this.get){
+                this.imgid = this.get.Gallery.id;
+                this.bit = this.get.Gallery.status;
+                this.image = this.get.Gallery.image;
+                this.location = this.get.Gallery.location;
+                if(!this.location){
+                   this.location = 'Location'; 
+                }
+                this.username = this.get.User.name;
+                this.tym = this.get.Gallery.created;
+              console.log(this.tym);
+            }
+            
+       this.dis = this.navParams.get('dis');
+      console.log(this.dis);
+      if(this.dis){
+       
+                this.imgid = this.dis.id;
+                this.bit = this.dis.status;
+                this.image = this.dis.image;
+                this.location = this.dis.location;
+                if(!this.location){
+                   this.location = 'Location'; 
+                }
+                this.username = this.dis.User.name;
+                this.tym = this.dis.created;
+              console.log(this.tym);
+            
+      }
       
-          this.imgid = this.get.Gallery.id;
-          this.bit = this.get.Gallery.status;
-          this.image = this.get.Gallery.image;
-          this.location = this.get.Gallery.location;
-          if(!this.location){
-             this.location = 'Location'; 
-          }
-          this.username = this.get.User.name;
-          this.tym = this.get.Gallery.created;
-        console.log(this.tym);
+      this.community = this.navParams.get('community');
+      console.log(this.community);   
       
       this.id = localStorage.getItem('ID');
       this.trip_id = localStorage.getItem('TripID');
 //      this.commentList();
+  }
+  
+  back(){
+      if(this.dis){
+          this.navCtrl.push(DiscoverPage,{
+          fcommunity: this.community
+      });
+      }else if(this.get){
+          this.navCtrl.push(EditphotoPage);
+      }
   }
   
   commentList(){
@@ -107,7 +141,8 @@ export class GaldetailPage {
       
   }
   
-  postComment(){     
+  postComment(){  
+      console.log('comments');   
       this.buttonClicked = !this.buttonClicked;
       if(this.buttonClicked == true){
            this.commentList();

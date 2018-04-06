@@ -20,11 +20,13 @@ page-my_trip {
 			.form_sec{
 				.location_sec{
 					h5{
-						font-size:16px;
-						font-weight:bold;
-						color:#4d4c5e;
-						text-align:center;
-						margin-bottom:15px;
+					font-size: 16px;
+                                        font-weight: bold;
+                                        color: #4d4c5e;
+                                        text-align: center;
+                                        margin-bottom: 15px;
+                                        float: left;
+                                        width: 100%;
 					}
 					ion-list{
 						ion-item{
@@ -61,6 +63,8 @@ page-my_trip {
 					}
 				}
 				.date_sec{
+                                        float: left;
+                                        width: 100%;
 					h5{
 						font-size:16px;
 						font-weight:bold;
@@ -69,6 +73,8 @@ page-my_trip {
 						margin-bottom:15px;
 					}
 					ion-list{
+                                            float: left;
+                                            width: 100%;
 						ion-item{
 							width:49%;
 							float:left;
@@ -89,8 +95,10 @@ page-my_trip {
 											color:#22c4b9;
 										}
 									}
-									ion-datetime{
-										width:calc(100% - 30px);
+									.datetimez{
+										width: 100%;
+                                                                                max-width: 100%;
+                                                                                font-size: 14px;
 										padding-right:0px;
 										padding-left:0px;
 										color:#22c4b9;
@@ -103,8 +111,18 @@ page-my_trip {
 							}
 						}
 					}
-					.btn-sec{
-						margin:30px 0px;
+					
+				}
+				button{
+					float:none;
+					margin:auto;
+					display:table;
+				}
+                                
+                               .btn-sec{
+					margin: 30px 0px;
+                                        float: left;
+                                        width: 100%;
 						button{
 							float: none;
 							display: table;
@@ -113,13 +131,19 @@ page-my_trip {
 							font-size:14px;
 							text-transform: capitalize;
 						}
-					}
-				}
-				button{
-					float:none;
-					margin:auto;
-					display:table;
-				}
+				
+                               }
+                               
+                               .edit_outer{
+                                   width:100%;
+                                   .toggle{
+                                       height: 33px;
+                                       float:left;
+                                       .toggle-icon {
+                                            background-color: #3ac5b9;
+                                        }
+                                   }
+                               }
 			}
 		}
 	}

@@ -11,11 +11,12 @@ import { LocalityPage } from '../locality/locality';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 import { File } from '@ionic-native/file';
+import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
 
 @Component({
   selector: 'page-gallerytwo',
   templateUrl: 'gallerytwo.html',
-  providers: [Camera,FileTransfer,StreamingMedia]
+  providers: [Camera,FileTransfer,StreamingMedia,MediaCapture]
   
 })
 export class GallerytwoPage {
@@ -29,6 +30,23 @@ export class GallerytwoPage {
     images: any;
     vid: any;
     videos: any;
+    
+    doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    
+    if(this.pet == 'library'){
+            this.viewallImages();
+        }else if(this.pet == 'camera'){
+            this.viewallImages();
+        }else if(this.pet == 'video'){
+            this.videoListing();
+        }
+    
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public common: CommonProvider, public http: Http,
@@ -36,12 +54,83 @@ export class GallerytwoPage {
     public toastCtrl: ToastController, public loadingCtrl: LoadingController,
     public viewCtrl: ViewController, public imagePicker: ImagePicker,
     public modalCtrl: ModalController, public transfer: FileTransfer,
-    public streamingMedia: StreamingMedia) {
+    public streamingMedia: StreamingMedia, private mediaCapture: MediaCapture) {
       
 	this.pet='library';
+        if(this.pet == 'library'){
+            this.viewallImages();
+        }else if(this.pet == 'camera'){
+            this.viewallImages();
+        }else if(this.pet == 'video'){
+            this.videoListing();
+        }
         this.id = localStorage.getItem('ID');
         this.trip_id = localStorage.getItem('TripID');   
         this.viewallImages();       
+  }
+  
+  videoCapture(){
+      
+      let options: CaptureVideoOptions = {
+       limit: 1 
+       };
+ 
+    this.mediaCapture.captureVideo(options)
+      .then(
+        (data: MediaFile[]) => {
+        //alert(JSON.stringify(data));
+        //alert(JSON.stringify(data[0].fullPath));
+          this.vid = data[0].fullPath;
+          
+      const fileTransfer: FileTransferObject = this.transfer.create();
+      let currentName =  this.vid.substring(this.vid.lastIndexOf('/') + 1);
+    
+      let options1: FileUploadOptions = {
+        fileKey: 'file',          
+        fileName: currentName,
+        headers: {
+           
+        },        
+        params: {
+          user_id: this.id,
+          trip_id: this.trip_id
+        },
+        chunkedMode: false,
+        mimeType: 'video/quicktime'
+      }     
+      
+    var Loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      showBackdrop: false,
+      cssClass: 'loader'
+        });
+        Loading.present().then(() => {
+      fileTransfer.upload(this.vid, this.common.base_url + 'galleries/videoupload', options1)           
+      .then((data) => {
+          Loading.dismiss();
+          
+          let toast = this.toastCtrl.create({
+            message: 'Video Uploaded successfully',
+            duration: 3000,
+           cssClass: 'toastCss',
+            position: 'middle',
+          });
+          toast.present();
+          this.videoListing();
+       
+        }).catch((error)=>{
+          Loading.dismiss();
+          
+          //alert(JSON.stringify(error));
+           
+       });
+      });
+        
+        },
+        (err: CaptureError) => {        
+        this.videoListing();
+        }
+      );
   } 
   
   videoPlayy(url){
@@ -57,10 +146,8 @@ export class GallerytwoPage {
   }
   
   selectVideo(){
-      alert('video');
-      //let video = this.myVideo.nativeElement;
-      alert('here');
-         
+        //let video = this.myVideo.nativeElement;
+      
       const options: CameraOptions = {
           sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
           mediaType: this.camera.MediaType.VIDEO,
@@ -108,7 +195,7 @@ export class GallerytwoPage {
         }).catch((error)=>{
           Loading.dismiss();
           
-          alert(JSON.stringify(error));
+          //alert(JSON.stringify(error));
            
        });
       });
@@ -119,8 +206,7 @@ export class GallerytwoPage {
   }
   
   videoListing(){
-      //alert('listing');
-      
+           
       var Loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       showBackdrop: false,
@@ -149,8 +235,7 @@ export class GallerytwoPage {
           if (data.status == 0) {
 
             this.videos = data.data;
-//            console.log(this.images);
-           alert(JSON.stringify(this.videos));
+           //alert(JSON.stringify(this.videos));
               
             let toast = this.toastCtrl.create({
               message: data.msg,
@@ -206,7 +291,7 @@ export class GallerytwoPage {
       user_id: this.id,
       trip_id: this.trip_id      
     }
-    //alert(JSON.stringify(data_form));
+    
     console.log(data_form);
 
     var Serialized = this.common.serializeObj(data_form);
@@ -217,13 +302,13 @@ export class GallerytwoPage {
         .map(res => res.json())
         .subscribe(data => {
           Loading.dismiss();
-         // alert(JSON.stringify(data));
+         
           console.log(data);
           if (data.status == 0) {
 
             this.images = data.data;
             console.log(this.images);
-           //alert(JSON.stringify(this.images));
+           
             let toast = this.toastCtrl.create({
               message: data.msg,
               duration: 3000,
@@ -259,7 +344,7 @@ export class GallerytwoPage {
     let options = {
       maximumImagesCount: 5,
       outputType: 1,
-      quality: 10
+      quality: 10      
     }
     this.photos = [];
     this.imagePicker.getPictures(options)

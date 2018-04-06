@@ -1,82 +1,130 @@
 
-<ion-header>
+<!--<ion-header>
 
   <ion-navbar color="theme">
-    <ion-title class="header_title" color="text">add event</ion-title>
+    <ion-title class="header_title" color="text"></ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header>-->
+
+<ion-header>
+	<ion-toolbar color="theme">
+    <ion-title class="header_title" color="text">Add Event</ion-title>
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+	</ion-toolbar>
+  </ion-header>
 
 
 <ion-content padding class="add_event">
-
+    <form #heroForm="ngForm">
   <ion-list class="slt">
     <ion-item no-padding>
-      <ion-select [(ngModel)]="gaming">
-        <ion-option value="nes" selected="true">Transport</ion-option>
-        <ion-option value="hot">Hotel</ion-option>
-        <ion-option value="n64">Activity</ion-option>
-        <ion-option value="ps">Room</ion-option>
+      <ion-select name="etype" [(ngModel)]="data.etype" (ionChange)="typeSelect($event)">
+        <ion-option value="flight" selected="true">
+<!--        <ion-icon ios="ios-plane" md="md-plane"></ion-icon>-->
+            Flight
+        </ion-option>
+        <ion-option value="hotel">Hotel</ion-option>
+        <ion-option value="activity">Activity</ion-option>
+        <ion-option value="restaurant">Restaurant</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
   <ion-list class="inpt">
-      <ion-item no-padding>
-        <ion-label stacked>Title</ion-label>
-        <ion-input type="text"></ion-input>
+      <ion-label>Title</ion-label>
+      <ion-item *ngIf="op == '2'">
+            <ion-select id="hlist" name="hlist" placeholder="Select Hotel" [(ngModel)]="data.hlist" #hlist="ngModel" (ionChange)="hotelSelect(data.hlist)">
+                <ion-option *ngFor="let ht of hotels; let i=index" [value]="ht.Hotel_booking.hname+'_'+i">{{ht.Hotel_booking.hname}}</ion-option>                    
+            </ion-select>
       </ion-item>
-    
+      
+      <ion-item *ngIf="op == '1'">
+            <ion-select id="flist" name="flist" placeholder="Select Flight" [(ngModel)]="data.flist" #flist="ngModel" (ionChange)="flightSelect(data.flist)">
+                <ion-option *ngFor="let gl of flights; let i=index" [value]="gl.Booking.airline+'_'+i">{{gl.Booking.airline}} ({{gl.Booking.start_location}} to {{gl.Booking.end_location}})</ion-option>                    
+            </ion-select>
+      </ion-item>
+
+      <ion-item no-padding *ngIf="op == '3'">         
+        <ion-input type="text" name="activity" [(ngModel)]="data.activity" #activity="ngModel" required></ion-input>
+      </ion-item>
+      
+      <ion-item no-padding *ngIf="op == '4'">          
+        <ion-input type="text" name="restaurant" [(ngModel)]="data.restaurant" #restaurant="ngModel" required></ion-input>
+      </ion-item>
+      
+    <div *ngIf="op == '1'">
       <ion-item no-padding>
-        <ion-label stacked>Departure Address</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-label stacked>Departure Address</ion-label>        
+        <ion-input type="text" name="dadd" [(ngModel)]="data.dadd" #dadd="ngModel" required></ion-input>        
       </ion-item>
 
       <ion-item no-padding>
           <ion-label stacked>Arrival Address</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" name="aadd" [(ngModel)]="data.aadd" #aadd="ngModel" required></ion-input> 
         </ion-item>
+  </div>
+      
+      <div *ngIf="op == '2' || op == '3' || op == '4'">
+      <ion-item no-padding>
+        <ion-label stacked>Location</ion-label>        
+        <ion-input type="text" name="loc" [(ngModel)]="data.loc" #loc="ngModel" required></ion-input>        
+      </ion-item>
+      </div>
+      
+      <ion-item (click)="openCalendar()">
+          <ion-label><ion-icon ios="ios-calendar" md="md-calendar"></ion-icon></ion-label>
+                <ion-label class="datetimez" *ngIf="eventdate == ''">Event Date</ion-label>
+                <ion-label class="datetimez" *ngIf="eventdate != ''">{{eventdate}}</ion-label>
+        </ion-item>
+      
   </ion-list>
 
   <div class="date_sec">
       <ion-list>
+          
         <ion-item no-padding>
             <ion-label stacked>Departure Time</ion-label>
-            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.dateStarts"></ion-datetime>
+            <ion-datetime name="dateStarts" displayFormat="h:mm A" pickerFormat="h mm a" [(ngModel)]="event.dateStarts" id="dateStarts" #dateStarts="ngModel" required></ion-datetime>
+            
         </ion-item>
 
         
         <ion-item no-padding>
             <ion-label stacked>Arrival Time</ion-label>
-            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.dateEnds"></ion-datetime>
+            <ion-datetime name="dateEnds" displayFormat="h:mm A" pickerFormat="h mm a" [(ngModel)]="event.dateEnds" id="dateEnds" #dateEnds="ngModel" required></ion-datetime>
         </ion-item>
 
         <ion-item no-padding>
             <ion-label stacked>Notes</ion-label>
-            <ion-textarea elastic placeholder="United Airlines"></ion-textarea>
+            <ion-textarea elastic name="notes" id="notes" [(ngModel)]="data.notes" #notes="ngModel" required></ion-textarea>
         </ion-item>
 
         <ion-item no-padding>
-            <input type="file" (change)="fileUpload($event)" id="file-input" #fileInp>
-            <button ion-button (click)="onClick()">Add Attachments</button>
+            <!--<input type="file" (change)="fileUpload($event)" id="file-input" #fileInp>-->
+            <button ion-button (click)="addAttachment()">Add Attachments</button>
           </ion-item>
       </ion-list>
     </div>
 
     <div class="gallery">
         <ul>
-          <li>
-              <img src="assets/imgs/getstartback.jpeg">
+          <li *ngFor="let im of sattachments">
+              <img src="{{im}}">
               <ion-icon ios="ios-close-circle" md="ios-close-circle"></ion-icon>
           </li>
 
-          <li>
+<!--          <li>
                 <img src="assets/imgs/getstartback.jpeg">
                 <ion-icon ios="ios-close-circle" md="ios-close-circle"></ion-icon>
-            </li>
+            </li>-->
 
         </ul>
       </div>
-    <button ion-button small no-margin color="theme">Add Event</button>
-
+    <button ion-button small no-margin float-right color="theme" (click)="adddEvent(heroForm)" [disabled]="!heroForm.form.valid">Add Event</button>
+    </form>
 </ion-content>

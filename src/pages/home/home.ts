@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events, App, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, Events, App, LoadingController, ToastController, NavParams } from 'ionic-angular';
 import { My_tripPage } from '../my_trip/my_trip';
 import { Http, HttpModule, RequestOptions, Headers} from '@angular/http';
 import { CommonProvider } from '../../providers/common/common';
@@ -17,8 +17,10 @@ export class HomePage {
   trips: any;
   image: any;
   id: string;
-  public trip;
+  public trip = 'upcoming';
   pasttrips: any;
+  optionss: RequestOptions;
+  choose: any;
   
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
@@ -31,16 +33,21 @@ export class HomePage {
   
   constructor(public navCtrl: NavController,public common: CommonProvider,public http: Http,
   public events: Events, public app: App, public loadingCtrl: LoadingController,
-  public toastCtrl: ToastController) {
-  this.trip = "upcoming";
+  public toastCtrl: ToastController, public navParams: NavParams) {
+  //this.trip = "upcoming";
   
   localStorage.setItem('bit','1');
 
   this.id = localStorage.getItem('ID');
   this.viewProfile();
   this.viewTrip();
-  events.publish('user:login');
-
+  events.publish('user:login'); 
+  
+  this.choose = this.navParams.get('choose'); 
+  if(this.choose == 2){
+    this.trip = 'past'; 
+    this.pastTrips(); 
+  }  
   
   }
   opentripPage(){

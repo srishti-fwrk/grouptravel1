@@ -1,26 +1,41 @@
-<ion-header>
+<!--<ion-header>
     <ion-navbar color="theme">
       <ion-title class="header_title" color="text">Rating</ion-title>
     </ion-navbar>
+  </ion-header>-->
+
+<ion-header>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">Rating</ion-title>
+    </ion-toolbar>
   </ion-header>
 
 
 <ion-content >
   <div class="card-background-page" *ngIf="trip">
       <ion-card>
-          <img src="assets/imgs/a.png"/>
-          <div class="card-title">{{trip.end_location}}</div>
-          <div class="card-subtitle">{{trip.trip_startdate | date: 'MMM d'}} - {{trip.trip_enddate | date: 'MMM d, yyyy'}}</div>
-        </ion-card>
+          <img *ngIf="!trip.image" src="assets/imgs/a.png"/>
+          <img *ngIf="trip.image" src="{{trip.image}}">
+          <div class="cardtitle">
+            <div class="card-title">{{trip.end_location}}</div>
+            <div class="card-subtitle">{{trip.trip_startdate | date: 'MMM d'}} - {{trip.trip_enddate | date: 'MMM d, yyyy'}}</div>
+          </div> 
+          <div class="overlay"></div>
+      </ion-card>
       <div class="descrp">
         <h3>ITINERARY</h3>
         <p>{{trip.trip_startdate | date: 'EEEE MMM d'}}</p>
         <h4>Location: <span>{{trip.end_location}}</span></h4>
       </div>
 
-      <ion-card class="waterfall">
+<!--      <ion-card class="waterfall">
           
-                <ion-item (click)="hotel();">
+                <ion-item (click)="hotel()">
                   <ion-avatar item-start>
                       <img src="assets/imgs/a.png">
                   </ion-avatar>
@@ -36,7 +51,43 @@
                 </ion-item>
           
           
-                </ion-card>
+                </ion-card>-->
+      <div *ngFor="let ett of eventss">
+          
+          <p>{{ett[0].Event.eventdate | date: 'EEEE MMM d, yyyy'}}</p>
+        <h4>Location: <span>{{ett[0].Event.location}}</span></h4>
+        
+      <ion-card class="waterfall" *ngFor="let et of ett; let j=index">
+                   
+          <ion-item>
+            <ion-avatar item-start>
+               <img src="assets/imgs/a.png">
+            </ion-avatar>
+            
+            <h2>{{et.Event.title}}</h2>
+           
+            <p>{{trip.end_location}}</p>
+            <ul>                
+                <li>
+                <rating name="ratingg{{j}}" 
+                  [(ngModel)]="data.ratingg[j]" 
+                  #ht.starCategory="ngModel"              
+                  max="5" 
+                  emptyStarIconName="star-outline" 
+                  halfStarIconName="star-half" 
+                  starIconName="star" 
+                  nullable="false"
+                  (click)="rate(j,et.Event.id,data.ratingg[j])"
+                  >                  
+                </rating>               
+                </li>
+            </ul>            
+            
+          </ion-item>
 
+          </ion-card>
   </div>
+  </div>
+    <button *ngIf="eventss" color="theme" ion-button class="search" (click)="skipp()">Skip</button>
+    <button *ngIf="eventss" color="theme" ion-button class="search" (click)="subRate()">Submit</button>
 </ion-content>

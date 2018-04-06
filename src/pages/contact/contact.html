@@ -16,13 +16,13 @@
 
 <ion-content>
 
-    <div class="blue">
+<!--    <div class="blue">
         <h4>Just got paid</h4>
         <p>A total of $15 is waiting in your account</p>
         <button ion-button color="theme" small no-margin>Cash Out</button>
-      </div>
+      </div>-->
 
-    <div class="top_segment-sec" padding>
+<!--    <div class="top_segment-sec" padding>
         <ion-segment [(ngModel)]="pet">
           <ion-segment-button value="group">
             Group
@@ -31,31 +31,32 @@
             My payment
           </ion-segment-button>
         </ion-segment>
-      </div>
+      </div>-->
       
-      <div [ngSwitch]="pet">
-        <ion-list *ngSwitchCase="'group'">
+      <!--<div [ngSwitch]="pet">-->
+        <!--<ion-list *ngSwitchCase="'group'">-->
 
-          <ion-card class="group">
-          <ion-item (click)="comments();">
+          <ion-card class="group" *ngFor="let pay of hpayments">
+          <ion-item>
             <ion-avatar item-start>
-               <img src="assets/imgs/a.png">
+               <img *ngIf="pay.User.image" src="{{pay.User.image}}">
+               <img *ngIf="!pay.User.image" src="assets/imgs/user.png">
             </ion-avatar>
-            <h6>12/12/2017</h6>
-            <h2>You Paid</h2>
-            <h2>Melanie <span>$45.00</span></h2>
-            <span>Money for ATVing</span>
-            <ion-note item-end="" class="note note-ios">
+            <h6>{{pay.Payment.created| date: 'MMM d, yyyy'}}</h6>
+            <h2>{{pay.User.name}}</h2>
+            <h2>You Paid <span>{{pay.Payment.totalamount}}</span></h2>
+            <span>Money for {{pay.Payment.type}}</span>
+<!--            <ion-note item-end="" class="note note-ios">
                 <button ion-button clear small>2 <ion-icon ios="ios-heart-outline" md="ios-heart-outline"></ion-icon></button>
                 <button ion-button clear small>3 <ion-icon ios="ios-chatbubbles-outline" md="ios-chatbubbles-outline"></ion-icon></button>
-            </ion-note>
+            </ion-note>-->
           </ion-item>
 
           </ion-card>
-        </ion-list>
+        <!--</ion-list>-->
       
-        <ion-list *ngSwitchCase="'payment'">
-            <ion-card class="group">
+        <!--<ion-list *ngSwitchCase="'payment'">-->
+<!--            <ion-card class="group">
                 <ion-item>
                   <ion-avatar item-start>
                      <img src="assets/imgs/b.jpg">
@@ -70,19 +71,19 @@
                   </ion-note>
                 </ion-item>
       
-                </ion-card>
-        </ion-list>
-      </div>
+                </ion-card>-->
+        <!--</ion-list>-->
+      <!--</div>-->
 
-      <ion-fab bottom right edge>
+<!--      <ion-fab bottom right edge>
           <button ion-fab mini color="theme"><ion-icon name="add"></ion-icon></button>
-      </ion-fab>
+      </ion-fab>-->
     
 
 </ion-content>
-<ion-footer>
+<!--<ion-footer>
   <a href="#" (click)="itinerary()"><ion-icon ios="ios-paper-outline" md="md-paper"></ion-icon><span>Itinerary</span></a>
   <a href="#" (click)="chat()"><ion-icon ios="ios-chatbubbles-outline" md="md-chatbubbles"></ion-icon><span>Chat</span></a>
   <a href="#" (click)="payments()" class="active"><ion-icon ios="ios-cash-outline" md="md-cash"></ion-icon><span>Payments</span></a>
   <a href="#" (click)="gallery()"><ion-icon ios="ios-camera-outline" md="md-camera"></ion-icon><span>Gallery</span></a>    
-</ion-footer>
+</ion-footer>-->

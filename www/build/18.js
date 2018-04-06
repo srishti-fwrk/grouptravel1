@@ -1,14 +1,14 @@
 webpackJsonp([18],{
 
-/***/ 486:
+/***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HoteldetailPageModule", function() { return HoteldetailPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IcommentsPageModule", function() { return IcommentsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hoteldetail__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icomments__ = __webpack_require__(178);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HoteldetailPageModule = (function () {
-    function HoteldetailPageModule() {
+var IcommentsPageModule = (function () {
+    function IcommentsPageModule() {
     }
-    HoteldetailPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+    IcommentsPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__hoteldetail__["a" /* HoteldetailPage */],
+                __WEBPACK_IMPORTED_MODULE_2__icomments__["a" /* IcommentsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__hoteldetail__["a" /* HoteldetailPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__icomments__["a" /* IcommentsPage */]),
             ],
         })
-    ], HoteldetailPageModule);
-    return HoteldetailPageModule;
+    ], IcommentsPageModule);
+    return IcommentsPageModule;
 }());
 
-//# sourceMappingURL=hoteldetail.module.js.map
+//# sourceMappingURL=icomments.module.js.map
 
 /***/ })
 

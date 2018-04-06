@@ -52,10 +52,10 @@ export class AboutPage {
     this.navCtrl.push(AboutPage);
   }
 
-  payments(){
-    this.navCtrl.push(ContactPage);
-    clearInterval(this.interval);
-  }
+//  payments(){
+//    this.navCtrl.push(ContactPage);
+//    clearInterval(this.interval);
+//  }
 
   itinerary(){
     this.navCtrl.push(AddtripPage);

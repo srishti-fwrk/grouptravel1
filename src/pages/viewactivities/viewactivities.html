@@ -1,8 +1,19 @@
-<ion-header>
+<!--<ion-header>
   <ion-navbar color="theme">
     <ion-title class="header_title" color="text">Discover</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header>-->
+
+<ion-header>
+    <ion-toolbar color="theme">
+        <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+      <ion-title class="header_title" color="text">Discover</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 
 <ion-content class="viewall">
@@ -10,36 +21,81 @@
 
   <ion-item class="filter" no-padding>
     <ion-label><span>Filter</span></ion-label>
-    <ion-select [(ngModel)]="gaming">
-      <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
-      <ion-option value="n64">Highest Price</ion-option>
-    </ion-select>
+    <ion-select name="filter" id="filter" #filter="ngModel" [(ngModel)]="data.filter" (ionChange)="filterSelect($event)" placeholder="Price">
+          <ion-option value="lowest" selected="true">Lowest Price</ion-option>
+          <ion-option value="highest">Highest Price</ion-option>
+        </ion-select>
   </ion-item>
 
 
-
-<ion-card class="waterfall">
+    <div *ngIf="filterbit == '0'">
+<ion-card class="waterfall" *ngFor="let act of activities">
 
       <ion-item>
         <ion-avatar item-start>
-            <img src="assets/imgs/a.png">
+            <img src="{{act.content.media.images[0].urls[0].resource}}">
         </ion-avatar>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <span>Waterfall</span>
-        <ul>
+        <h2>{{act.name}}</h2>       
+        <!--<p>{{act.content.description}}</p>-->
+<!--        <p [innerHTML]="act.content.description"></p>-->
+            <div class="wrap">
+              <div class="read-more">
+                <div class="content">
+                  <h3 [innerHTML]="act.content.description"></h3>
+                </div>
+                <span data-read-more="+ read more" data-read-less="- show less" class="trigger" onclick="this.parentElement.classList.toggle('expanded')"></span>
+              </div>
+            </div>
+      
+         <p>{{act.country.name}}</p>
+        <!--<span>Waterfall</span>-->
+<!--        <ul>
             <li><ion-icon name="star"></ion-icon></li>
             <li><ion-icon name="star"></ion-icon></li>
             <li><ion-icon name="star"></ion-icon></li>
             <li><ion-icon name="star"></ion-icon></li>
             <li> <ion-icon name="star-outline"></ion-icon></li>
             <li><span>3,789</span></li>
-          </ul>
+          </ul>-->
 
-          <ion-note item-end="" class="note note-ios">$35<span>and up</span></ion-note>
+          <ion-note item-end="" class="note note-ios">{{act.amountsFrom[0].convertedAmount}}<span>and up</span></ion-note>
       </ion-item>
 
 
       </ion-card>
+        </div>
+    
+    <div *ngIf="filterbit == '1'">
+        <ion-card class="waterfall" *ngFor="let act of activities">
 
+      <ion-item>
+        <ion-avatar item-start>
+            <img src="{{act.content.media.images[0].urls[0].resource}}">
+        </ion-avatar>
+        <h2>{{act.name}}</h2>       
+        <div class="wrap">
+              <div class="read-more">
+                <div class="content">
+                  <h3 [innerHTML]="act.content.description"></h3>
+                </div>
+                <span data-read-more="+ read more" data-read-less="- show less" class="trigger" onclick="this.parentElement.classList.toggle('expanded')"></span>
+              </div>
+            </div>
+         <p>{{act.country.name}}</p>
+        <!--<span>Waterfall</span>-->
+<!--        <ul>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li><ion-icon name="star"></ion-icon></li>
+            <li> <ion-icon name="star-outline"></ion-icon></li>
+            <li><span>3,789</span></li>
+          </ul>-->
+
+          <ion-note item-end="" class="note note-ios">{{act.amountsFrom[0].convertedAmount}}<span>and up</span></ion-note>
+      </ion-item>
+
+
+      </ion-card>
+    </div>
 </ion-content>

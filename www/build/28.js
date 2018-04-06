@@ -1,14 +1,14 @@
 webpackJsonp([28],{
 
-/***/ 476:
+/***/ 623:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArivalPageModule", function() { return ArivalPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DiscovertopPageModule", function() { return DiscovertopPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arival__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__discovertop__ = __webpack_require__(95);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ArivalPageModule = (function () {
-    function ArivalPageModule() {
+var DiscovertopPageModule = (function () {
+    function DiscovertopPageModule() {
     }
-    ArivalPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+    DiscovertopPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__arival__["a" /* ArivalPage */],
+                __WEBPACK_IMPORTED_MODULE_2__discovertop__["a" /* DiscovertopPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__arival__["a" /* ArivalPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__discovertop__["a" /* DiscovertopPage */]),
             ],
         })
-    ], ArivalPageModule);
-    return ArivalPageModule;
+    ], DiscovertopPageModule);
+    return DiscovertopPageModule;
 }());
 
-//# sourceMappingURL=arival.module.js.map
+//# sourceMappingURL=discovertop.module.js.map
 
 /***/ })
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-
+import { Keyboard } from '@ionic-native/keyboard';
 import { Platform, Nav, MenuController, ToastController, LoadingController, Events, ModalController, Config, AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,6 +48,9 @@ import { TermsPage } from '../pages/terms/terms';
 import { GallerytwoPage } from '../pages/gallerytwo/gallerytwo';
 import { EditphotoPage } from '../pages/editphoto/editphoto';
 import { LocalityPage } from '../pages/locality/locality';
+import { FlightdetailPage } from '../pages/flightdetail/flightdetail';
+import { FlightformPage } from '../pages/flightform/flightform';
+import { DiscovertopPage } from '../pages/discovertop/discovertop';
 
 import { Http, HttpModule, RequestOptions, Headers} from '@angular/http';
 import { Facebook, FacebookLoginResponse } from "@ionic-native/facebook";
@@ -60,13 +63,16 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { ImagePicker } from '@ionic-native/image-picker';
-import { Calendar } from '@ionic-native/calendar';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+ 
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { Firebase } from '@ionic-native/firebase';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
+import { CalendarModule } from "ion2-calendar";
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 export interface PageInterface {
   title: string;
@@ -92,7 +98,8 @@ export class MyApp {
   id: any;
   image: any;
   data: any = '';
-  guser: any;  
+  guser: any; 
+  count: any; 
   
   rootPage: any;
 
@@ -118,7 +125,8 @@ pages: PageInterface[] = [
     private facebook: Facebook, private googlePlus: GooglePlus,
     public modalCtrl: ModalController,private config: Config,
     public firebase: Firebase, public alertCtrl: AlertController,
-    public socialSharing: SocialSharing
+    public socialSharing: SocialSharing,
+    private keyboard: Keyboard
    ) {
   platform.ready().then(() => {
     // Okay, so the platform is ready and our plugins are available.
@@ -128,7 +136,8 @@ pages: PageInterface[] = [
     setTimeout(() => {
       splashScreen.hide();
     }, 100);
-  
+    
+    this.keyboard.hideKeyboardAccessoryBar(false);
     //this.hideSplashScreen();
 
     /*let splash = modalCtrl.create(SplashPage);
@@ -147,11 +156,13 @@ pages: PageInterface[] = [
       this.rootPage = GetstartedPage;
       
     }
+    
    this.initializeFireBaseIos(); 
   });
   
   this.events.subscribe('user:login', () => {
        this.viewProfile();
+       this.viewCount();
      });
 }
 
@@ -274,6 +285,38 @@ this.id = localStorage.getItem('ID');
       if (data.status == 0) {
        
          this.image = data.data.User.image; 
+                         
+      }else {
+                      
+      }
+    }, error => {
+            
+    });
+  
+
+}
+
+viewCount(){
+
+this.id = localStorage.getItem('ID');
+  var options = this.common.options;
+
+  var data_form = {
+    user_id: this.id
+  }
+    
+  var Serialized = this.common.serializeObj(data_form);
+  console.log(Serialized);
+ 
+    this.http.post(this.common.base_url + 'trips/tripcount', Serialized, options)
+    .map(res => res.json())
+    .subscribe(data => {
+      console.log(data);
+      
+      if (data.status == 0) {
+       
+        this.count = data.data;
+        console.log(this.count);
                          
       }else {
                       
@@ -426,6 +469,10 @@ ionViewDidEnter() {
 dismiss(){
   this.menu.toggle();
    
+}
+
+payment(){
+    this.nav.push(ContactPage);
 }
 
 }

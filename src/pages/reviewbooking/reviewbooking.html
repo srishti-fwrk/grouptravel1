@@ -1,61 +1,83 @@
 <ion-header>
-    <ion-navbar color="theme">
-      <ion-title class="header_title" color="text">Review booking</ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="header_title" color="text">Booking</ion-title>
+
+  </ion-toolbar>
+</ion-header>
 
 
 <ion-content>
-  <div class="sum">
-    <h2>Your trip summary</h2>
-    <h1>$367</h1>
+   <div *ngIf="bookingDetaill"> 
+<div class="sum">
+    <h2>Your hotel booking summary</h2>
+    <h1>{{bookingDetaill.price}}</h1>
     <span>per person<sup>*include taxes and carrier imposed fees</sup></span>
   </div>
 
   <ion-card class="depart">
       <ion-card-header>
-        Depart <span>BWI to MBJ</span>
+        Hotel <span>{{bookingDetaill.hname}}</span>
       </ion-card-header>
       <ion-card-content>
-        <span>Wesnesday,February 2,2018</span>
+        <span>{{bookingDetaill.check_in | date: 'MMM d, yyyy'}}</span>
         <ion-row>
-            <ion-col col-6>5:25 AM &#x279D; 8:30 PM</ion-col>
-            <ion-col col-3>0 Stops</ion-col>
-            <ion-col col-3>3h 30m</ion-col>
+            <ion-col col-6>{{bookingDetaill.check_out | date: 'MMM d, yyyy'}}</ion-col>
+            <ion-col col-6>{{bookingDetaill.city}}, {{bookingDetaill.country}}</ion-col>
+<!--            <ion-col col-3></ion-col>-->
           </ion-row>
-        <span>Main Cabin</span>
+        <!--<span>Main Cabin</span>-->
 
-        <div class="btm">
+<!--        <div class="btm">
           <h3>AA 2466 <span>738-Boeing 737</span></h3>
           <h3>AA 1920 <span>320-Airbus 737</span></h3>
           <button ion-button clear no-margin no-padding>Details</button>
           <button ion-button clear no-margin no-padding>Change</button>
-        </div>
+        </div>-->
 
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="depart">
+<!--    -->
+      <!--<button ion-button block color="theme" class="cont" (click)="passenger();">Continue</button>-->
+   </div>
+    <div *ngIf="fbookingDetaill">
+        <div class="sum">
+    <h2>Your flight booking summary</h2>    
+  </div>
+        <ion-card class="depart">
         <ion-card-header>
-          Return <span>BWI to MBJ</span>
+           <span>{{fbookingDetaill.sourcecode}} to {{fbookingDetaill.destination_code}}</span>
+       <div class="icon1">
+        <ion-icon ios="ios-plane" md="ios-plane"></ion-icon>
+      </div>
         </ion-card-header>
         <ion-card-content>
-          <span>Wesnesday,February 2,2018</span>
+          <span>{{fbookingDetaill.start_date| date: 'EEE, MMM d, yyyy'}}</span>
+          <!--<span>{{fbookingDetaill.last_date| date: 'EEE, MMM d, yyyy'}}</span>-->
           <ion-row>
-              <ion-col col-6>5:25 AM &#x279D; 8:30 PM</ion-col>
-              <ion-col col-3>0 Stops</ion-col>
-              <ion-col col-3>3h 30m</ion-col>
+              <ion-col col-12>{{fbookingDetaill.start_date| date: 'HH:mm'}}&#x279D; {{fbookingDetaill.last_date| date: 'HH:mm'}}</ion-col>
+              
             </ion-row>
-          <span>Main Cabin</span>
+          <span>{{fbookingDetaill.flight}}</span>
+          <span>{{fbookingDetaill.airline}}</span>
+          <span>{{fbookingDetaill.amount}}</span>
   
-          <div class="btm">
+<!--          <div class="btm">
             <h3>AA 2466 <span>738-Boeing 737</span></h3>
             <h3>AA 1920 <span>320-Airbus 737</span></h3>
             <button ion-button clear no-margin no-padding>Details</button>
             <button ion-button clear no-margin no-padding>Change</button>
-          </div>
+          </div>-->
   
         </ion-card-content>
       </ion-card>
-      <button ion-button block color="theme" class="cont" (click)="passenger();">Continue</button>
+    </div>
 </ion-content>
+
+

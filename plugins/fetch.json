@@ -34,7 +34,7 @@
     "ionic-plugin-keyboard": {
         "source": {
             "type": "registry",
-            "id": "ionic-plugin-keyboard@~2.2.1"
+            "id": "ionic-plugin-keyboard@^2.2.1"
         },
         "is_top_level": true,
         "variables": {}
@@ -123,10 +123,12 @@
     "cordova-plugin-calendar": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-calendar@5.0.0"
+            "id": "cordova-plugin-calendar@^5.0.0"
         },
         "is_top_level": true,
-        "variables": {}
+        "variables": {
+            "CALENDAR_USAGE_DESCRIPTION": " "
+        }
     },
     "cordova-plugin-googleplus": {
         "source": {
@@ -174,6 +176,38 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-streaming-media"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-datepicker": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-datepicker@^0.9.3"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-media-capture": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-media-capture@^1.4.3"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-compat": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-compat@^1.0.0"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@2.0.2"
         },
         "is_top_level": true,
         "variables": {}

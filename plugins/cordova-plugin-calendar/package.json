@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-calendar@5.0.0",
+  "_from": "cordova-plugin-calendar@^5.0.0",
   "_id": "cordova-plugin-calendar@5.0.0",
   "_inBundle": false,
   "_integrity": "sha512-Z2Fwv47a7hi18hcOwEodEjyykOFUxbgslzYN7Rh6eoh0lL94k+G1xjVUQeWSbG7sGp5cwYdmWJ6XyxrNmYrWSg==",
   "_location": "/cordova-plugin-calendar",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-calendar@5.0.0",
+    "raw": "cordova-plugin-calendar@^5.0.0",
     "name": "cordova-plugin-calendar",
     "escapedName": "cordova-plugin-calendar",
-    "rawSpec": "5.0.0",
+    "rawSpec": "^5.0.0",
     "saveSpec": null,
-    "fetchSpec": "5.0.0"
+    "fetchSpec": "^5.0.0"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-calendar/-/cordova-plugin-calendar-5.0.0.tgz",
   "_shasum": "e7ba65b427a82ed347d340a450f11d27a0bb17be",
-  "_spec": "cordova-plugin-calendar@5.0.0",
-  "_where": "/Volumes/D/isha/Group_Travel_new/node_modules",
+  "_spec": "cordova-plugin-calendar@^5.0.0",
+  "_where": "/Volumes/D/isha/latest/grouptravel/node_modules",
   "author": {
     "name": "Eddy Verbruggen",
     "email": "eddyverbruggen@gmail.com",

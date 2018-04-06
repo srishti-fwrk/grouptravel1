@@ -1,0 +1,159 @@
+page-discovertop {
+	
+.things {
+    float: left;
+    width: 100%;
+}
+
+.top {
+    float: left;
+    width: 100%;
+    padding: 0 6px;
+    margin: 10px 0;
+    font-family: "Roboto";
+
+    h3 {
+        float: left;
+        width: 50%;
+        margin: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    button {
+        color: #22c4b9;
+        text-align: right;
+        float: left;
+        width: 50%;
+        font-size: 11px;
+        font-weight: 300;
+        background: transparent;
+        padding: 0px;
+    }
+}
+
+ion-scroll{
+    height:160px;
+    white-space: nowrap;
+    padding-top:0px !important;
+    margin-top: 0;
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+    .scroll-content{
+        padding-top:0px !important;
+        padding-left: 0px !important;
+        .scroll-zoom-wrapper{
+            .card{
+                height:auto;
+                width:90px;
+                display:inline-block;
+                box-shadow:none;
+                margin: 0px;
+                .product-img{
+                    position:relative;
+                    height: 90px;
+                   img{
+                       height: 100%;
+                   }
+                }
+              
+                .card-content{
+                    text-align: center;
+                    padding: 5px 0 0 0;
+
+                    ul{
+                        padding: 0;
+                        margin: 0;
+                        list-style: none;
+                        line-height: 10px;
+
+                        li {
+                            display: inline-block;
+                            font-size:8.5px;
+                            color: #22c4b9;
+                        }
+                    }
+                    
+                    .title{
+                       
+                        .toolbar-title{
+                            padding:0px;
+                            font-size:10px;
+                            letter-spacing:1px;
+                            text-align:center;
+                            color: #22c4b9;
+                        }
+                    }
+                        p.price{
+                            font-size:10px;
+                            color:#949393;
+                            margin:0px;
+                        }
+                }
+            }
+            .card:last-child{
+                margin:0px;
+            }
+        }
+    }
+}
+
+.second{
+	ion-scroll{
+    height:95px;
+    .scroll-content{
+       
+        .scroll-zoom-wrapper{
+            .card{
+                width: 75px;
+                .product-img{
+                    height: 50px;
+					width: 50px;
+					margin: auto;
+                   img{
+                        height: 100%;
+						width: 100%;
+						border-radius: 50%;
+					}
+                }
+            }
+        }
+    }
+}
+}
+
+.trav{
+    width: 100%;
+    float: left;
+.card {
+    width: 49%;
+    float: left;
+    margin: 0;
+    position: relative;
+    text-align: center;
+	
+     .card-title {
+        position: absolute;
+        top: 45%;
+        font-size: 16px;
+        width: 100%;
+        font-weight: 500;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+	   .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width:100%;
+            background: rgba(0,0,0,0.2);
+        }
+     }
+   }
+
+}

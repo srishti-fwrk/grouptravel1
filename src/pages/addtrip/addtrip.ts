@@ -14,6 +14,8 @@ import { OpenWeatherMapModule } from 'ionic-openweathermap';
 import { My_tripPage } from '../my_trip/my_trip';
 import { TabsPage } from '../tabs/tabs';
 import { Camera, CameraOptions } from "@ionic-native/camera";
+import { IcommentsPage } from '..//icomments/icomments';
+
 /**
  * Generated class for the AddtripPage page.
  *
@@ -28,12 +30,15 @@ import { Camera, CameraOptions } from "@ionic-native/camera";
   providers: [HttpModule, CommonProvider, DatePipe, Camera]
 })
 export class AddtripPage {
+    
   image: any;
   ndate: string;
   date: Date;
   enddate: any;
   startdate: any;
   destination: any;
+  destination2: any = '';
+  currency: any;
   id: string;
   trip_id: any;
   day: any;
@@ -44,6 +49,11 @@ export class AddtripPage {
   tripcover: any;
   attendees: any;
   status: any = 0;
+  event: any;
+  bit: any = 0;
+  eventss: any;
+  photoreference: any;
+//  bitt: any = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public events: Events,public http: Http, public common: CommonProvider,
@@ -56,15 +66,52 @@ export class AddtripPage {
     this.id = localStorage.getItem('ID');
     this.viewProfile();
     this.viewSingleTrip();
-    this.viewAttendees();
+    this.viewAttendees();    
+    
+    this.event = this.navParams.get('event');
+    console.log(this.event);
+    
+    this.viewItinerary();
   }
   
   back(){
       this.navCtrl.push(TabsPage);
   }
+  
+  
+  viewTripCover(){
+      var options = this.common.options;
+  
+      this.http.get('https://maps.googleapis.com/maps/api/place/photo?maxheight=400&maxwidth=400&photoreference='+this.photoreference+'&key=AIzaSyD59OsMu3HHnMIY2FmbLCoCguC7NujtiTs', options)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+//        if (data.list.length > 0) {
+//         this.day = data.list[0].temp.day;
+//         this.night = data.list[0].temp.night;
+//          console.log('day='+this.day+'&night='+this.night);
+//        }else {
+//                        
+//        }
+      }, error => {
+          console.log(error);    
+      });
+  }
 
   openNext(){
-    this.navCtrl.push(AddeventPage);
+    this.navCtrl.push(AddeventPage,{
+        startd: this.startdate, 
+        endd: this.enddate
+    });
+  }
+  
+  comments(eid){
+      
+      //console.log(eid);
+   this.navCtrl.push(IcommentsPage,{
+       etid: eid
+   });  
+    
   }
   
   edit(){
@@ -245,17 +292,17 @@ export class AddtripPage {
   }
   
   viewAttendees(){
-      console.log('attendees');
+      //console.log('attendees');
    
     var options = this.common.options;
   
     var data_form = {
       trip_id: this.trip_id
     }
-    console.log(data_form);
+    //console.log(data_form);
     
     var Serialized = this.common.serializeObj(data_form);
-    console.log(Serialized);
+    //console.log(Serialized);
    
       this.http.post(this.common.base_url + 'invites/attendese', Serialized, options)
       .map(res => res.json())
@@ -264,7 +311,7 @@ export class AddtripPage {
         if (data.status == 0) {
            
            this.attendees = data.data; 
-           console.log(this.attendees);           
+           //console.log(this.attendees);           
           
         }else {
              this.status = data.status;         
@@ -282,7 +329,7 @@ export class AddtripPage {
       this.http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q='+this.destination+'&appid=7756a5add72128537d61c8fccb203817&units=metric', options)
       .map(res => res.json())
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         if (data.list.length > 0) {
          this.day = data.list[0].temp.day;
          this.night = data.list[0].temp.night;
@@ -303,10 +350,10 @@ export class AddtripPage {
     var data_form = {
       id: this.id
     }
-    console.log(data_form);
+    //console.log(data_form);
     
     var Serialized = this.common.serializeObj(data_form);
-    console.log(Serialized);
+    //console.log(Serialized);
    
       this.http.post(this.common.base_url + 'users/user', Serialized, options)
       .map(res => res.json())
@@ -315,7 +362,7 @@ export class AddtripPage {
         if (data.status == 0) {
          
            this.image = data.data.User.image; 
-           console.log(this.image);   
+           //console.log(this.image);   
           
         }else {
                         
@@ -329,10 +376,10 @@ export class AddtripPage {
   itinerary(){
     this.navCtrl.push(AddtripPage);
   }
-
-  payments(){
-    this.navCtrl.push(ContactPage);
-  }
+//
+//  payments(){
+//    
+//  }
 
   chat(){
     this.navCtrl.push(AboutPage);
@@ -355,8 +402,90 @@ export class AddtripPage {
     this.navCtrl.push(InvitePage);
   }
 
-  location(){
-    this.navCtrl.push(LocationPage);
+  location(get){
+      
+      if(get == this.destination){
+          
+          let keys =  get.substring(get.lastIndexOf(' ') + 1);
+          //console.log(keys);
+          
+          var options = this.common.options;
+            var data_form = {
+              code: keys      
+            }
+            //console.log(data_form);
+
+            var Serialized = this.common.serializeObj(data_form);
+            //console.log(Serialized);
+            
+            this.http.post(this.common.base_url + 'users/currencycode', Serialized, options)
+                .map(res => res.json())
+                .subscribe(data => {
+
+                  console.log(data);
+                  if (data.status == 0) {
+                  this.currency = data.data[0].Currencycode.currency_code;
+                  //console.log(this.currency);
+                  
+                  let tosend = {
+                    currency: this.currency,
+                    fromDate: this.send.trip_startdate,
+                    toDate: this.send.trip_enddate,
+                    destination: get
+                }
+                this.navCtrl.push(LocationPage,{
+                  send: tosend
+              });
+                  
+                  }else {
+                  }
+                }, error => {
+
+                });
+      
+          
+      }else if(get == this.destination2){
+      
+            let keys =  get.substring(get.lastIndexOf(' ') + 1);
+          //console.log(keys);
+          
+          var options = this.common.options;
+            var data_form = {
+              code: keys      
+            }
+            //console.log(data_form);
+
+            var Serialized = this.common.serializeObj(data_form);
+            //console.log(Serialized);
+            
+            this.http.post(this.common.base_url + 'users/currencycode', Serialized, options)
+                .map(res => res.json())
+                .subscribe(data => {
+
+                  console.log(data);
+                  if (data.status == 0) {
+                  this.currency = data.data[0].Currencycode.currency_code;
+                  //console.log(this.currency);
+                  
+                  let tosend = {
+                    currency: this.currency,
+                    fromDate: this.send.trip_startdate1,
+                    toDate: this.send.trip_enddate1,
+                    destination: get
+                }
+                this.navCtrl.push(LocationPage,{
+                  send: tosend
+              });
+                  
+                  }else {
+                  
+                  }
+                }, error => {
+
+                });
+                
+      }
+      
   }
 
   viewSingleTrip() {
@@ -373,10 +502,10 @@ export class AddtripPage {
       user_id: this.id,
       tripid: this.trip_id
    }
-    console.log(data_form);
+    //console.log(data_form);
     
     var Serialized = this.common.serializeObj(data_form);
-    console.log(Serialized);
+   // console.log(Serialized);
     
     Loading.present().then(() => {
     this.http.post(this.common.base_url + 'trips/singletrip', Serialized, options)
@@ -388,16 +517,24 @@ export class AddtripPage {
         if (data.status == 0) {
             
           this.tripcover = data.data.Trip.image;
-          console.log(this.tripcover);
+          //console.log(this.tripcover);
           this.send = data.data.Trip;
-          console.log(data.data.Trip.end_location);
+          //console.log(data.data.Trip.end_location);
+          this.photoreference = data.data.Trip.start_location;
+          
           this.destination = data.data.Trip.end_location;
+          if(data.data.Trip.end_location1){
+              this.destination2 = data.data.Trip.end_location1;
+              //console.log(this.destination2);
+          }
+          
           localStorage.setItem('destination',this.destination);
-          console.log(data.data.Trip.trip_startdate);
+          //console.log(data.data.Trip.trip_startdate);
           this.startdate = data.data.Trip.trip_startdate;           
-          console.log(data.data.Trip.trip_enddate);
+          //console.log(data.data.Trip.trip_enddate);
           this.enddate = data.data.Trip.trip_enddate;
           this.weather();
+          this.viewTripCover();
          
           let toast = this.toastCtrl.create({
             message: data.msg,
@@ -427,6 +564,114 @@ export class AddtripPage {
       });
     });
   }
+    
+  viewItinerary(){
+     
+//    var Loading = this.loadingCtrl.create({
+//      spinner: 'bubbles',
+//      showBackdrop: false,
+//      cssClass: 'loader'
+//    });
 
+    var options = this.common.options;
+
+    var data_form = {
+      user_id: this.id,
+      trip_id: this.trip_id
+   }
+    //console.log(data_form);
+    
+    var Serialized = this.common.serializeObj(data_form);
+    //console.log(Serialized);
+    
+//    Loading.present().then(() => {
+    this.http.post(this.common.base_url + 'trips/eventlist', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+//        Loading.dismiss();
+        
+
+        if (data.status == 0) {            
+          
+         console.log(data);
+         
+         this.eventss = data.data;
+         //console.log(this.eventss);
+//          let toast = this.toastCtrl.create({
+//            message: data.msg,
+//            duration: 3000,
+//            position: 'middle'
+//          });
+//          toast.present();
+
+        } else {
+
+//          let toast = this.toastCtrl.create({
+//            message: data.msg,
+//            duration: 3000,
+//            position: 'middle'
+//          });
+//          toast.present();
+
+        }
+      }, error => {
+//        Loading.dismiss();
+        let toast = this.toastCtrl.create({
+          message: "Check your Network Connection",
+          duration: 3000,
+          position: 'middle'
+        });
+        toast.present();
+      });
+//    });
+       
+  }
+  
+  likeItinerary(eid){
+      
+    var options = this.common.options;
+  
+    var data_form = {
+         event_id: eid,
+         trip_id: this.trip_id    
+    }
+    //console.log(data_form);
+    
+    var Serialized = this.common.serializeObj(data_form);
+    //console.log(Serialized);
+   
+      this.http.post(this.common.base_url + 'bookings/addtofavourite', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        if (data.status == 0) {            
+//            this.bitt = data.bit;
+            this.viewItinerary();
+            let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();          
+            
+        }else {
+        //this.status = data.data.Favourite.status;
+           let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();             
+        }
+      }, error => {
+         let toast = this.toastCtrl.create({
+            message: "Check your network connection",
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();     
+      });
+          
+  }
 
 }

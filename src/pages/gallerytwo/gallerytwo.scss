@@ -63,12 +63,36 @@ h3{
         height: 100px;
         overflow: hidden;
         border: 1px solid #fff;
-    
-    
-    img {
-		height:100%;
-		width:100%;
-    }
+        background:#000;
+        
+        img{
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+           
+            video {
+                width: auto;
+                height: 100px;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                left: 0;
+                position: absolute;
+                img{
+                    width:auto !important;
+                }
+                button.small-center{
+                    height: 31px !important;
+                    width:31px !important;
+                }
+            }
 	span{
 		&.count{
 			display:inline-block;

@@ -47,6 +47,10 @@ import { TermsPage } from '../pages/terms/terms';
 import { GallerytwoPage } from '../pages/gallerytwo/gallerytwo';
 import { EditphotoPage } from '../pages/editphoto/editphoto';
 import { LocalityPage } from '../pages/locality/locality';
+import { FlightdetailPage } from '../pages/flightdetail/flightdetail';
+import { FlightformPage } from '../pages/flightform/flightform';
+import { IcommentsPage } from '../pages/icomments/icomments';
+import { DiscovertopPage } from '../pages/discovertop/discovertop';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -62,7 +66,8 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { ImagePicker } from '@ionic-native/image-picker';
-import { Calendar } from '@ionic-native/calendar';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { OpenWeatherMapModule } from 'ionic-openweathermap';
@@ -70,6 +75,9 @@ import { Firebase } from '@ionic-native/firebase';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
+import { CalendarModule } from "ion2-calendar";
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -118,7 +126,11 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
         TermsPage,
         GallerytwoPage,
         EditphotoPage,
-        LocalityPage
+        LocalityPage,
+        FlightdetailPage,
+        FlightformPage,
+        IcommentsPage,
+        DiscovertopPage
 
   ],
   imports: [
@@ -128,7 +140,8 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
     HttpClientModule,
     IonicImageViewerModule,
     Ionic2RatingModule,
-    OpenWeatherMapModule    
+    OpenWeatherMapModule,
+    CalendarModule
    
   ],
   bootstrap: [IonicApp],
@@ -178,7 +191,11 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
         TermsPage,
         GallerytwoPage,
         EditphotoPage,
-        LocalityPage
+        LocalityPage,
+        FlightdetailPage,
+        FlightformPage,
+        IcommentsPage,
+        DiscovertopPage
   
   ],
   providers: [
@@ -195,7 +212,10 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
     SocialSharing,
     Firebase,
     FileTransfer,
-    StreamingMedia    
+    StreamingMedia,
+    MediaCapture,
+    InAppBrowser,
+    Keyboard    
         
   ]
 })

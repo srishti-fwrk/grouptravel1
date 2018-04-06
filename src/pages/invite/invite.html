@@ -9,42 +9,19 @@
 <ion-content padding class="invite">
   <h3>Who's coming to {{destination}}</h3>
   <div class="subhead">Recent Travel Friends</div>
-  <ion-scroll scrollX="true" padding>
-			<ion-card>
+  <ion-scroll scrollX="true" padding *ngIf="!recentfrnds">
+              <p>No Recent Friends Yet</p>
+    </ion-scroll>
+  <ion-scroll scrollX="true" padding *ngIf="recentfrnds">
+			<ion-card *ngFor="let rfrnds of recentfrnds">
 				<div class="product-img">
-					<img src="assets/imgs/getstartback.jpeg">
-			
+					<img *ngIf="rfrnds.user.image" src="{{rfrnds.user.image}}">
+                                        <img *ngIf="!rfrnds.user.image" src="assets/imgs/user.png">
 				</div>
-        <span>Name</span>
+                                    <span>{{rfrnds.user.name}}</span>
 			</ion-card>
-			<ion-card>
-				<div class="product-img">
-            <img src="assets/imgs/getstartback.jpeg">
-      
-				</div>
-        <span>Name</span>
-			</ion-card>
-			<ion-card>
-				<div class="product-img">
-            <img src="assets/imgs/getstartback.jpeg">
-            
-				</div>
-        <span>Name</span>
-			</ion-card>
-			<ion-card>
-				<div class="product-img">
-            <img src="assets/imgs/getstartback.jpeg">
-          
-				</div>
-        <span>Name</span>
-			</ion-card>
-			<ion-card>
-				<div class="product-img">
-            <img src="assets/imgs/getstartback.jpeg">
-           
-				</div>
-        <span>Name</span>
-			</ion-card>
+	
+	
 		
     </ion-scroll>
     <div class="subhead" style="margin: 30px 0 15px;">Search Grouptrip</div>
@@ -55,7 +32,15 @@
             <ion-input type="text" name="userr" id="userr" [(ngModel)]="data.userr" (input)="search(data.userr)" #userr="ngModel" required></ion-input>            
           </ion-item>
                 
-        <ion-item *ngFor="let us of user" (click)="chooseItem(us.User.name,us.User.id)">{{ us.User.name }} </ion-item>
+        <ion-item *ngFor="let us of user" (click)="chooseItem(us.User.name,us.User.id)">                        
+            
+            <ion-avatar item-start>          
+                <img *ngIf="us.User.image" src="{{us.User.image}}">
+						
+                <img *ngIf="!us.User.image" src="assets/imgs/user.png">
+            </ion-avatar>
+            {{ us.User.name }} 
+        </ion-item>
         
           <button ion-button small no-margin color="theme" (click)="sendInvite(searchu)" [disabled]="!searchu.form.valid">Send Invite</button>
           

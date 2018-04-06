@@ -23,14 +23,18 @@
 
 <ion-content>
   <div class="edit_main">
+      
     <div class="pic">
+        <ion-card no-margin>
         <img src="{{showimg}}">
+        <button ion-button color="light" clear (click)="edit()"><ion-icon ios="md-create" md="md-create"></ion-icon> Edit</button>
+        </ion-card>
     </div>
-	
-	<div style="padding:8px;">
-    <h4>TAG LOCATION</h4>
-    <div *ngIf="bit == '0'">
-    <button ion-button clear color="theme" (click)="addLocation()">+ Add Location</button>
+      
+    <div style="padding:8px;">
+        <h4>TAG LOCATION</h4>
+        <div *ngIf="bit == '0'">
+        <button ion-button clear color="theme" (click)="addLocation()" style="height: 14px;font-size: 12px;margin: 2px 0;padding: 0;">+ Add Location</button>
     </div>
     
     <div *ngIf="bit == '1'">
@@ -49,7 +53,7 @@
 			  </ion-item>
 			</ion-list>
 		 </ion-col>-->
-		 <ion-col col-10 style="padding-right:0px;">
+		 <ion-col col-12 style="padding:5px 0px;">
 			<ion-label>CHOOSE AUDIENCE</ion-label>
 			<ion-row class="pub">
 				<ion-col col-2 style="padding: 5px 0px;"> <span>Public</span></ion-col>

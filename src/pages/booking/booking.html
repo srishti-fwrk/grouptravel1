@@ -20,10 +20,10 @@
         <!-- Ion Segment Button Start Here -->
         <div class="top_segment-sec" padding>
           <ion-segment [(ngModel)]="trip">
-            <ion-segment-button  class="segment-button segment-activated" value="upcoming">
+            <ion-segment-button  class="segment-button segment-activated" value="upcoming" (click)="upcomingBookings()">
               Upcoming
             </ion-segment-button>
-            <ion-segment-button value="past">
+            <ion-segment-button value="past" (click)="pastBookings()">
               Past
             </ion-segment-button>
           </ion-segment>
@@ -32,29 +32,29 @@
         <div class="bottom_sec" [ngSwitch]="trip">
         
           <ion-list *ngSwitchCase="'upcoming'">
-            <ion-card>
+            <ion-card *ngFor="let fl of uflights">
                 <ion-item class="bw">
                     <ion-icon item-start><img src="assets/imgs/plane.png" /></ion-icon>
                     <div>
-                      <h3>BWI <sub>Baltimore</sub></h3>
-                      <h3>BKK <sub>Bangkok</sub></h3>
+                      <h3>BWI <sub>{{fl.Booking.start_location}}</sub></h3>
+                      <h3>BKK <sub>{{fl.Booking.end_location}}</sub></h3>
                     </div>
-                    <h2>8/28/18 - 9/02/18</h2>
+                    <h2>{{fl.Booking.start_date}} - {{fl.Booking.last_date}}</h2>
                     <p>Confirmation #:12345678</p>
                   </ion-item>
             </ion-card>
 
-            <ion-card>
+            <ion-card *ngFor="let ht of uhotels">
                 <ion-item class="bw city">
                     <ion-icon item-start><img src="assets/imgs/hotel.png" /></ion-icon>
-                      <h3>Room Mate Boutique Hotel</h3>
-                      <span>New York City</span>
-                    <h2>8/28/18 - 9/02/18</h2>
+                      <h3>{{ht.Hotel_booking.hname}}</h3>
+                      <span>{{ht.Hotel_booking.city}}, {{ht.Hotel_booking.country}}</span>
+                    <h2>{{ht.Hotel_booking.check_in}} - {{ht.Hotel_booking.check_out}}</h2>
                     <p>Confirmation #:12345678</p>
                   </ion-item>
             </ion-card>
 
-            <ion-card>
+<!--            <ion-card>
              <ion-item class="bw bwb">
                 <div class="plane">
                 <ion-icon item-start style="margin-bottom: 7px;"><img src="assets/imgs/plane.png" /></ion-icon>
@@ -67,14 +67,32 @@
                   <p>Confirmation #:12345678</p>
                 </div>
               </ion-item>
-            </ion-card>
+            </ion-card>-->
 
 
           </ion-list><!-- First Case End Here -->
           
           <ion-list *ngSwitchCase="'past'">
-            <ion-card>
-              
+           <ion-card *ngFor="let fl of pflights">
+                <ion-item class="bw">
+                    <ion-icon item-start><img src="assets/imgs/plane.png" /></ion-icon>
+                    <div>
+                      <h3>BWI <sub>{{fl.Booking.start_location}}</sub></h3>
+                      <h3>BKK <sub>{{fl.Booking.end_location}}</sub></h3>
+                    </div>
+                    <h2>{{fl.Booking.start_date}} - {{fl.Booking.last_date}}</h2>
+                    <p>Confirmation #:12345678</p>
+                  </ion-item>
+            </ion-card>
+
+            <ion-card *ngFor="let ht of photels">
+                <ion-item class="bw city">
+                    <ion-icon item-start><img src="assets/imgs/hotel.png" /></ion-icon>
+                      <h3>{{ht.Hotel_booking.hname}}</h3>
+                      <span>{{ht.Hotel_booking.city}}, {{ht.Hotel_booking.country}}</span>
+                    <h2>{{ht.Hotel_booking.check_in}} - {{ht.Hotel_booking.check_out}}</h2>
+                    <p>Confirmation #:12345678</p>
+                  </ion-item>
             </ion-card>
             
           </ion-list><!-- Second Case End Here -->

@@ -1,0 +1,85 @@
+<!--<ion-header>
+  <ion-navbar color="theme">
+    <ion-title class="header_title" color="text">Flight</ion-title>
+  </ion-navbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="header_title" color="text">Flight</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="send">
+
+    <ion-list class="divider">
+      <ion-item>
+        <h2>{{send.Origin}} -> {{send.Destination}}</h2>
+        <p>{{send.OnwardFlightDate | date: 'EEE, MMM d'}}</p>
+         <ion-note item-end class="note">{{send.FlightTimesAndDuration[0].Duration}}<span>Non Stop</span></ion-note>
+      </ion-item>
+    </ion-list>
+ 
+<!--<div padding>
+  <div class="wallet">
+      <span>{{flight.FlightDetails[0].DepartureDateTime| date: 'HH:mm'}}<br> <ion-note class="note">{{send.OnwardFlightDate | date: 'MMM d'}}</ion-note></span>
+      <span>{{send.FlightTimesAndDuration[0].Duration}}</span>
+      <span>{{flight.FlightDetails[0].ArrivalDateTime| date: 'HH:mm'}}<br> <ion-note class="note">{{send.OnwardFlightDate | date: 'MMM d'}}</ion-note></span>
+      
+      <div class="content" *ngIf="flight">
+         <div class="top">
+            <h3>{{flight.FlightDetails[0].OriginAirportName}}</h3>
+            <h4>{{flight.FlightDetails[0].Origin}}, {{flight.FlightDetails[0].OriginAirportCity}}, {{flight.FlightDetails[0].OriginAirportCountry}}</h4>
+         </div>
+
+         <ion-item class="waterfall">
+            <h2>{{flight.FlightDetails[0].AirlineName}}</h2>
+            <p>{{flight.FlightDetails[0].AirlineCategory}} {{flight.FlightDetails[0].FlightNum}}</p>
+            <ion-note item-end class="note"><ion-icon ios="md-plane" md="md-plane"></ion-icon></ion-note>
+        </ion-item>
+
+         <div class="bottom">
+          <h3>{{flight.FlightDetails[0].DestinationAirportName}}</h3>
+          <h4>{{flight.FlightDetails[0].Destination}}, {{flight.FlightDetails[0].DestinationAirportCity}}, {{flight.FlightDetails[0].DestinationAirportCountry}}</h4>
+       </div>
+      </div>
+  </div>
+</div>-->
+    
+    
+    
+    <div padding *ngFor="let sd of send.ItinearyDetails.Segments">
+  <div class="wallet" *ngFor="let itm of sd.item">
+      <span>{{itm.DepartureDateTime| date: 'HH:mm'}}<br> <ion-note class="note">{{itm.DepartureDateTime | date: 'MMM d'}}</ion-note></span>
+      <!--<span>{{send.FlightTimesAndDuration[0].Duration}}</span>-->
+      <span>{{itm.ArrivalDateTime| date: 'HH:mm'}}<br> <ion-note class="note">{{itm.ArrivalDateTime | date: 'MMM d'}}</ion-note></span>
+      
+      <div class="content">
+         <div class="top">
+            <h3>{{itm.OriginAirportName}}</h3>
+            <h4>{{itm.Origin}}, {{itm.OriginAirportCity}}, {{itm.OriginAirportCountry}}</h4>
+         </div>
+
+         <ion-item class="waterfall">
+            <h2>{{itm.AirlineName}}</h2>
+            <p>{{itm.FlightNum}}</p>
+            <ion-note item-end class="note"><ion-icon ios="md-plane" md="md-plane"></ion-icon></ion-note>
+        </ion-item>
+
+         <div class="bottom">
+          <h3>{{itm.DestinationAirportName}}</h3>
+          <h4>{{itm.Destination}}, {{itm.DestinationAirportCity}}, {{itm.DestinationAirportCountry}}</h4>
+       </div>
+      </div>
+  </div>
+</div>
+    <button ion-button color="theme" (click)="getDetail()" class="cont">Pay {{price}} {{currency}}</button>    
+</ion-content>

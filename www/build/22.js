@@ -1,14 +1,14 @@
 webpackJsonp([22],{
 
-/***/ 484:
+/***/ 628:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlightPageModule", function() { return FlightPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GaldetailPageModule", function() { return GaldetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__flight__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__galdetail__ = __webpack_require__(94);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var FlightPageModule = (function () {
-    function FlightPageModule() {
+var GaldetailPageModule = (function () {
+    function GaldetailPageModule() {
     }
-    FlightPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+    GaldetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__flight__["a" /* FlightPage */],
+                __WEBPACK_IMPORTED_MODULE_2__galdetail__["a" /* GaldetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__flight__["a" /* FlightPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__galdetail__["a" /* GaldetailPage */]),
             ],
         })
-    ], FlightPageModule);
-    return FlightPageModule;
+    ], GaldetailPageModule);
+    return GaldetailPageModule;
 }());
 
-//# sourceMappingURL=flight.module.js.map
+//# sourceMappingURL=galdetail.module.js.map
 
 /***/ })
 

@@ -1,8 +1,21 @@
-<ion-header>
+<!--<ion-header>
     <ion-navbar color="theme">
       <ion-title class="header_title" color="text">Flight</ion-title>
     </ion-navbar>
-  </ion-header>
+  </ion-header>-->
+
+<ion-header>
+  <ion-toolbar color="theme">
+    <ion-buttons start (click)="back()">
+      <button ion-button icon-only >
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="header_title" color="text">Flight</ion-title>
+
+  </ion-toolbar>
+</ion-header>
 
   <ion-content>
       
@@ -26,10 +39,10 @@
       
           <ion-item class="filter" no-padding>
               <ion-label><span>Filter</span></ion-label>
-              <ion-select [(ngModel)]="gaming">
-                <ion-option value="nes" [selected]="true">Lowest Price</ion-option>
-                <ion-option value="n64">Highest Price</ion-option>
-              </ion-select>
+              <ion-select name="filter" id="filter" #filter="ngModel" [(ngModel)]="data.filter" (ionChange)="filterSelect($event)" placeholder="Price">
+          <ion-option value="lowest" selected="true">Lowest Price</ion-option>
+          <ion-option value="highest">Highest Price</ion-option>
+        </ion-select>
             </ion-item>
           
           
@@ -39,7 +52,7 @@
           <!--<ion-card class="waterfall" *ngFor="let fl of flights">
                 <ion-item (click)="arival()">
                   <ion-avatar item-start>
-                      <img src="assets/imgs/a.png">
+                      <img src="assets/imgs/plane2.png">
                   </ion-avatar>
                   <!--<h2>My Neighbor Totoro</h2>
                  
@@ -65,16 +78,16 @@
                 </ion-card>-->
           
           
-          
-          <ion-card class="waterfall" *ngFor="let fl of info">
-                <ion-item (click)="arival(fl.flights,fl.dates)">
+                    <div *ngIf="filterbit == '0'">
+                         <ion-card class="waterfall" *ngFor="let fl of info">
+                <ion-item (click)="arival(fl.flights,fl.dates,fl.price)">
                   <ion-avatar item-start>
-                      <img src="assets/imgs/a.png">
+                      <img src="assets/imgs/plane2.png">
                   </ion-avatar>
                   <!--<h2>My Neighbor Totoro</h2>
                   -->
                   <div>
-                      <p>{{fl.s_date}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.d_date}}</p>
+                      <p>{{fl.s_date | date: 'HH:mm a'}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.d_date | date: 'HH:mm a'}}</p>
                   </div>
                   <div class="us">
                       
@@ -93,11 +106,43 @@
           
           
                 </ion-card>
+                    </div>
+                    
+                    <div *ngIf="filterbit == '1'">
+                         <ion-card class="waterfall" *ngFor="let fl of info.slice().reverse()">
+                <ion-item (click)="arival(fl.flights,fl.dates,fl.price)">
+                  <ion-avatar item-start>
+                      <img src="assets/imgs/plane2.png">
+                  </ion-avatar>
+                  <!--<h2>My Neighbor Totoro</h2>
+                  -->
+                  <div>
+                      <p>{{fl.s_date | date: 'HH:mm a'}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.d_date | date: 'HH:mm a'}}</p>
+                  </div>
+                  <div class="us">
+                      
+                    <p>{{fl.s}} &#x25CB; 	&#x25cf; 	&#x25cf; 	&#x25cf; &#x25CB; {{fl.d}}</p>
+                    <span>{{fl.airline}}</span>
+                  </div>
+                  <div class="rt">
+                    <ul>
+                      <!--<li>{{fl.Duration}}</li>-->
+                     <li>{{fl.n}} stops</li>
+                    </ul>
+                  </div>
+                 
+                    <ion-note item-end="" class="note note-ios">{{fl.price}}</ion-note>
+                </ion-item>
+          
+          
+                </ion-card>
+                    </div>
+         
                     
                     <!--<ion-card class="waterfall" *ngFor="let fli of info1">
                 <ion-item (click)="arival(fli.flights,fli.dates)">
                   <ion-avatar item-start>
-                      <img src="assets/imgs/a.png">
+                      <img src="assets/imgs/plane2.png">
                   </ion-avatar>
                   <!--<h2>My Neighbor Totoro</h2>
                   
@@ -125,7 +170,7 @@
                     <ion-card class="waterfall" *ngFor="let flig of info2">
                 <ion-item (click)="arival(flig.flights)">
                   <ion-avatar item-start>
-                      <img src="assets/imgs/a.png">
+                      <img src="assets/imgs/plane2.png">
                   </ion-avatar>
                   <!--<h2>My Neighbor Totoro</h2>
                   

@@ -13,6 +13,11 @@ import {googlemaps} from 'googlemaps';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SearchitineraryPage } from '../searchitinerary/searchitinerary';
+import { DiscovertopPage } from '../discovertop/discovertop';
+
+import { ModalController } from 'ionic-angular';
+import { CalendarModal, CalendarModalOptions, DayConfig, CalendarResult } from "ion2-calendar";
+import { CalendarModule } from "ion2-calendar";
 
 /**
  * Generated class for the DiscoverPage page.
@@ -28,6 +33,9 @@ import { SearchitineraryPage } from '../searchitinerary/searchitinerary';
   providers: [Geolocation,NativeGeocoder]
 })
 export class DiscoverPage implements OnInit{
+    
+    date: string;
+  type: 'string';
     
   destination : any;  
   source : any;
@@ -48,6 +56,9 @@ export class DiscoverPage implements OnInit{
   des_long: any;
   des_lat: any;
   d_add: any;
+  activities: any;
+  community: any;
+  fcommunity = [];
 
   ngOnInit(){
 
@@ -77,10 +88,7 @@ export class DiscoverPage implements OnInit{
     query: '',
     queryy: '',
     city: '',
-    country: '',
-    dmonth: '', 
-    amonth: '',
-
+    country: ''    
   };
   public user_id:any;
   public autocompleteItemss;
@@ -105,24 +113,48 @@ export class DiscoverPage implements OnInit{
      occupancies = [];
      bool: any;
      activity_source: any;
+     dmonth: any = '';
+     amonth: any = '';
+     c: any = 0;
      
+//     public eventt = {
+//        dmonth: '',
+//        amonth: '',
+//        }
+
      @ViewChild('map') mapElement: ElementRef;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public common: CommonProvider,public http: Http,
     public toastCtrl: ToastController, public loadingCtrl:LoadingController,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController, public modalCtrl: ModalController) {
     
     this.id = localStorage.getItem('ID');
     this.viewProfile();
-    this.countrylist();
-    /*this.bool = 'true';
-    console.log(this.bool);*/
+    this.countrylist();    
   
-    this.minDate = this.dPipe.transform(new Date(), 'yyyy-MM-dd');
+    this.minDate = this.dPipe.transform(new Date(), 'yyyy-MM-dd');    
+    console.log(this.minDate);
     
-    //this.minDate = this.dPipe.transform(new Date(), 'MM-dd-yyyy');
-   console.log(this.minDate);
+    this.activities = this.navParams.get('activities');
+    console.log('activities '+this.activities);
+    if(this.activities){
+        this.pet = 'activitiess';
+        console.log(this.pet);
+    }
+    
+    this.fcommunity = this.navParams.get('fcommunity');
+    console.log('fcommunity '+this.fcommunity);
+    if(this.fcommunity){
+        this.pet = 'travel';
+        console.log(this.pet);
+    }
+    
+    this.c = this.navParams.get('bit');
+    if(this.c == 4){
+        this.pet = 'travel';
+        console.log(this.pet);
+    }
   }
   
   ionViewWillEnter(){
@@ -132,8 +164,73 @@ export class DiscoverPage implements OnInit{
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad DiscoverPage');    
+  }  
+  
+  roundt(){
+    //alert('roundtrip');
+      this.trip = 1;
+      console.log(this.trip);  
   }
+  
+  onet(){
+   //alert('oneway');
+      this.trip = 2;
+      console.log(this.trip);   
+  }  
+  
+  openCalendarr(){
+      const options: CalendarModalOptions = {
+      title: 'Calendar',
+    };
+   let myCalendar =  this.modalCtrl.create(CalendarModal, {
+      options: options
+    });
  
+    myCalendar.present();
+ 
+    myCalendar.onDidDismiss((date: CalendarResult, type: string) => {
+      if(date){
+          this.dmonth = date.string;           
+          console.log(this.dmonth);
+      }
+      
+    })
+  }
+  
+  openCalendar(){
+      
+       const options: CalendarModalOptions = {
+      title: 'Calendar',
+    };
+    let myCalendar =  this.modalCtrl.create(CalendarModal, {
+      options: options
+    });
+ 
+    myCalendar.present();
+ 
+    myCalendar.onDidDismiss((date: CalendarResult, type: string) => {
+      if(date){
+          this.amonth = date.string; 
+          console.log(this.amonth);
+      }
+      
+    })
+      
+  }
+  
+   flights(){
+  console.log('flights');
+          this.bit = 1;
+          this.bool = 'true';
+          this.trip = 1;
+  }
+  
+  hotels(){
+  console.log('hotels');
+          this.bit = 2; 
+          this.trip = 1;
+  }
+
   openItinerary(){
       this.navCtrl.push(SearchitineraryPage);
   }
@@ -174,32 +271,8 @@ export class DiscoverPage implements OnInit{
       }      
       console.log(this.roomselected);  
   }
-  
-  roundtrip(){
-    console.log('roundtrip');
-      this.trip = 1;  
-  }
-  
-  oneway(){
-   console.log('oneway');
-      this.trip = 2;   
-  }  
- 
-  flights_hotels(value){
-      
-      if(value == 'flights'){
-          console.log('flights');
-          this.bit = 1;
-          this.bool = 'true';
-      }else if(value == 'hotels'){
-          console.log('hotels');
-          this.bit = 2; 
-          this.trip = 1;
-      }
-      
-  }
 
-  
+
 public roomselected=[];
 
   roomSelect(e){    
@@ -258,11 +331,48 @@ public roomselected=[];
   }
 
   hotelView(heroForm){
-    console.log('hotelView');
-    console.log(heroForm.value.city);
+      
+      if(this.dmonth == '' && this.amonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select dates to search',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.dmonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select Arrival date',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.amonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select Departure date',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.dmonth > this.amonth){
+        
+          let toast = this.toastCtrl.create({
+            message: 'Invalid dates',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+          
+    }else{
+     console.log(heroForm.value.city);
     console.log(heroForm.value.country);
-    this.from=heroForm.value.dmonth;
-    this.to=heroForm.value.amonth;   
+    this.from=this.dmonth;
+    this.to=this.amonth;  
     
 
      var Loading = this.loadingCtrl.create({
@@ -282,8 +392,8 @@ public roomselected=[];
      Country: heroForm.value.country,
      "Latitude": "",
      "Longitude": "",
-     FromDate: heroForm.value.dmonth, 
-     ToDate: heroForm.value.amonth, 
+     FromDate: this.dmonth, 
+     ToDate: this.amonth, 
      ClientNationality: this.country, 
      Currency: this.currency, 
      Occupancies: this.roomselected
@@ -312,7 +422,9 @@ public roomselected=[];
             to: this.to,
             currency: this.currency,
             nationality: this.country,
-            occupancies: this.roomselected
+            occupancies: this.roomselected,
+            dcity: heroForm.value.city,
+            dcountry: heroForm.value.country
            };
 
            this.navCtrl.push(SearchPage,{
@@ -345,7 +457,9 @@ public roomselected=[];
         });
         toast.present();
       });
-    });
+    });   
+    }
+    
   }
   
   flightView(heroForm){
@@ -355,16 +469,54 @@ public roomselected=[];
       if(this.trip == '1'){
           console.log('round');
           
-          var Loading = this.loadingCtrl.create({
-      spinner: 'bubbles',
-      showBackdrop: false,
-      cssClass: 'loader'
-    });
+          if(this.dmonth > this.amonth){
+        
+          let toast = this.toastCtrl.create({
+            message: 'Invalid dates',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+          
+    }else if(this.dmonth == '' && this.amonth == ''){
+        
+        let toast = this.toastCtrl.create({
+            message: 'Select dates to search',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
     
-    let ddatee=this.eventt.dmonth.split("-");
+    }else if(this.dmonth == ''){
+        
+        let toast = this.toastCtrl.create({
+            message: 'Select Arrival date',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.amonth == ''){
+        
+            let toast = this.toastCtrl.create({
+                message: 'Select Departure date',
+                duration: 3000,
+                position: 'middle'
+              });
+              toast.present();
+    
+    }else{
+          
+          var Loading = this.loadingCtrl.create({
+            spinner: 'bubbles',
+            showBackdrop: false,
+            cssClass: 'loader'
+          });
+    
+    let ddatee=this.dmonth.split("-");
     let format=ddatee[1]+"/"+ddatee[2]+"/"+ddatee[0];
     
-    let ddateee=this.eventt.amonth.split("-");
+    let ddateee=this.amonth.split("-");
     let formatt=ddateee[1]+"/"+ddateee[2]+"/"+ddateee[0];
     
     let headers = new Headers();
@@ -377,15 +529,25 @@ public roomselected=[];
         TripType: "R", 
         NoOfAdults: 1,         
         ClassType: "Economy",
-         OriginDestination: [ { "Origin": this.source_code, "Destination": this.destination_code, "TravelDate": format }, 
-         { "Origin": this.destination_code, "Destination": this.source_code, "TravelDate": formatt } ], 
-        Currency: this.a_currency 
+         OriginDestination: [ {
+//          Origin: this.source_code, 
+//          Destination: this.destination_code,
+             Origin: 'BOM', 
+          Destination: 'JFK', 
+          TravelDate: format 
+          }, 
+         {
+//          Origin: this.destination_code, 
+//          Destination: this.source_code,
+             Origin: 'JFK', 
+          Destination: 'BOM', 
+          TravelDate: formatt 
+          } ], 
+//        Currency: this.a_currency
+          Currency: 'USD' 
       
    }
     console.log(data_form);
-    
-    //var Serialized = this.common.serializeObj(data_form);
-    //console.log(Serialized);
     
     Loading.present().then(() => {
     this.http.post('https://dev-sandbox-api.airhob.com/sandboxapi/flights/v1.3/search', data_form, this.optionss)
@@ -394,7 +556,7 @@ public roomselected=[];
         Loading.dismiss();
         console.log(data);
 
-        if (data.ErrorMessage == null) {
+        if (data.OneWayAvailabilityResponse.TrackId != null && data.ExpMsg != null) {
            console.log(data);        
     
            /* this.flightdetail = data.OneWayAvailabilityResponse.ItinearyDetails[0].Items;
@@ -423,7 +585,25 @@ public roomselected=[];
           });
           toast.present();
 
-        } else {
+        } else if(data.ProductErrors.ErrorCode != 'null'){
+
+          let toast = this.toastCtrl.create({
+            message: data.ProductErrors.Message,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+
+        }else if(data.ProductErrors.ErrorCode == 'null'){
+
+          let toast = this.toastCtrl.create({
+            message: "Search only international flights",
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+
+        }else if(data.ExpMsg == null){
 
           let toast = this.toastCtrl.create({
             message: "Search only international flights",
@@ -444,10 +624,21 @@ public roomselected=[];
       });
     });
      
-          
+    }     
           
       }else if(this.trip == '2'){
       console.log('oneway');
+      
+      if(this.dmonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select Arrival date',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else{
       
       var Loading = this.loadingCtrl.create({
       spinner: 'bubbles',
@@ -461,7 +652,7 @@ public roomselected=[];
     headers.append('Content-Type',  'application/json');
     this.optionss= new RequestOptions({ headers: headers });
     
-    let ddatee=this.eventt.dmonth.split("-");
+    let ddatee=this.dmonth.split("-");
     let format=ddatee[1]+"/"+ddatee[2]+"/"+ddatee[0];
 
     var data_formm = {
@@ -533,7 +724,7 @@ console.log('else');
         toast.present();
       });
     });    
-          
+       }   
       }
     /*console.log(heroForm.value.city);
     console.log(heroForm.value.country);
@@ -717,30 +908,93 @@ console.log('else');
   }
 
 view(){
-  this.navCtrl.push(ViewactivitiesPage);
-}
-
-/*for calender*/
-public eventt = {
-dmonth: '',
-amonth: '',
-}
-
-public events = {
-
+    let send = {
+        activities: this.activities,
+        back: '1'
+    }
+  this.navCtrl.push(ViewactivitiesPage,{
+      send: send
+  });
 }
 
 search(){
   this.navCtrl.push(SearchPage);
 }
 
-mytrip(){
-  this.navCtrl.push(MytripPage);
+mytrip(uid){
+  this.navCtrl.push(MytripPage,{
+      userid: uid,
+      community: this.fcommunity
+  });
 }
 
 activitiesListing(){
     
-    var Loading = this.loadingCtrl.create({
+     if(this.dmonth == '' && this.amonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select dates to search',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.amonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select Arrival date',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.dmonth == ''){
+        
+    let toast = this.toastCtrl.create({
+            message: 'Select Departure date',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+    
+    }else if(this.amonth > this.dmonth){
+        
+          let toast = this.toastCtrl.create({
+            message: 'Invalid dates',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+          
+    }else if(this.a_currency == undefined && this.activity_source == undefined){
+    
+        let toast = this.toastCtrl.create({
+            message: 'Fill City and country to search',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+          
+    }else if(this.a_currency == undefined){
+        
+        let toast = this.toastCtrl.create({
+            message: 'Select country to search',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+          
+    }else if(this.activity_source == undefined){
+    
+        let toast = this.toastCtrl.create({
+            message: 'Enter city to search',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+          
+    }else{
+        var Loading = this.loadingCtrl.create({
       spinner: 'bubbles',
       showBackdrop: false,
       cssClass: 'loader'
@@ -753,9 +1007,9 @@ activitiesListing(){
     this.optionss= new RequestOptions({ headers: headers });
 
     var data_form = { 
-         currency: this.currency,
-         fromDate: '2018-04-23',
-         toDate: '2018-04-23',
+         currency: this.a_currency,
+         fromDate: this.amonth,
+         toDate: this.dmonth,
          searchFilterItems: [ { 
          type: 'destination', 
          value: this.activity_source
@@ -770,8 +1024,11 @@ activitiesListing(){
         Loading.dismiss();
         console.log(data);
 
-        if (data.ErrorMessage == null) {
-
+        if (data.ProductErrors.ErrorCode == null) {
+        
+            this.activities = data.activities;
+            console.log(this.activities);
+            
           let toast = this.toastCtrl.create({
             message: data.msg,
             duration: 3000,
@@ -779,10 +1036,10 @@ activitiesListing(){
           });
           toast.present();
 
-        } else {
+        } else if(data.ProductErrors.ErrorCode != null){
 
           let toast = this.toastCtrl.create({
-            message: data.ErrorMessage,
+            message: data.ProductErrors.Message,
             duration: 3000,
             position: 'middle'
           });
@@ -798,7 +1055,10 @@ activitiesListing(){
         });
         toast.present();
       });
-    });
+    }); 
+    }
+    
+   
     
 }
 
@@ -836,6 +1096,99 @@ activitySearch(loc){
         }
       }, error => {
         
+      });
+}
+
+viewNewsfeed(){
+    
+    this.fcommunity = [];
+  
+    var Loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      showBackdrop: false,
+      cssClass: 'loader'
+    });
+    var options = this.common.options;
+
+    var data_form = {
+      user_id: this.id      
+    }
+    console.log(data_form);
+
+    var Serialized = this.common.serializeObj(data_form);
+    console.log(Serialized);
+    
+    Loading.present().then(() => {
+    this.http.post(this.common.base_url + 'trips/newsfeed', Serialized, options)
+      .map(res => res.json())
+      .subscribe(data => {
+        Loading.dismiss();
+        console.log(data);        
+        
+        if (data.status == 0) {
+            
+            this.community = data.data;
+            console.log(this.community);
+            
+            for(let i = 0; i < this.community.length ; i++){
+                if(this.community[i].User.id != null){
+               if(this.community[i].User.Trips.length > 0){
+                   for(let j = 0; j < this.community[i].User.Trips.length ; j++){
+                     if(this.community[i].User.Trips[j].Gallery.length > 0){
+                         this.fcommunity.push(this.community[i]);  
+                     }  
+                   }
+               } 
+                }
+            }
+            
+            console.log(this.fcommunity);
+          
+          let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();          
+
+        } else {
+
+          let toast = this.toastCtrl.create({
+            message: data.msg,
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.present();
+
+        }
+      }, error => {
+        Loading.dismiss();
+        let toast = this.toastCtrl.create({
+          message: "Check your Network Connection",
+          duration: 3000,
+          position: 'middle'
+        });
+        toast.present();
+      });
+    });
+      
+}
+
+locationActivity(location){
+    console.log(location);
+    
+    this.navCtrl.push(DiscovertopPage,{
+        location: location,
+        community: this.fcommunity
+    });
+    
+}
+
+viewImagedetail(gal){
+    console.log(gal);
+    this.navCtrl.push(GaldetailPage,{
+          dis: gal,
+          community: this.fcommunity
       });
 }
 
